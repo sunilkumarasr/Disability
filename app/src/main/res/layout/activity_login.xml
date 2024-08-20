@@ -21,26 +21,30 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="100dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="25dp"
-                    android:src="@drawable/ic_launcher_background"/>
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/logo_name_ic"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Login here"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="25sp"
+                    android:fontFamily="@font/teachers_bold"
                     android:textAlignment="center"
-                    android:layout_marginTop="25dp"/>
+                    android:textColor="@color/blue"
+                    android:textSize="25sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Login to continue using the app!"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/text"
+                    android:fontFamily="@font/teachers_medium"
                     android:textSize="14sp"
                     android:textAlignment="center"/>
 
@@ -48,7 +52,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     app:hintEnabled="false"
                     style="@style/MyDenseOutlined"
                     app:boxBackgroundColor="@color/box_gray"
@@ -60,6 +64,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:hint="Email"
+                        android:fontFamily="@font/teachers_regular"
                         android:textColorHint="@color/hintcolor"
                         android:inputType="textEmailAddress"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -82,6 +87,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:hint="password"
+                        android:fontFamily="@font/teachers_regular"
                         android:textColorHint="@color/hintcolor"
                         android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forgot your Password?"
-                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/teachers_semibold"
+                    android:textColor="@color/text"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
                     android:layout_gravity="end"/>
@@ -112,7 +119,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Get Started"
+                        android:text="Sign in"
+                        android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:layout_centerVertical="true"/>
@@ -122,6 +130,7 @@
                     android:id="@+id/registerLinear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
                     <TextView
@@ -129,13 +138,15 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:text="Don't have an account?"
-                        android:textColor="@color/gray"
+                        android:fontFamily="@font/teachers_semibold"
+                        android:textColor="@color/text"
                         android:textSize="14sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_semibold"
                         android:text="Register"
                         android:textColor="@color/colorPrimary"
                         android:textSize="14sp" />

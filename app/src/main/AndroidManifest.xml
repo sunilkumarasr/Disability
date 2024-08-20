@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Disability"
         tools:targetApi="31">
         <activity
+            android:name=".Activitys.ProductDetaisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.PostDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.EditProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.EditPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.AddPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activitys.UsefulLinksActivity"
             android:exported="false" />
         <activity

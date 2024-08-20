@@ -13,6 +13,29 @@
         <include
             layout="@layout/top_layout"/>
 
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recyclerview"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"/>-->
+
+        <include
+            layout="@layout/job_alerts_items_list"/>
+
+        <include
+            layout="@layout/job_alerts_items_list"/>
+
+        <include
+            layout="@layout/job_alerts_items_list"/>
+
+        <include
+            layout="@layout/job_alerts_items_list"/>
+
+        <include
+            layout="@layout/job_alerts_items_list"/>
+
+        <include
+            layout="@layout/job_alerts_items_list"/>
+
     </LinearLayout>
 
 </layout>

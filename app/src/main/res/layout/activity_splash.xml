@@ -13,29 +13,30 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/logo_name_ic"/>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="230dp"
+            android:scaleType="fitXY"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/splash_logo_ic"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="*******"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:text="@string/splash_note"
+            android:textColor="@color/text"
+            android:fontFamily="@font/teachers_medium"
+            android:textSize="23sp"
             android:textAlignment="center"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"/>
 
@@ -56,7 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Get Started"
+                android:text="@string/Get_Started"
+                android:fontFamily="@font/teachers_medium"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:layout_centerVertical="true"/>

@@ -11,17 +11,18 @@ import androidx.core.view.WindowInsetsCompat
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
 import com.royalit.disability.databinding.ActivityAboutUsBinding
+import com.royalit.disability.databinding.ActivityAskQuestionsBinding
 
 class AskQuestionsActivity : AppCompatActivity() {
 
-    val binding: ActivityAboutUsBinding by lazy {
-        ActivityAboutUsBinding.inflate(layoutInflater)
+    val binding: ActivityAskQuestionsBinding by lazy {
+        ActivityAskQuestionsBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.blue), false)
 
         inits()
 

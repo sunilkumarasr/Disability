@@ -39,7 +39,7 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
         setContentView(binding.root)
         ViewController.changeStatusBarColor(
             this,
-            ContextCompat.getColor(this, R.color.white),
+            ContextCompat.getColor(this, R.color.blue),
             false
         )
 

@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="45dp"
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -21,7 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="18sp"
-        android:textColor="@color/blue"
-        android:text="Title"/>
+        android:fontFamily="@font/teachers_semibold"
+        android:textColor="@color/blue"/>
 
 </RelativeLayout>

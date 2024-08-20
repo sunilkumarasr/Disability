@@ -2,6 +2,8 @@ package com.royalit.disability.Logins
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,10 +22,17 @@ class ForgotActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        inits()
+    }
+
+
+    private fun inits() {
+        binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
+
         binding.cardForgot.setOnClickListener {
             startActivity(Intent(this@ForgotActivity, OTPActivity::class.java))
         }
 
     }
-    
+
 }
