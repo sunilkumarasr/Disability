@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2F2F2">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -19,7 +21,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/helpdesk_banner_ic"/>
+                    android:background="@drawable/helpdesk_banner_ic" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -28,32 +30,24 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:background="@drawable/round_circle_colorprimary"
-                        android:layout_marginEnd="8dp"/>
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/round_circle_colorprimary" />
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:background="@drawable/round_circle_colorprimary"/>
+                        android:background="@drawable/round_circle_colorprimary" />
                 </LinearLayout>
 
 
-                <!--        <androidx.recyclerview.widget.RecyclerView-->
-                <!--            android:id="@+id/recyclerview"-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"/>-->
-
-                <include
-                    layout="@layout/sale_items_list"/>
-
-                <include
-                    layout="@layout/sale_items_list"/>
-
-                <include
-                    layout="@layout/sale_items_list"/>
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
             </LinearLayout>
@@ -63,17 +57,18 @@
             android:id="@+id/cardAdd"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="25dp"
             app:cardBackgroundColor="@color/blue"
             app:cardCornerRadius="35dp">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/add_ic"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/add_ic" />
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>

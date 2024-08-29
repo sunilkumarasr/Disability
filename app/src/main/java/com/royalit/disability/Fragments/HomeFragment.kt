@@ -1,11 +1,25 @@
 package com.royalit.disability.Fragments
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.royalit.disability.Activitys.CategoriesBasedItemsListActivity
+import com.royalit.disability.AdaptersAndModels.CategoriesHomeAdapter
+import com.royalit.disability.AdaptersAndModels.CategoriesModel
+import com.royalit.disability.AdaptersAndModels.CitysModel
+import com.royalit.disability.AdaptersAndModels.Home.HomeCategoriesAdapter
+import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
+import com.royalit.disability.Retrofit.RetrofitClient
 import com.royalit.disability.databinding.FragmentCategoriesBinding
 import com.royalit.disability.databinding.FragmentHomeBinding
 
@@ -32,7 +46,55 @@ class HomeFragment : Fragment() {
     }
 
     private fun init() {
+        dataList()
+    }
+
+
+
+    private fun dataList() {
+        ViewController.showLoading(requireActivity())
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.categoriesApi().enqueue(object : retrofit2.Callback<List<CategoriesModel>> {
+            override fun onResponse(
+                call: retrofit2.Call<List<CategoriesModel>>,
+                response: retrofit2.Response<List<CategoriesModel>>
+            ) {
+                ViewController.hideLoading()
+                if (response.isSuccessful) {
+                    val rsp = response.body()
+                    if (rsp != null) {
+                        val categories = response.body()
+                        if (categories != null) {
+                            DataSet(categories)
+                        }
+                    } else {
+
+                    }
+                } else {
+                    ViewController.showToast(requireActivity(), "Error: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<List<CategoriesModel>>, t: Throwable) {
+                Log.e("cat_error", t.message.toString())
+                ViewController.hideLoading()
+                ViewController.showToast(requireActivity(), "Try again: ${t.message}")
+            }
+        })
 
     }
+
+
+    private fun DataSet(categories: List<CategoriesModel>) {
+        // Initialize RecyclerView
+        val layoutManager = GridLayoutManager(activity, 3) // 3 columns in the grid
+        binding.recyclerview.layoutManager = layoutManager
+        binding.recyclerview.adapter = HomeCategoriesAdapter(categories) { item ->
+            // Handle item click
+            //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java))
+        }
+    }
+
 
 }

@@ -25,29 +25,11 @@
                 android:fontFamily="@font/teachers_semibold"
                 />
 
-            <!--        <androidx.recyclerview.widget.RecyclerView-->
-            <!--            android:id="@+id/recyclerview"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content"/>-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-            <include
-                layout="@layout/all_categories_items_list"/>
-
-
-            <include
-                layout="@layout/all_categories_items_list"/>
-
-            <include
-                layout="@layout/all_categories_items_list"/>
-
-            <include
-                layout="@layout/all_categories_items_list"/>
-
-            <include
-                layout="@layout/all_categories_items_list"/>
-
-            <include
-                layout="@layout/all_categories_items_list"/>
 
 
         </LinearLayout>

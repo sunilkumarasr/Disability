@@ -113,8 +113,7 @@
                             android:fontFamily="@font/teachers_regular"
                             android:layout_gravity="start"
                             android:gravity="start"
-                            android:textColorHint="@color/hintcolor"
-                            android:inputType="phone"/>
+                            android:textColorHint="@color/hintcolor"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 

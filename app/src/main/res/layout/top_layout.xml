@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:orientation="horizontal">
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@color/blue">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgBack"
@@ -12,7 +13,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/back_ic"/>
+        android:src="@drawable/back_ic"
+        app:tint="@color/white"/>
 
     <TextView
         android:id="@+id/txtTitle"
@@ -22,6 +24,6 @@
         android:layout_centerVertical="true"
         android:textSize="18sp"
         android:fontFamily="@font/teachers_semibold"
-        android:textColor="@color/blue"/>
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

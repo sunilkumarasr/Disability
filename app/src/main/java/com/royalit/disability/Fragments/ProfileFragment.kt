@@ -3,6 +3,8 @@ package com.royalit.disability.Fragments
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,9 +22,16 @@ import com.royalit.disability.Activitys.PrivacyPolicyActivity
 import com.royalit.disability.Activitys.ProductListingsActivity
 import com.royalit.disability.Activitys.TermsAndConditionsActivity
 import com.royalit.disability.Activitys.UsefulLinksActivity
+import com.royalit.disability.AdaptersAndModels.ProfileResponse
+import com.royalit.disability.Config.Preferences
+import com.royalit.disability.Config.ViewController
 import com.royalit.disability.Logins.LoginActivity
 import com.royalit.disability.R
+import com.royalit.disability.Retrofit.RetrofitClient
 import com.royalit.disability.databinding.FragmentProfileBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfileFragment : Fragment(), View.OnClickListener  {
 
@@ -47,6 +56,9 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
     }
 
     private fun init() {
+
+        getProfileApi()
+
         binding.imgEdit.setOnClickListener(this)
         binding.linearJobalerts.setOnClickListener(this)
         binding.linearAboutUs.setOnClickListener(this)
@@ -61,6 +73,34 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
         binding.linearUsefulLinks.setOnClickListener(this)
         binding.linearLogout.setOnClickListener(this)
     }
+
+    private fun getProfileApi() {
+        val userId = Preferences.loadStringValue(requireActivity(), Preferences.userId, "")
+        Log.e("userId_",userId.toString())
+
+        ViewController.showLoading(requireActivity())
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.getProfileApi(userId).enqueue(object : Callback<ProfileResponse> {
+            override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
+                ViewController.hideLoading()
+                if (response.isSuccessful) {
+                    val rsp = response.body()
+                    if (rsp != null) {
+                        binding.txtName.text = rsp.data?.name.toString()
+                        binding.txtEmail.text = rsp.data?.email.toString()
+                        binding.txtMobile.text = rsp.data?.phone.toString()
+                    }
+                } else {
+                    ViewController.showToast(requireActivity(), "Error: ${response.code()}")
+                }
+            }
+            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                ViewController.hideLoading()
+                ViewController.showToast(requireActivity(), "Try again: ${t.message}")
+            }
+        })
+    }
+
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -129,8 +169,9 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
         builder.setPositiveButton(
             "Yes"
         ) { dialog: DialogInterface?, which: Int ->
+            Preferences.deleteSharedPreferences(requireActivity())
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
-            requireActivity().finishAffinity() // Close all activities in the app
+            requireActivity().finishAffinity()
         }
         builder.setNegativeButton(
             "No"

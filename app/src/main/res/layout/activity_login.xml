@@ -59,7 +59,7 @@
                     app:boxStrokeColor="@color/box_border"
                     app:boxStrokeWidth="0dp">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mobileEdit"
+                        android:id="@+id/emailEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"

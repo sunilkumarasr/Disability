@@ -38,6 +38,7 @@
 
             </LinearLayout>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardAdd"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_alignParentBottom="true"

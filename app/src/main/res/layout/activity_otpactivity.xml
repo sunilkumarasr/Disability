@@ -1,10 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Logins.OTPActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/top_layout"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/splash_bg"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/logo_name_ic"/>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginEnd="15dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="OTP Verification"
+                                android:fontFamily="@font/teachers_bold"
+                                android:textAlignment="center"
+                                android:textColor="@color/blue"
+                                android:textSize="25sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="OTP has been sent to your mobile. it will automatically fill the input box"
+                                android:textColor="@color/text"
+                                android:fontFamily="@font/teachers_medium"
+                                android:textSize="14sp"
+                                android:textAlignment="center"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginStart="20dp"
+                                android:gravity="center_horizontal">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginEnd="15dp"
+                                    app:hintEnabled="false"
+                                    style="@style/MyDenseOutlined"
+                                    app:boxBackgroundColor="@color/box_gray"
+                                    app:boxStrokeColor="@color/box_border"
+                                    app:boxStrokeWidth="0dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15sp"
+                                        android:textAlignment="center"
+                                        android:hint="0"
+                                        android:fontFamily="@font/teachers_regular"
+                                        android:textColorHint="@color/hintcolor"
+                                        android:inputType="textEmailAddress"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginEnd="15dp"
+                                    app:hintEnabled="false"
+                                    style="@style/MyDenseOutlined"
+                                    app:boxBackgroundColor="@color/box_gray"
+                                    app:boxStrokeColor="@color/box_border"
+                                    app:boxStrokeWidth="0dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15sp"
+                                        android:textAlignment="center"
+                                        android:hint="0"
+                                        android:fontFamily="@font/teachers_regular"
+                                        android:textColorHint="@color/hintcolor"
+                                        android:inputType="textEmailAddress"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginEnd="15dp"
+                                    app:hintEnabled="false"
+                                    style="@style/MyDenseOutlined"
+                                    app:boxBackgroundColor="@color/box_gray"
+                                    app:boxStrokeColor="@color/box_border"
+                                    app:boxStrokeWidth="0dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15sp"
+                                        android:textAlignment="center"
+                                        android:hint="0"
+                                        android:fontFamily="@font/teachers_regular"
+                                        android:textColorHint="@color/hintcolor"
+                                        android:inputType="textEmailAddress"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    app:hintEnabled="false"
+                                    style="@style/MyDenseOutlined"
+                                    app:boxBackgroundColor="@color/box_gray"
+                                    app:boxStrokeColor="@color/box_border"
+                                    app:boxStrokeWidth="0dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15sp"
+                                        android:textAlignment="center"
+                                        android:hint="0"
+                                        android:fontFamily="@font/teachers_regular"
+                                        android:textColorHint="@color/hintcolor"
+                                        android:inputType="textEmailAddress"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txtForgot"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00:59"
+                                android:fontFamily="@font/teachers_semibold"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                android:textSize="17sp"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:layout_gravity="center"
+                                android:text="Resend code"
+                                android:fontFamily="@font/teachers_semibold"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18sp"
+                                android:layout_centerVertical="true"/>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</layout>

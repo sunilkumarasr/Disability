@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="65dp"
+    android:layout_height="70dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="5dp"
     android:orientation="horizontal"
@@ -16,6 +16,7 @@
         android:layout_gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgLogo"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -23,6 +24,7 @@
             android:layout_marginEnd="10dp"
             android:src="@drawable/vision_dummy"/>
         <TextView
+            android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

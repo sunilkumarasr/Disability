@@ -1,6 +1,8 @@
 package com.royalit.disability.Activitys
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -13,12 +15,11 @@ import com.royalit.disability.R
 import com.royalit.disability.databinding.ActivityAboutUsBinding
 import com.royalit.disability.databinding.ActivityPostListingsBinding
 
-class PostListingsActivity : AppCompatActivity() {
+class PostListingsActivity : AppCompatActivity(),View.OnClickListener {
 
     val binding: ActivityPostListingsBinding by lazy {
         ActivityPostListingsBinding.inflate(layoutInflater)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +30,21 @@ class PostListingsActivity : AppCompatActivity() {
 
     }
 
-
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Post Listings"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = "My Post"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
+        binding.linearAddPost.setOnClickListener(this)
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+
+            R.id.linearAddPost -> {
+                startActivity(Intent(this@PostListingsActivity, AddPostActivity::class.java))
+            }
+
+        }
+    }
 
 }

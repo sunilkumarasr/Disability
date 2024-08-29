@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.royalit.disability.Config.Preferences
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.Logins.LoginActivity
 import com.royalit.disability.R
@@ -23,9 +24,15 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.white), false)
 
-
         binding.cardStart.setOnClickListener {
-            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            val loginCheck = Preferences.loadStringValue(applicationContext, Preferences.LOGINCHECK, "")
+
+            if (loginCheck.equals("Login")) {
+                startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
+            }else{
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            }
+
         }
 
 
