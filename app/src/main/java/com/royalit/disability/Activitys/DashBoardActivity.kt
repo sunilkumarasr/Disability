@@ -3,19 +3,12 @@ package com.royalit.disability.Activitys
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.royalit.disability.AdaptersAndModels.CityAdapter
-import com.royalit.disability.AdaptersAndModels.CitysModel
 import com.royalit.disability.Config.Preferences
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.Fragments.CategoriesFragment
@@ -23,7 +16,6 @@ import com.royalit.disability.Fragments.HomeFragment
 import com.royalit.disability.Fragments.ProfileFragment
 import com.royalit.disability.Fragments.SaleFragment
 import com.royalit.disability.R
-import com.royalit.disability.Retrofit.RetrofitClient
 import com.royalit.disability.databinding.ActivityDashBoardBinding
 
 class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
@@ -55,8 +47,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
 
         bottomMenu()
 
-        citysList()
-
         binding.imgNotification.setOnClickListener(this)
         binding.imgWhatsapp.setOnClickListener(this)
     }
@@ -73,39 +63,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
             }
 
         }
-    }
-
-
-    private fun citysList() {
-        val apiInterface = RetrofitClient.apiInterface
-        apiInterface.cityApi().enqueue(object : retrofit2.Callback<List<CitysModel>> {
-            override fun onResponse(
-                call: retrofit2.Call<List<CitysModel>>,
-                response: retrofit2.Response<List<CitysModel>>
-            ) {
-                if (response.isSuccessful) {
-                    val rsp = response.body()
-                    if (rsp != null) {
-                        val cityList = response.body()
-                        if (cityList != null) {
-                            CityDataSet(cityList)
-                        }
-                    } else {
-
-                    }
-                } else {
-                    ViewController.showToast(this@DashBoardActivity, "Error: ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: retrofit2.Call<List<CitysModel>>, t: Throwable) {
-                Log.e("citys_error", t.message.toString())
-            }
-        })
-    }
-    private fun CityDataSet(citys: List<CitysModel>) {
-        val adapter = CityAdapter(this@DashBoardActivity, citys)
-        binding.citySpinner.adapter = adapter
     }
 
     private fun bottomMenu() {
@@ -153,7 +110,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
     }
 
     override fun onBackPressed() {
-         super.onBackPressed()
         exitDialog()
     }
 

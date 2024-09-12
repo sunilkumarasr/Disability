@@ -6,9 +6,11 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
+        const val Image_Path = "https://divyaangdisha.com/disability/"
         private const val BASE_URL = "https://divyaangdisha.com/disability/api/"
 
         // Initialize logging interceptor
@@ -18,6 +20,9 @@ object RetrofitClient {
 
         // Initialize OkHttpClient with interceptors
         private val okHttpClient = OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS) // Increase connection timeout
+            .readTimeout(60, TimeUnit.SECONDS)    // Increase read timeout
+            .writeTimeout(60, TimeUnit.SECONDS)   // Increase write timeout
             .addInterceptor(interceptor)
             .addInterceptor(RequestInterceptor) // Add the custom interceptor
             .build()

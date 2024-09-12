@@ -18,31 +18,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@drawable/home_bannes" />
-
-                <LinearLayout
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/imageSlider"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/round_circle_colorprimary" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/round_circle_colorprimary" />
-                </LinearLayout>
-
+                    android:layout_height="180dp"
+                    android:paddingTop="5dp"
+                    app:iss_auto_cycle="true"
+                    app:iss_corner_radius="18"
+                    app:iss_delay="2000"
+                    app:iss_indicator_align="BOTTOM"
+                    app:iss_period="2000"
+                    app:iss_text_color="@color/black"
+                    app:iss_title_background="@color/trance" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview"
@@ -52,26 +39,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Job Alerts"
-                    android:textSize="18dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="25dp"/>
+                    android:fontFamily="@font/teachers_semibold"
+                    android:text="Job Alerts"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-                <!--        <androidx.recyclerview.widget.RecyclerView-->
-                <!--            android:id="@+id/recyclerview"-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"/>-->
-
-                <include
-                    layout="@layout/job_alerts_items_list"/>
-
-                <include
-                    layout="@layout/job_alerts_items_list"/>
-
-                <include
-                    layout="@layout/job_alerts_items_list"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewjobAlert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

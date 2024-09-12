@@ -7,8 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.royalit.disability.AdaptersAndModels.CategoriesHomeAdapter
-import com.royalit.disability.AdaptersAndModels.CategoriesModel
+import com.royalit.disability.AdaptersAndModels.Categorys.CategoriesModel
 import com.royalit.disability.R
 
 class HomeCategoriesAdapter(

@@ -19,6 +19,7 @@
         app:cardCornerRadius="2dp"
         app:cardBackgroundColor="@color/white">
         <TextView
+            android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

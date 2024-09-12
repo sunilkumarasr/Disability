@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Activitys.EditPostActivity">
+    tools:context=".Activitys.Categorys.EditPostActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         <include
             layout="@layout/top_layout"/>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
@@ -42,7 +42,6 @@
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -50,17 +49,7 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/round_edit_gray_light_edge">
-                    <Spinner
+                        android:id="@+id/spinnerCategory"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                 </LinearLayout>
@@ -95,7 +84,7 @@
                     app:boxStrokeColor="@color/box_border"
                     app:boxStrokeWidth="0dp">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/offerPriceEdit"
+                        android:id="@+id/DesctiptionEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -208,123 +197,6 @@
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/round_edit_gray_light_edge">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="3dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Choose"
-                            android:fontFamily="@font/teachers_regular"
-                            android:textColor="@color/text"
-                            android:textSize="13sp"
-                            android:layout_centerVertical="true"/>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="15dp"
-                        android:singleLine="true"
-                        android:gravity="end"
-                        android:text="Upload Image.jpg"
-                        android:fontFamily="@font/teachers_regular"
-                        android:textColor="@color/text"
-                        android:textSize="15sp"
-                        android:layout_centerVertical="true"/>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/round_edit_gray_light_edge">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="3dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Choose"
-                            android:fontFamily="@font/teachers_regular"
-                            android:textColor="@color/text"
-                            android:textSize="13sp"
-                            android:layout_centerVertical="true"/>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="15dp"
-                        android:singleLine="true"
-                        android:gravity="end"
-                        android:text="Upload Image.jpg"
-                        android:fontFamily="@font/teachers_regular"
-                        android:textColor="@color/text"
-                        android:textSize="15sp"
-                        android:layout_centerVertical="true"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="end"
-                    android:background="@drawable/round_edit_dark_gray">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:singleLine="true"
-                        android:gravity="end"
-                        android:text="add Images"
-                        android:fontFamily="@font/teachers_medium"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:layout_centerVertical="true"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/add_ic"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="10dp"/>
-                </LinearLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -344,6 +216,154 @@
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Cover Photo"
+                    android:fontFamily="@font/teachers_semibold"
+                    android:textColor="@color/text"
+                    android:textSize="13sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_edit_gray_light_edge">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardImages"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="3dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Choose"
+                            android:fontFamily="@font/teachers_regular"
+                            android:textColor="@color/text"
+                            android:textSize="13sp"
+                            android:layout_centerVertical="true"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgCover"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/dummy_profile"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Gallery Photos"
+                    android:fontFamily="@font/teachers_semibold"
+                    android:textColor="@color/text"
+                    android:textSize="13sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_edit_gray_light_edge">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardMultiImages"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="3dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Choose"
+                            android:fontFamily="@font/teachers_regular"
+                            android:textColor="@color/text"
+                            android:textSize="13sp"
+                            android:layout_centerVertical="true"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/txtFileName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="15dp"
+                        android:singleLine="true"
+                        android:gravity="end"
+                        android:text="Upload Image.jpg"
+                        android:fontFamily="@font/teachers_regular"
+                        android:textColor="@color/text"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/addMoreImages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:background="@drawable/round_edit_dark_gray">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:singleLine="true"
+                        android:gravity="end"
+                        android:text="add Images"
+                        android:fontFamily="@font/teachers_medium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/add_ic"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="10dp"/>
+                </LinearLayout>
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/txtNoImages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center"
+                    android:text="No Gallery Images"
+                    android:fontFamily="@font/teachers_medium"
+                    android:textColor="@color/selectedRed"
+                    android:textSize="18sp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardSubmit"
@@ -369,7 +389,7 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

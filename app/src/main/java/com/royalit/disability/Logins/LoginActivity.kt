@@ -44,7 +44,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.cardLogin.setOnClickListener {
-            loginApi()
+            if(!ViewController.noInterNetConnectivity(applicationContext)){
+                ViewController.showToast(applicationContext, "Please check your connection ")
+            }else{
+                loginApi()
+            }
         }
 
     }
@@ -63,10 +67,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        if(!ViewController.noInterNetConnectivity(applicationContext)){
-            ViewController.showToast(applicationContext, "Please check your connection ")
-            return
-        }else if (!validateEmail(email)) {
+        if (!validateEmail(email)) {
             ViewController.showToast(applicationContext, "Enter Valid email")
         }else{
             ViewController.showLoading(this@LoginActivity)
@@ -82,6 +83,9 @@ class LoginActivity : AppCompatActivity() {
                         if (loginResponse != null && loginResponse.status.equals("success")) {
                             Preferences.saveStringValue(applicationContext, Preferences.userId,
                                 loginResponse.user?.id.toString()
+                            )
+                            Preferences.saveStringValue(applicationContext, Preferences.name,
+                                loginResponse.user?.name.toString()
                             )
                             startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
                             finish()

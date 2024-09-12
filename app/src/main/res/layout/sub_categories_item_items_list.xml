@@ -14,22 +14,18 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <androidx.cardview.widget.CardView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgLogo"
             android:layout_width="150dp"
-            android:layout_height="160dp"
-            app:cardCornerRadius="10dp">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgLogo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/cat_item_1"
-                android:scaleType="fitXY" />
-        </androidx.cardview.widget.CardView>
+            android:layout_height="140dp"
+            android:src="@drawable/cat_item_1"
+            android:scaleType="fitXY"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:padding="5dp"
             android:orientation="vertical">
             <TextView
@@ -37,29 +33,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:layout_marginStart="2dp"
                 android:text="tetle"
                 android:textSize="15sp"
+                android:maxLines="2"
                 android:fontFamily="@font/teachers_semibold"/>
 
             <TextView
+                android:id="@+id/txtAbout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginStart="2dp"
                 android:text="Lorem Ipsum dolor sit amit consectetur rises"
                 android:textSize="12sp"
+                android:maxLines="2"
                 android:fontFamily="@font/teachers_regular"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
+                   android:visibility="gone"
+                    android:id="@+id/imgCertified"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:src="@drawable/cat_lable"/>
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:visibility="gone"
+                    android:id="@+id/imgVertified"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -70,14 +75,15 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/marker_ic"/>
 
                 <TextView
+                    android:id="@+id/txtLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Banjara Hills, Hyderabad"
@@ -91,15 +97,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginStart="3dp"
                     android:src="@drawable/call_ic"/>
 
                 <TextView
+                    android:id="@+id/txtMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -113,15 +120,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginStart="3dp"
                     android:src="@drawable/email_ic"/>
 
                 <TextView
+                    android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -139,9 +147,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal">
         <LinearLayout
+            android:id="@+id/linearCall"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:orientation="horizontal"
@@ -168,6 +177,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearViewMore"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:orientation="horizontal"

@@ -7,5 +7,7 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper. Fusce semper sit amet erat ut interdum. Etiam varius ac odio sed facilisis.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper. Fusce semper sit amet erat ut interdum. Etiam varius ac odio sed facilisis.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper. Fusce semper sit amet erat ut interdum. Etiam varius ac odio sed facilisis. </string>
+    <string name="note_short">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper. Fusce semper sit amet erat ut interdum. Etiam varius ac odio sed facilisis. </string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

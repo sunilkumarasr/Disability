@@ -1,27 +1,27 @@
 package com.royalit.disability.Fragments
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.royalit.disability.Activitys.CategoriesBasedItemsListActivity
-import com.royalit.disability.AdaptersAndModels.CategoriesHomeAdapter
-import com.royalit.disability.AdaptersAndModels.CategoriesModel
-import com.royalit.disability.AdaptersAndModels.CitysModel
+import com.denzcoskun.imageslider.models.SlideModel
+import com.royalit.disability.Activitys.Categorys.CategoriesBasedItemsListActivity
+import com.royalit.disability.Activitys.JobAlerts.JobAlertDetailsActivity
+import com.royalit.disability.AdaptersAndModels.Categorys.CategoriesModel
 import com.royalit.disability.AdaptersAndModels.Home.HomeCategoriesAdapter
+import com.royalit.disability.AdaptersAndModels.Home.HomeBannersModel
+import com.royalit.disability.AdaptersAndModels.JobAlerts.JobAlertHomeAdapter
+import com.royalit.disability.AdaptersAndModels.JobAlerts.JobAlertModel
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
 import com.royalit.disability.Retrofit.RetrofitClient
-import com.royalit.disability.databinding.FragmentCategoriesBinding
 import com.royalit.disability.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 
@@ -46,55 +46,143 @@ class HomeFragment : Fragment() {
     }
 
     private fun init() {
-        dataList()
+        if (!ViewController.noInterNetConnectivity(requireActivity())) {
+            ViewController.showToast(requireActivity(), "Please check your connection ")
+            return
+        } else {
+            HomebannersApi()
+            categoriesApi()
+            jobAlertApi()
+        }
     }
 
 
-
-    private fun dataList() {
-        ViewController.showLoading(requireActivity())
+    private fun HomebannersApi() {
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.categoriesApi().enqueue(object : retrofit2.Callback<List<CategoriesModel>> {
+        apiInterface.HomebannersApi().enqueue(object : retrofit2.Callback<List<HomeBannersModel>> {
             override fun onResponse(
-                call: retrofit2.Call<List<CategoriesModel>>,
-                response: retrofit2.Response<List<CategoriesModel>>
+                call: retrofit2.Call<List<HomeBannersModel>>,
+                response: retrofit2.Response<List<HomeBannersModel>>
             ) {
-                ViewController.hideLoading()
                 if (response.isSuccessful) {
-                    val rsp = response.body()
-                    if (rsp != null) {
-                        val categories = response.body()
-                        if (categories != null) {
-                            DataSet(categories)
-                        }
-                    } else {
-
-                    }
+                    val banners = response.body() ?: emptyList()
+                    BannerDataSet(banners)
                 } else {
                     ViewController.showToast(requireActivity(), "Error: ${response.code()}")
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<List<CategoriesModel>>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<List<HomeBannersModel>>, t: Throwable) {
                 Log.e("cat_error", t.message.toString())
-                ViewController.hideLoading()
                 ViewController.showToast(requireActivity(), "Try again: ${t.message}")
             }
         })
-
+    }
+    private fun BannerDataSet(banners: List<HomeBannersModel>) {
+        val imageList = mutableListOf<SlideModel>()
+        banners.forEach {
+            val imageUrl = it.image
+            if (imageUrl.isNotEmpty()) {
+                imageList.add(SlideModel(imageUrl))
+            } else {
+                imageList.add(
+                    SlideModel(
+                        R.drawable.home_bannes
+                    )
+                )
+            }
+        }
+        binding.imageSlider.setImageList(imageList)
     }
 
 
+    private fun categoriesApi() {
+            ViewController.showLoading(requireActivity())
+            val apiInterface = RetrofitClient.apiInterface
+            apiInterface.categoriesApi()
+                .enqueue(object : retrofit2.Callback<List<CategoriesModel>> {
+                    override fun onResponse(
+                        call: retrofit2.Call<List<CategoriesModel>>,
+                        response: retrofit2.Response<List<CategoriesModel>>
+                    ) {
+                        ViewController.hideLoading()
+                        if (response.isSuccessful) {
+                            val rsp = response.body()
+                            if (rsp != null) {
+                                val categories = response.body()
+                                if (categories != null) {
+                                    DataSet(categories)
+                                }
+                            } else {
+
+                            }
+                        } else {
+                            ViewController.showToast(requireActivity(), "Error: ${response.code()}")
+                        }
+                    }
+
+                    override fun onFailure(
+                        call: retrofit2.Call<List<CategoriesModel>>,
+                        t: Throwable
+                    ) {
+                        Log.e("cat_error", t.message.toString())
+                        ViewController.hideLoading()
+                        ViewController.showToast(requireActivity(), "Try again: ${t.message}")
+                    }
+                })
+
+    }
     private fun DataSet(categories: List<CategoriesModel>) {
-        // Initialize RecyclerView
-        val layoutManager = GridLayoutManager(activity, 3) // 3 columns in the grid
+
+        val layoutManager = GridLayoutManager(activity, 3)
         binding.recyclerview.layoutManager = layoutManager
         binding.recyclerview.adapter = HomeCategoriesAdapter(categories) { item ->
             // Handle item click
             //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java))
+            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
+                putExtra("category_id",item.category_id)
+                putExtra("category_Name",item.category)
+            })
         }
     }
 
+
+    private fun jobAlertApi() {
+            val apiInterface = RetrofitClient.apiInterface
+            apiInterface.jobAlertApi().enqueue(object : retrofit2.Callback<List<JobAlertModel>> {
+                override fun onResponse(
+                    call: retrofit2.Call<List<JobAlertModel>>,
+                    response: retrofit2.Response<List<JobAlertModel>>
+                ) {
+                    if (response.isSuccessful) {
+                        val rsp = response.body()
+                        if (rsp != null) {
+                            val joblist = response.body()
+                            if (joblist != null) {
+                                JobDataSet(joblist)
+                            }
+                        }
+                    } else {
+                        ViewController.showToast(requireActivity(), "Error: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: retrofit2.Call<List<JobAlertModel>>, t: Throwable) {
+                    Log.e("cat_error", t.message.toString())
+                    ViewController.showToast(requireActivity(), "Try again: ${t.message}")
+                }
+            })
+    }
+    private fun JobDataSet(joblist: List<JobAlertModel>) {
+        binding.recyclerviewjobAlert.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerviewjobAlert.adapter = JobAlertHomeAdapter(joblist) { item ->
+            //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(activity, JobAlertDetailsActivity::class.java).apply {
+                putExtra("title",item.title)
+                putExtra("post_date",item.post_date)
+                putExtra("last_date",item.last_date)
+            })
+        }
+    }
 
 }

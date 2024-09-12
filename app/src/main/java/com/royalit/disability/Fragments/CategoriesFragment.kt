@@ -7,12 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.royalit.disability.Activitys.AddPostActivity
-import com.royalit.disability.Activitys.CategoriesBasedItemsListActivity
-import com.royalit.disability.AdaptersAndModels.CategoriesHomeAdapter
-import com.royalit.disability.AdaptersAndModels.CategoriesModel
+import com.royalit.disability.Activitys.Categorys.AddPostActivity
+import com.royalit.disability.Activitys.Categorys.CategoriesBasedItemsListActivity
+import com.royalit.disability.AdaptersAndModels.Categorys.CategoriesHomeAdapter
+import com.royalit.disability.AdaptersAndModels.Categorys.CategoriesModel
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
 import com.royalit.disability.Retrofit.RetrofitClient
@@ -43,7 +42,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
     private fun init() {
         binding.cardAdd.setOnClickListener(this)
 
-        dataList()
+        categoriesApi()
     }
 
     override fun onClick(v: View?) {
@@ -56,9 +55,8 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun dataList() {
+    private fun categoriesApi() {
         ViewController.showLoading(requireActivity())
-
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.categoriesApi().enqueue(object : retrofit2.Callback<List<CategoriesModel>> {
             override fun onResponse(
@@ -94,7 +92,10 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
         binding.recyclerview.layoutManager = LinearLayoutManager(activity)
         binding.recyclerview.adapter = CategoriesHomeAdapter(categories) { item ->
             //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java))
+            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
+                putExtra("category_id",item.category_id)
+                putExtra("category_Name",item.category)
+            })
         }
     }
 

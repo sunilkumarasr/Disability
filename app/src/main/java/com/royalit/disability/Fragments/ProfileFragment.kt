@@ -3,23 +3,23 @@ package com.royalit.disability.Fragments
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import com.royalit.disability.Activitys.AboutUsActivity
 import com.royalit.disability.Activitys.AskQuestionsActivity
 import com.royalit.disability.Activitys.ContactUsActivity
 import com.royalit.disability.Activitys.EditProfileActivity
 import com.royalit.disability.Activitys.FaqActivity
 import com.royalit.disability.Activitys.HelpAndSupportActivity
-import com.royalit.disability.Activitys.JobAlertsActivity
-import com.royalit.disability.Activitys.PostListingsActivity
+import com.royalit.disability.Activitys.JobAlerts.JobAlertsActivity
+import com.royalit.disability.Activitys.Categorys.MyPostsActivity
 import com.royalit.disability.Activitys.PrivacyPolicyActivity
-import com.royalit.disability.Activitys.ProductListingsActivity
+import com.royalit.disability.Activitys.Sales.MyProductsActivity
 import com.royalit.disability.Activitys.TermsAndConditionsActivity
 import com.royalit.disability.Activitys.UsefulLinksActivity
 import com.royalit.disability.AdaptersAndModels.ProfileResponse
@@ -89,6 +89,9 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
                         binding.txtName.text = rsp.data?.name.toString()
                         binding.txtEmail.text = rsp.data?.email.toString()
                         binding.txtMobile.text = rsp.data?.phone.toString()
+                        if (!rsp.data?.image.equals("")){
+                            Glide.with(binding.profileImage).load(rsp.data?.image).into(binding.profileImage)
+                        }
                     }
                 } else {
                     ViewController.showToast(requireActivity(), "Error: ${response.code()}")
@@ -126,11 +129,11 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
             }
 
             R.id.linearPostListings -> {
-                startActivity(Intent(activity, PostListingsActivity::class.java))
+                startActivity(Intent(activity, MyPostsActivity::class.java))
             }
 
             R.id.linearProductListings -> {
-                startActivity(Intent(activity, ProductListingsActivity::class.java))
+                startActivity(Intent(activity, MyProductsActivity::class.java))
             }
 
             R.id.linearTermsandConditions -> {

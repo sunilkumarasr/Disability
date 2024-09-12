@@ -26,11 +26,13 @@
                     android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:orientation="horizontal">
-                    <Spinner
-                        android:id="@+id/citySpinner"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"/>
+                        android:textSize="22sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/teachers_bold"
+                        android:text="Divyaangadisha"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

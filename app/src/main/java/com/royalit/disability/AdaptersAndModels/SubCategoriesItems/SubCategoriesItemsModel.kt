@@ -1,6 +1,23 @@
 package com.royalit.disability.AdaptersAndModels.SubCategoriesItems
 
 data class SubCategoriesItemsModel(
-    val text: String,
-    val imageResId: Int
+    val id: String,
+    val title: String,
+    val slug: String,
+    val categoryId: String,
+    val address: String,
+    val mail: String,
+    val mobile: String,
+    val location: String,
+    val certified: Boolean,
+    val verified: Boolean,
+    val about: String,
+    val services: String,
+    val state: String,
+    val city: String,
+    val latitude: String?,
+    val longitude: String?,
+    val image: String,
+    val createdDate: String,
+    val createdTime: String
 )

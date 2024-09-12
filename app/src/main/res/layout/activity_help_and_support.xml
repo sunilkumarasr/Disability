@@ -50,6 +50,7 @@
                             android:textSize="15sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Name"
+                            android:singleLine="true"
                             android:textColorHint="@color/hintcolor"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,6 +71,7 @@
                             android:textSize="15sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Email Address"
+                            android:singleLine="true"
                             android:textColorHint="@color/hintcolor"
                             android:inputType="textEmailAddress"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -90,6 +92,7 @@
                             android:textSize="15sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Phone Number"
+                            android:singleLine="true"
                             android:textColorHint="@color/hintcolor"
                             android:inputType="phone"/>
                     </com.google.android.material.textfield.TextInputLayout>

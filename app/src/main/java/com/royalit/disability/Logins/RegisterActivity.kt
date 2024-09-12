@@ -2,18 +2,19 @@ package com.royalit.disability.Logins
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.royalit.disability.Activitys.DashBoardActivity
-import com.royalit.disability.AdaptersAndModels.LoginRequest
-import com.royalit.disability.AdaptersAndModels.LoginResponse
+import com.royalit.disability.AdaptersAndModels.Citys.CityAdapter
+import com.royalit.disability.AdaptersAndModels.Citys.CitysModel
 import com.royalit.disability.AdaptersAndModels.RegisterRequest
 import com.royalit.disability.AdaptersAndModels.RegisterResponse
+import com.royalit.disability.AdaptersAndModels.State.StateAdapter
+import com.royalit.disability.AdaptersAndModels.State.StateModel
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.Retrofit.RetrofitClient
 import com.royalit.disability.databinding.ActivityRegisterBinding
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,14 +25,22 @@ class RegisterActivity : AppCompatActivity() {
         ActivityRegisterBinding.inflate(layoutInflater)
     }
 
+    var stateName: String = ""
+    var stateId: String = ""
+    var cityName: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
+        stateList()
+        citysList()
 
         binding.cardLogin.setOnClickListener{
-            registerApi()
+            if(!ViewController.noInterNetConnectivity(applicationContext)){
+                ViewController.showToast(applicationContext, "Please check your connection ")
+            }else{
+                registerApi()
+            }
         }
 
         binding.loginLinear.setOnClickListener {
@@ -40,11 +49,11 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-
     private fun registerApi() {
         val name_=binding.nameEdit.text.toString()
-        val email=binding.emailEdit.text.toString()
+        val email=binding.emailEdit.text?.trim().toString()
         val mobileNumber_=binding.mobileEdit.text?.trim().toString()
+        val location_=binding.LocationEdit.text?.trim().toString()
         val password_=binding.passwordEdit.text?.trim().toString()
         val Cpassword_=binding.CpasswordEdit.text?.trim().toString()
 
@@ -60,6 +69,11 @@ class RegisterActivity : AppCompatActivity() {
             ViewController.showToast(applicationContext, "Enter mobile number")
             return
         }
+        if(location_.isEmpty()){
+            ViewController.showToast(applicationContext, "Enter Location")
+            return
+        }
+
         if(password_.isEmpty()){
             ViewController.showToast(applicationContext, "Enter password")
             return
@@ -73,10 +87,7 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        if(!ViewController.noInterNetConnectivity(applicationContext)){
-            ViewController.showToast(applicationContext, "Please check your connection ")
-            return
-        }else if (!validateMobileNumber(mobileNumber_)) {
+        if (!validateMobileNumber(mobileNumber_)) {
             ViewController.showToast(applicationContext, "Enter Valid mobile number")
         }else if (!validateEmail(email)) {
             ViewController.showToast(applicationContext, "Enter Valid Email")
@@ -84,7 +95,7 @@ class RegisterActivity : AppCompatActivity() {
             ViewController.showLoading(this@RegisterActivity)
 
             val apiInterface = RetrofitClient.apiInterface
-            val registerRequest = RegisterRequest(name_,email,mobileNumber_,password_)
+            val registerRequest = RegisterRequest(name_,email,mobileNumber_,location_, stateName, cityName,  password_)
 
             apiInterface.registerApi(registerRequest).enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
@@ -122,5 +133,89 @@ class RegisterActivity : AppCompatActivity() {
         val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
         return email.matches(Regex(emailPattern))
     }
+
+    private fun stateList() {
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.stateListApi().enqueue(object : retrofit2.Callback<List<StateModel>> {
+            override fun onResponse(
+                call: retrofit2.Call<List<StateModel>>,
+                response: retrofit2.Response<List<StateModel>>
+            ) {
+                if (response.isSuccessful) {
+                    val rsp = response.body()
+                    if (rsp != null) {
+                        val stateList = response.body()
+                        if (stateList != null) {
+                            stateDataSet(stateList)
+                        }
+                    } else {
+
+                    }
+                } else {
+                    ViewController.showToast(this@RegisterActivity, "Error: ${response.code()}")
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<List<StateModel>>, t: Throwable) {
+                Log.e("citys_error", t.message.toString())
+            }
+        })
+    }
+    private fun stateDataSet(state: List<StateModel>) {
+        val adapter = StateAdapter(this@RegisterActivity, state)
+        binding.spinnerState.adapter = adapter
+        binding.spinnerState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                val selectedState = parent?.getItemAtPosition(position) as StateModel
+                stateName = selectedState.state
+                stateId = selectedState.id
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+    }
+
+    private fun citysList() {
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.cityApi(stateId).enqueue(object : retrofit2.Callback<List<CitysModel>> {
+            override fun onResponse(
+                call: retrofit2.Call<List<CitysModel>>,
+                response: retrofit2.Response<List<CitysModel>>
+            ) {
+                if (response.isSuccessful) {
+                    val rsp = response.body()
+                    if (rsp != null) {
+                        val cityList = response.body()
+                        if (cityList != null) {
+                            CityDataSet(cityList)
+                        }
+                    } else {
+
+                    }
+                } else {
+                    ViewController.showToast(this@RegisterActivity, "Error: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<List<CitysModel>>, t: Throwable) {
+                Log.e("citys_error", t.message.toString())
+            }
+        })
+    }
+    private fun CityDataSet(citys: List<CitysModel>) {
+        val adapter = CityAdapter(this@RegisterActivity, citys)
+        binding.spinnerCity.adapter = adapter
+        binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                val selectedCity = parent?.getItemAtPosition(position) as CitysModel
+                cityName = selectedCity.city
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+    }
+
+
 
 }

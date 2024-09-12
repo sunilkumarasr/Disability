@@ -3,11 +3,8 @@ package com.royalit.disability.AdaptersAndModels.SubCategories
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.royalit.disability.AdaptersAndModels.CategoriesHomeAdapter
-import com.royalit.disability.AdaptersAndModels.CategoriesModel
 import com.royalit.disability.R
 
 class SubCategoriesAdapter(

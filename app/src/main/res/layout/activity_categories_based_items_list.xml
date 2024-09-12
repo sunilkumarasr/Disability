@@ -13,11 +13,19 @@
         <include
             layout="@layout/top_layout"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/imageSlider"
+            android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:src="@drawable/cal_l_banner"
-            android:scaleType="fitXY"/>
+            android:paddingTop="5dp"
+            app:iss_auto_cycle="true"
+            app:iss_corner_radius="18"
+            app:iss_delay="2000"
+            app:iss_indicator_align="BOTTOM"
+            app:iss_period="2000"
+            app:iss_text_color="@color/black"
+            app:iss_title_background="@color/trance" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Crecyclerview"
@@ -30,6 +38,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txtNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No data found"
+            android:textColor="@color/blue"
+            android:textSize="25dp"
+            android:fontFamily="@font/teachers_semibold"
+            android:textAlignment="center"/>
 
     </LinearLayout>
 

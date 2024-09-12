@@ -8,19 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.royalit.disability.Activitys.AddPostActivity
-import com.royalit.disability.Activitys.AddProductActivity
-import com.royalit.disability.Activitys.CategoriesBasedItemsListActivity
-import com.royalit.disability.AdaptersAndModels.CategoriesHomeAdapter
-import com.royalit.disability.AdaptersAndModels.CategoriesModel
-import com.royalit.disability.AdaptersAndModels.Home.HomeCategoriesAdapter
-import com.royalit.disability.AdaptersAndModels.SaleAdapter
-import com.royalit.disability.AdaptersAndModels.SaleModel
+import com.denzcoskun.imageslider.models.SlideModel
+import com.royalit.disability.Activitys.Sales.AddProductActivity
+import com.royalit.disability.Activitys.Sales.ProductDetaisActivity
+import com.royalit.disability.AdaptersAndModels.Home.HomeBannersModel
+import com.royalit.disability.AdaptersAndModels.SalesBannersModel
+import com.royalit.disability.AdaptersAndModels.SalesHome.ProductData
+import com.royalit.disability.AdaptersAndModels.SalesHome.SaleAdapter
+import com.royalit.disability.AdaptersAndModels.SalesHome.SaleModel
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
 import com.royalit.disability.Retrofit.RetrofitClient
-import com.royalit.disability.databinding.FragmentCategoriesBinding
 import com.royalit.disability.databinding.FragmentSaleBinding
 
 
@@ -47,7 +45,8 @@ class SaleFragment : Fragment(), View.OnClickListener {
     private fun init() {
         binding.cardAdd.setOnClickListener(this)
 
-        dataList()
+        SalesbannersApi()
+        saleApi()
     }
 
     override fun onClick(v: View?) {
@@ -60,48 +59,85 @@ class SaleFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun dataList() {
+    private fun SalesbannersApi() {
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.SalesbannersApi().enqueue(object : retrofit2.Callback<List<SalesBannersModel>> {
+            override fun onResponse(
+                call: retrofit2.Call<List<SalesBannersModel>>,
+                response: retrofit2.Response<List<SalesBannersModel>>
+            ) {
+                if (response.isSuccessful) {
+                    val banners = response.body() ?: emptyList()
+                    BannerDataSet(banners)
+                } else {
+                    ViewController.showToast(requireActivity(), "Error: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<List<SalesBannersModel>>, t: Throwable) {
+                Log.e("cat_error", t.message.toString())
+                ViewController.showToast(requireActivity(), "Try again: ${t.message}")
+            }
+        })
+    }
+    private fun BannerDataSet(banners: List<SalesBannersModel>) {
+        val imageList = mutableListOf<SlideModel>()
+        banners.forEach {
+            val imageUrl = it.image
+            if (imageUrl.isNotEmpty()) {
+                imageList.add(SlideModel(imageUrl))
+            } else {
+                imageList.add(
+                    SlideModel(
+                        R.drawable.home_bannes
+                    )
+                )
+            }
+        }
+        binding.imageSlider.setImageList(imageList)
+    }
+
+
+    private fun saleApi() {
         ViewController.showLoading(requireActivity())
 
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.saleApi().enqueue(object : retrofit2.Callback<List<SaleModel>> {
+        apiInterface.saleApi().enqueue(object : retrofit2.Callback<SaleModel> {
             override fun onResponse(
-                call: retrofit2.Call<List<SaleModel>>,
-                response: retrofit2.Response<List<SaleModel>>
+                call: retrofit2.Call<SaleModel>,
+                response: retrofit2.Response<SaleModel>
             ) {
                 ViewController.hideLoading()
                 if (response.isSuccessful) {
                     val rsp = response.body()
                     if (rsp != null) {
-                        val sale = response.body()
-                        if (sale != null) {
-                            DataSet(sale)
-                        }
+                        DataSet(rsp.data) // Pass the list of ProductData
                     } else {
-
+                        ViewController.showToast(requireActivity(), "Empty Response")
                     }
                 } else {
                     ViewController.showToast(requireActivity(), "Error: ${response.code()}")
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<List<SaleModel>>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<SaleModel>, t: Throwable) {
                 Log.e("cat_error", t.message.toString())
                 ViewController.hideLoading()
                 ViewController.showToast(requireActivity(), "Try again: ${t.message}")
             }
         })
-
     }
-
-    private fun DataSet(sale: List<SaleModel>) {
+    private fun DataSet(sale: List<ProductData>) {
         val layoutManager = GridLayoutManager(activity, 2) // 3 columns in the grid
         binding.recyclerview.layoutManager = layoutManager
         binding.recyclerview.adapter = SaleAdapter(sale) { item ->
             // Handle item click
-            //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java))
+            startActivity(Intent(activity, ProductDetaisActivity::class.java).apply {
+                putExtra("product_id",item.product.id)
+                putExtra("product_Name",item.product.product)
+            })
         }
     }
+
 
 }

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Activitys.AddProductActivity">
+    tools:context=".Activitys.Sales.AddProductActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,6 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
+                        android:singleLine="true"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Product Name"
                         android:textColorHint="@color/hintcolor"/>
@@ -58,6 +59,8 @@
                         android:textSize="15sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Actual Price"
+                        android:maxLength="9"
+                        android:singleLine="true"
                         android:inputType="number"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -78,9 +81,53 @@
                         android:textSize="15sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Offer Price"
+                        android:maxLength="9"
+                        android:singleLine="true"
                         android:inputType="number"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false"
+                    style="@style/MyDenseOutlined"
+                    app:boxBackgroundColor="@color/box_gray"
+                    app:boxStrokeColor="@color/box_border"
+                    app:boxStrokeWidth="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/colorEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/teachers_regular"
+                        android:hint="Colour"
+                        android:singleLine="true"
+                        android:textColorHint="@color/hintcolor"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false"
+                    style="@style/MyDenseOutlined"
+                    app:boxBackgroundColor="@color/box_gray"
+                    app:boxStrokeColor="@color/box_border"
+                    app:boxStrokeWidth="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/brandEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/teachers_regular"
+                        android:hint="Brand"
+                        android:singleLine="true"
+                        android:textColorHint="@color/hintcolor"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -202,6 +249,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/addMoreImages"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
@@ -210,7 +258,8 @@
                     android:background="@drawable/round_edit_dark_gray">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/txtFileName2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"

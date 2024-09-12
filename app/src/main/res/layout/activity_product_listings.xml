@@ -51,26 +51,27 @@
                     android:layout_marginEnd="10dp"/>
             </LinearLayout>
 
-            <!--        <androidx.recyclerview.widget.RecyclerView-->
-            <!--            android:id="@+id/recyclerview"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content"/>-->
-
-
-            <include
-                layout="@layout/my_products_items_list"/>
-
-            <include
-                layout="@layout/my_products_items_list"/>
-
-            <include
-                layout="@layout/my_products_items_list"/>
-
-            <include
-                layout="@layout/my_products_items_list"/>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txtNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No data found"
+            android:textColor="@color/blue"
+            android:textSize="25sp"
+            android:fontFamily="@font/teachers_semibold"
+            android:textAlignment="center"/>
+
 
 
     </LinearLayout>
