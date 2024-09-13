@@ -165,13 +165,9 @@ class OTPActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val loginResponse = response.body()
                             if (loginResponse != null && loginResponse.status.equals("success")) {
-                                Preferences.saveStringValue(applicationContext, Preferences.userId,
-                                    loginResponse.user?.id.toString()
-                                )
-                                Preferences.saveStringValue(applicationContext, Preferences.name,
-                                    loginResponse.user?.name.toString()
-                                )
-                                startActivity(Intent(this@OTPActivity, DashBoardActivity::class.java))
+                                startActivity(Intent(this@OTPActivity,CreatePasswordActivity::class.java).apply {
+                                    putExtra("email",email)
+                                })
                                 finish()
                             } else {
                                 ViewController.showToast(applicationContext, "Otp Failed")

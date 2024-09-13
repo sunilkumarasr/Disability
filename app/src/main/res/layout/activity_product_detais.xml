@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F2F2F2"
+        android:background="@color/box_gray"
         android:orientation="vertical">
 
         <include
@@ -84,6 +84,7 @@
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/teachers_semibold"/>
                                 <TextView
+                                    android:id="@+id/txtBrand"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -106,6 +107,7 @@
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/teachers_semibold"/>
                                 <TextView
+                                    android:id="@+id/txtColor"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -115,6 +117,7 @@
                                     android:fontFamily="@font/teachers_semibold"/>
                             </LinearLayout>
                             <LinearLayout
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -137,6 +140,7 @@
                                     android:fontFamily="@font/teachers_semibold"/>
                             </LinearLayout>
                             <LinearLayout
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -159,6 +163,7 @@
                                     android:fontFamily="@font/teachers_semibold"/>
                             </LinearLayout>
                             <LinearLayout
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"

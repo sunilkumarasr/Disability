@@ -101,7 +101,7 @@ class MyProductsActivity : AppCompatActivity(), View.OnClickListener   {
     }
     private fun MyProductsDataSet(myProductsModellist: List<MyProductsModel>) {
         binding.recyclerview.layoutManager = LinearLayoutManager(this@MyProductsActivity)
-        binding.recyclerview.adapter = MyProductsListAdapter(myProductsModellist) { item , type->
+        binding.recyclerview.adapter = MyProductsListAdapter(this@MyProductsActivity, myProductsModellist) { item , type->
             if (type != null) {
                 if(type.equals("View")){
                     startActivity(Intent(this@MyProductsActivity, ProductDetaisActivity::class.java).apply {

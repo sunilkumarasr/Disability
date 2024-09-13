@@ -9,6 +9,8 @@ import com.royalit.disability.AdaptersAndModels.AskQuestionsRequest
 import com.royalit.disability.AdaptersAndModels.Categorys.CategoriesModel
 import com.royalit.disability.AdaptersAndModels.Citys.CitysModel
 import com.royalit.disability.AdaptersAndModels.ContactUsResponse
+import com.royalit.disability.AdaptersAndModels.CreatePasswordRequest
+import com.royalit.disability.AdaptersAndModels.CreatePasswordResponse
 import com.royalit.disability.AdaptersAndModels.EmailRequest
 import com.royalit.disability.AdaptersAndModels.EnqueryRequest
 import com.royalit.disability.AdaptersAndModels.EnqueryResponse
@@ -68,6 +70,9 @@ interface ApiInterface {
 
     @POST("verify_otp")
     fun otpApi(@Body loginRequest: OTPRequest): Call<OTPResponse>
+
+    @POST("reset_password")
+    fun createApi(@Body createRequest: CreatePasswordRequest): Call<CreatePasswordResponse>
 
     //menu
     @POST("help_support")

@@ -7,11 +7,13 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
+import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.EditText
@@ -170,17 +172,31 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         }
 
 
-        binding.webview.settings.setJavaScriptEnabled(true)
+//        binding.webview.settings.setJavaScriptEnabled(true)
+//
+//        binding.webview.webViewClient = object : WebViewClient() {
+//            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+//                if (url != null) {
+//                    view?.loadUrl(url)
+//                }
+//                return true
+//            }
+//        }
+//        binding.webview.loadUrl(postDetails.data?.location_url.toString())
 
-        binding.webview.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                if (url != null) {
-                    view?.loadUrl(url)
-                }
-                return true
-            }
-        }
-        binding.webview.loadUrl(postDetails.data?.location_url.toString())
+        binding.webviewLocation.getSettings().setAllowFileAccess(true)
+        binding.webviewLocation.getSettings().setPluginState(WebSettings.PluginState.ON)
+        binding.webviewLocation.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND)
+        binding.webviewLocation.setWebViewClient(WebViewClient())
+        binding.webviewLocation.getSettings().setJavaScriptEnabled(true)
+        binding.webviewLocation.getSettings().setLoadWithOverviewMode(true)
+        binding.webviewLocation.getSettings().setUseWideViewPort(true)
+        val displaymetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displaymetrics)
+        val height = displaymetrics.heightPixels
+        val width = displaymetrics.widthPixels
+        binding.webviewLocation.loadData("<iframe height=600 width= $width src=\"${postDetails.data?.location_url.toString()}\"></iframe>", "text/html",
+            "utf-8" )
 
     }
 

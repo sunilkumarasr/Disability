@@ -28,6 +28,9 @@
         android:theme="@style/Theme.Disability"
         tools:targetApi="31">
         <activity
+            android:name=".Logins.CreatePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activitys.ImageZoomActivity"
             android:exported="false" />
         <activity

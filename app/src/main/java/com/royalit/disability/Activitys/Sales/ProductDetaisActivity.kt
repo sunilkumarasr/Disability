@@ -91,6 +91,8 @@ class ProductDetaisActivity : AppCompatActivity() {
     }
     private fun productDataSet(productDetails: ProductItemDetailsModel) {
         binding.txtTitle.text = productDetails.data?.product?.product ?: ""
+        binding.txtBrand.text = productDetails.data?.product?.brand ?: ""
+        binding.txtColor.text = productDetails.data?.product?.color ?: ""
         binding.txtOfferPrice.text = "₹ "+productDetails.data?.product?.offer_price
         binding.txtDec.text = productDetails.data?.product?.description ?: ""
         binding.txtAddress.text = productDetails.data?.product?.address ?: ""
