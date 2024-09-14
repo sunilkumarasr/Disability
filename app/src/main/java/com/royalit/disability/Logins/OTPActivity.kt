@@ -7,22 +7,15 @@ import android.os.Handler
 import android.os.Looper
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import com.royalit.disability.Activitys.DashBoardActivity
 import com.royalit.disability.AdaptersAndModels.EmailRequest
 import com.royalit.disability.AdaptersAndModels.ForgotEmailResponse
-import com.royalit.disability.AdaptersAndModels.LoginRequest
-import com.royalit.disability.AdaptersAndModels.LoginResponse
 import com.royalit.disability.AdaptersAndModels.OTPRequest
 import com.royalit.disability.AdaptersAndModels.OTPResponse
-import com.royalit.disability.Config.Preferences
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
 import com.royalit.disability.Retrofit.RetrofitClient
@@ -30,7 +23,6 @@ import com.royalit.disability.databinding.ActivityOtpactivityBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class OTPActivity : AppCompatActivity() {
 
@@ -39,6 +31,7 @@ class OTPActivity : AppCompatActivity() {
     }
 
     lateinit var email:String
+    lateinit var type:String
 
     fun AppCompatEditText.showKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -52,6 +45,7 @@ class OTPActivity : AppCompatActivity() {
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.blue), false)
 
         email= intent.getStringExtra("email").toString()
+        type= intent.getStringExtra("type").toString()
 
 
         inits()
@@ -165,10 +159,15 @@ class OTPActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val loginResponse = response.body()
                             if (loginResponse != null && loginResponse.status.equals("success")) {
-                                startActivity(Intent(this@OTPActivity,CreatePasswordActivity::class.java).apply {
-                                    putExtra("email",email)
-                                })
-                                finish()
+                                if (type.equals("Login")){
+                                    startActivity(Intent(this@OTPActivity, DashBoardActivity::class.java))
+                                }else{
+                                    startActivity(Intent(this@OTPActivity,CreatePasswordActivity::class.java).apply {
+                                        putExtra("email",email)
+                                    })
+                                    finish()
+                                }
+
                             } else {
                                 ViewController.showToast(applicationContext, "Otp Failed")
                             }

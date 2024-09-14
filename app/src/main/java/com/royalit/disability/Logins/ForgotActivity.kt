@@ -3,23 +3,14 @@ package com.royalit.disability.Logins
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.royalit.disability.Activitys.DashBoardActivity
 import com.royalit.disability.AdaptersAndModels.EmailRequest
 import com.royalit.disability.AdaptersAndModels.ForgotEmailResponse
-import com.royalit.disability.AdaptersAndModels.LoginRequest
-import com.royalit.disability.AdaptersAndModels.LoginResponse
-import com.royalit.disability.Config.Preferences
 import com.royalit.disability.Config.ViewController
 import com.royalit.disability.R
 import com.royalit.disability.Retrofit.RetrofitClient
 import com.royalit.disability.databinding.ActivityForgotBinding
-import com.royalit.disability.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,6 +71,7 @@ class ForgotActivity : AppCompatActivity() {
                         if (loginResponse != null && loginResponse.status.equals("success")) {
                             startActivity(Intent(this@ForgotActivity,OTPActivity::class.java).apply {
                                 putExtra("email",binding.emailEdit.editableText.trim().toString())
+                                putExtra("type","Forgot")
                             })
                             finish()
                         } else {

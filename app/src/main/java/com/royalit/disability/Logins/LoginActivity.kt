@@ -2,24 +2,13 @@ package com.royalit.disability.Logins
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.gson.Gson
-import com.royalit.disability.Activitys.DashBoardActivity
 import com.royalit.disability.AdaptersAndModels.LoginRequest
 import com.royalit.disability.AdaptersAndModels.LoginResponse
 import com.royalit.disability.Config.Preferences
 import com.royalit.disability.Config.ViewController
-import com.royalit.disability.R
-import com.royalit.disability.Retrofit.ApiInterface
 import com.royalit.disability.Retrofit.RetrofitClient
-import com.royalit.disability.Retrofit.RetrofitClient.apiInterface
 import com.royalit.disability.databinding.ActivityLoginBinding
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -87,7 +76,10 @@ class LoginActivity : AppCompatActivity() {
                             Preferences.saveStringValue(applicationContext, Preferences.name,
                                 loginResponse.user?.name.toString()
                             )
-                            startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
+                            startActivity(Intent(this@LoginActivity,OTPActivity::class.java).apply {
+                                putExtra("email",binding.emailEdit.editableText.trim().toString())
+                                putExtra("type","Login")
+                            })
                             finish()
                         } else {
                             ViewController.showToast(applicationContext, "Login Failed")
