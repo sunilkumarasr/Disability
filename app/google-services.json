@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902792602427",
+    "project_id": "divyaangdisha-e6ca2",
+    "storage_bucket": "divyaangdisha-e6ca2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902792602427:android:c19ce8783d13efb0a5cd1e",
+        "android_client_info": {
+          "package_name": "com.smy3infotech.divyaangdisha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMpzC9h1qmCRgC6SYHVzKhn4vFHztXp-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

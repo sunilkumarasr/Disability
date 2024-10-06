@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.royalit.disability"
+    namespace = "com.smy3infotech.divyaangdisha"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.royalit.disability"
+        applicationId = "com.smy3infotech.divyaangdisha"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -63,8 +63,12 @@ dependencies {
 
     implementation ("id.zelory:compressor:3.0.1")
 
+    //location
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.android.libraries.places:places:3.2.0")
+
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
-
 
 }
