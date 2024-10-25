@@ -35,7 +35,12 @@ class PrivacyPolicyActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Privacy Policy"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        privacyPolicyApi()
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            privacyPolicyApi()
+        }
     }
 
     private fun privacyPolicyApi() {

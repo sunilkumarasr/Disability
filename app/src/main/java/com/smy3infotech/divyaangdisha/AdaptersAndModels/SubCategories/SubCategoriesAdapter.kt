@@ -1,25 +1,34 @@
 package com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCategories
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smy3infotech.divyaangdisha.R
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
 
 class SubCategoriesAdapter(
     private val items: List<SubCategoriesModel>,
     private val onItemClick: (SubCategoriesModel) -> Unit // Click listener function
 ) : RecyclerView.Adapter<SubCategoriesAdapter.ViewHolder>() {
 
+    private var selectedPosition = 0
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val linear: LinearLayout = itemView.findViewById(R.id.linear)
         val txtTitle: TextView = itemView.findViewById(R.id.txtTitle)
 
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    onItemClick(items[position])
+                    notifyItemChanged(selectedPosition)  // Deselect previously selected item
+                    selectedPosition = position  // Update selected position
+                    notifyItemChanged(selectedPosition)  // Highlight the newly selected item
+                    onItemClick(items[position])  // Handle click event
                 }
             }
         }
@@ -33,7 +42,17 @@ class SubCategoriesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.txtTitle.text = item.text
+        holder.txtTitle.text = item.subcategory
+
+        // Change background or text color based on selected position
+        if (position == selectedPosition) {
+            holder.linear.setBackgroundResource(R.drawable.round_edit_red)
+            holder.txtTitle.setTextColor(Color.BLACK)
+        } else {
+            holder.linear.setBackgroundResource(R.drawable.round_edit_gray_full_edge)
+            holder.txtTitle.setTextColor(Color.BLACK)
+        }
+
     }
 
     override fun getItemCount(): Int {

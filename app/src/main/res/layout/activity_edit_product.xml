@@ -92,6 +92,28 @@
                     app:boxStrokeColor="@color/box_border"
                     app:boxStrokeWidth="0dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneNumberEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/teachers_regular"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:maxLength="10"
+                        android:textColorHint="@color/hintcolor"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false"
+                    style="@style/MyDenseOutlined"
+                    app:boxBackgroundColor="@color/box_gray"
+                    app:boxStrokeColor="@color/box_border"
+                    app:boxStrokeWidth="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/colorEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -218,7 +240,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Choose"
+                            android:text="Multiple images"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
                             android:textSize="13sp"
@@ -242,6 +264,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/addMoreImages"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"

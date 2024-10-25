@@ -2,11 +2,21 @@ package com.smy3infotech.divyaangdisha.Logins
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
+import com.google.android.libraries.places.api.net.PlacesClient
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Citys.CityAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Citys.CitysModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.RegisterRequest
@@ -14,14 +24,13 @@ import com.smy3infotech.divyaangdisha.AdaptersAndModels.RegisterResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.State.StateAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.State.StateModel
 import com.smy3infotech.divyaangdisha.Config.ViewController
-import com.smy3infotech.divyaangdisha.LocationBottomSheetFragment
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityRegisterBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(){
 
     val binding: ActivityRegisterBinding by lazy {
         ActivityRegisterBinding.inflate(layoutInflater)
@@ -31,8 +40,17 @@ class RegisterActivity : AppCompatActivity() {
     var stateId: String = ""
     var cityName: String = ""
 
+    private lateinit var mMap: GoogleMap
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var placesClient: PlacesClient
+    private lateinit var adapter: ArrayAdapter<String>
+    private val suggestionsList = mutableListOf<String>()
+    private val placeIdList = mutableListOf<String>()
+
+    var SelectLocations: String = ""
     var lat: String = ""
     var longi: String = ""
+    var Km: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +59,16 @@ class RegisterActivity : AppCompatActivity() {
         stateList()
         citysList()
 
-        binding.txtLocation.setOnClickListener {
-            bottomPopup()
+        location()
+
+        binding.kmSlider.setLabelFormatter { value: Float ->
+            // Format the value with "Km" unit
+            "${value.toInt()} Km"
+        }
+        binding.kmSlider.addOnChangeListener { slider, value, fromUser ->
+            // You can also handle changes here if needed
+            Log.d("Slider", "Value changed to: $value")
+            Km = value.toInt()
         }
 
         binding.cardLogin.setOnClickListener{
@@ -63,7 +89,7 @@ class RegisterActivity : AppCompatActivity() {
         val name_=binding.nameEdit.text.toString()
         val email=binding.emailEdit.text?.trim().toString()
         val mobileNumber_=binding.mobileEdit.text?.trim().toString()
-        val location_=binding.txtLocation.text?.trim().toString()
+        val location_= SelectLocations
         val password_=binding.passwordEdit.text?.trim().toString()
         val Cpassword_=binding.CpasswordEdit.text?.trim().toString()
 
@@ -89,23 +115,23 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
         if(Cpassword_.isEmpty()){
-            ViewController.showToast(applicationContext, "Enter Conform password")
+            ViewController.showToast(applicationContext, "Enter Confirm password")
             return
         }
         if(password_!=Cpassword_){
-            ViewController.showToast(applicationContext, "password and conform password not match")
+            ViewController.showToast(applicationContext, "password and confirm password not match")
             return
         }
 
-        if (!validateMobileNumber(mobileNumber_)) {
-            ViewController.showToast(applicationContext, "Enter Valid mobile number")
-        }else if (!validateEmail(email)) {
+        binding.ccp.registerCarrierNumberEditText(binding.mobileEdit)
+
+        if (!validateEmail(email)) {
             ViewController.showToast(applicationContext, "Enter Valid Email")
         }else{
             ViewController.showLoading(this@RegisterActivity)
 
             val apiInterface = RetrofitClient.apiInterface
-            val registerRequest = RegisterRequest(name_,email,mobileNumber_,location_, stateName, cityName,  password_)
+            val registerRequest = RegisterRequest(name_,email,binding.ccp.fullNumber,location_, Km.toString() , lat, longi, password_)
 
             apiInterface.registerApi(registerRequest).enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
@@ -116,7 +142,9 @@ class RegisterActivity : AppCompatActivity() {
                             ViewController.showToast(applicationContext, "success please Login")
                             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         } else {
-                            ViewController.showToast(applicationContext, "Registration Failed")
+                            if (loginResponse != null) {
+                                ViewController.showToast(applicationContext, loginResponse.message.toString())
+                            }
                         }
                     } else {
                         ViewController.showToast(applicationContext, "Error: ${response.code()}")
@@ -127,6 +155,7 @@ class RegisterActivity : AppCompatActivity() {
                     ViewController.hideLoading()
                     ViewController.showToast(applicationContext, "Try again: ${t.message}")
                 }
+
             })
 
         }
@@ -136,7 +165,6 @@ class RegisterActivity : AppCompatActivity() {
         val mobilePattern = "^[6-9][0-9]{9}\$"
         return Patterns.PHONE.matcher(mobile).matches() && mobile.matches(Regex(mobilePattern))
     }
-
 
     private fun validateEmail(email: String): Boolean {
         val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
@@ -224,22 +252,108 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-    
-    private fun bottomPopup() {
-        val bottomSheet = LocationBottomSheetFragment()
 
-        // Set listener to get value from the bottom sheet
-        bottomSheet.setOnItemClickListener(object : LocationBottomSheetFragment.OnItemClickListener {
-            override fun onItemSelected(lat_value: String, longi_value: String) {
-                // Handle the value received from the bottom sheet
-                binding.txtLocation.setText(" $lat_value - $longi_value ")
-                lat = lat_value
-                longi = longi_value
-                Toast.makeText(this@RegisterActivity, "Selected: $lat_value - $longi_value ", Toast.LENGTH_SHORT).show()
+    private fun location() {
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@RegisterActivity)
+
+        // Initialize Places API
+        if (!Places.isInitialized()) {
+            Places.initialize(this@RegisterActivity, RetrofitClient.MapKey)
+        }
+        placesClient = Places.createClient(this@RegisterActivity)
+        adapter = ArrayAdapter(this@RegisterActivity, android.R.layout.simple_list_item_1, suggestionsList)
+        binding.listViews.adapter = adapter
+
+        // Add TextWatcher to search location as the user types
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-        })
 
-        bottomSheet.show(supportFragmentManager, "MyBottomSheetFragment")
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString()
+                if (query.isNotEmpty()) {
+                    searchPlace(query)
+                }else{
+                    binding.listViews.visibility = View.GONE
+                }
+
+            }
+        }
+
+        // Attach the TextWatcher to the EditText
+        binding.editLocations.addTextChangedListener(textWatcher)
+
+        // Handle list item clicks
+        binding.listViews.setOnItemClickListener { parent, view, position, id ->
+            val selectedPlaceId = placeIdList[position]
+            val selectedPlaceName = suggestionsList[position]
+
+            // Fetch place details and set the selected location
+           // fetchPlaceDetails(selectedPlaceId, selectedPlaceName)
+
+            // Remove TextWatcher before updating EditText to avoid triggering it
+            binding.editLocations.removeTextChangedListener(textWatcher)
+
+            // Set the selected place in the EditText
+            binding.editLocations.setText(selectedPlaceName)
+
+
+            // Reattach the TextWatcher after setting the text
+            binding.editLocations.addTextChangedListener(textWatcher)
+
+            // Hide the ListView after selecting a location
+            binding.listViews.visibility = View.GONE
+
+             fetchPlaceDetails(selectedPlaceId, selectedPlaceName)
+        }
+    }
+    private fun searchPlace(query: String) {
+        val request = FindAutocompletePredictionsRequest.builder()
+            .setQuery(query)
+            .build()
+
+        placesClient.findAutocompletePredictions(request)
+            .addOnSuccessListener { response ->
+                suggestionsList.clear()
+                placeIdList.clear()
+
+                for (prediction in response.autocompletePredictions) {
+                    suggestionsList.add(prediction.getFullText(null).toString())
+                    placeIdList.add(prediction.placeId)
+                }
+
+                if (suggestionsList.isNotEmpty()) {
+                    binding.listViews.visibility = View.VISIBLE
+                    adapter.notifyDataSetChanged()
+                } else {
+                    binding.listViews.visibility = View.GONE
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("MapsActivity", "Place search failed: $exception")
+            }
+    }
+    private fun fetchPlaceDetails(placeId: String, placeName: String) {
+        val placeFields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
+
+        val request = com.google.android.libraries.places.api.net.FetchPlaceRequest.builder(placeId, placeFields).build()
+
+        placesClient.fetchPlace(request)
+            .addOnSuccessListener { response ->
+                val place = response.place
+                val latLng = place.latLng
+                if (latLng != null) {
+                    lat = latLng.latitude.toString()
+                    longi = latLng.longitude.toString()
+                    SelectLocations = placeName
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("MapsActivity", "Place details fetch failed: $exception")
+            }
     }
 
 }

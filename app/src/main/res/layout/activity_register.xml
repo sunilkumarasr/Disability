@@ -88,28 +88,51 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="15dp"
-                    app:hintEnabled="false"
-                    style="@style/MyDenseOutlined"
-                    app:boxBackgroundColor="@color/box_gray"
-                    app:boxStrokeColor="@color/box_border"
-                    app:boxStrokeWidth="0dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mobileEdit"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_edit_gray_light_edge">
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        app:ccp_showArrow="true"
+                        app:ccp_showFlag="true"
+                        app:ccp_autoFormatNumber="true"
+                        app:ccp_showPhoneCode="true"
+                        app:ccp_showFullName="false"
+                        app:ccp_textSize="13sp"
+                        app:ccp_arrowSize="13sp"
+                        app:ccpDialog_keyboardAutoPopup="false"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/teachers_regular"
-                        android:hint="Phone Number"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:textColorHint="@color/hintcolor"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        app:hintEnabled="false"
+                        style="@style/MyDenseOutlined"
+                        app:boxBackgroundColor="@color/box_gray"
+                        app:boxStrokeColor="@color/box_border"
+                        app:boxStrokeWidth="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/mobileEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/teachers_regular"
+                            android:hint="Phone Number"
+                            android:inputType="phone"
+                            android:maxLength="11"
+                            android:textColorHint="@color/hintcolor"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"
@@ -124,6 +147,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"
@@ -137,22 +161,50 @@
                         android:layout_marginStart="10dp"/>
                 </LinearLayout>
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/round_edit_gray_light_edge">
-                    <TextView
-                        android:id="@+id/txtLocation"
+                    app:hintEnabled="false"
+                    style="@style/MyDenseOutlined"
+                    app:boxBackgroundColor="@color/box_gray"
+                    app:boxStrokeColor="@color/box_border"
+                    app:boxStrokeWidth="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editLocations"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
                         android:hint="Select Location"
-                        android:textColorHint="@color/hintcolor"
                         android:fontFamily="@font/teachers_regular"
-                        android:layout_marginStart="10dp"/>
-                </LinearLayout>
+                        android:textColorHint="@color/hintcolor"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ListView
+                    android:id="@+id/listViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Radius"
+                    android:textColor="@color/text"
+                    android:fontFamily="@font/teachers_medium"
+                    android:textSize="14sp"/>
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/kmSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:trackColorActive="@color/colorPrimary"
+                    app:thumbColor="@color/blue"
+                    android:valueFrom="1"
+                    android:valueTo="100"
+                    android:value="1"
+                    android:stepSize="1"
+                    app:labelBehavior="visible" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -194,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Confirm Password"
+                        android:hint="confirm Password"
                         android:textColorHint="@color/hintcolor"
                         android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>

@@ -23,12 +23,19 @@ class MyProductsListAdapter(
         val txtTitle: TextView = itemView.findViewById(R.id.txtTitle)
         val txtStatus: TextView = itemView.findViewById(R.id.txtStatus)
         val txtActiveStatus: TextView = itemView.findViewById(R.id.txtActiveStatus)
+        val linearEnqury: LinearLayout = itemView.findViewById(R.id.linearEnqury)
         val linearView: LinearLayout = itemView.findViewById(R.id.linearView)
         val linearEdit: LinearLayout = itemView.findViewById(R.id.linearEdit)
         val linearDelete: LinearLayout = itemView.findViewById(R.id.linearDelete)
 
 
         init {
+            linearEnqury.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick(items[position],"Enquiry")
+                }
+            }
 
             linearView.setOnClickListener {
                 val position = adapterPosition

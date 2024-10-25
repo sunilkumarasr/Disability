@@ -18,6 +18,7 @@ data class MyPostsModel(
     val city: String,
     val latitude: String?,
     val longitude: String?,
+    val status: String?,
     val image: String,
     val created_date: String,
     val created_time: String,

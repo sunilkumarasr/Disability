@@ -36,15 +36,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:text="IIMC Recruitment 2024: Apply online for 18 non-teaching posts"
+                android:fontFamily="@font/teachers_semibold"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/txtDec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:maxLines="2"
+                android:text="IIMC Recruitment 2024: Apply online for 18 non-teaching posts"
                 android:fontFamily="@font/teachers_medium"
                 android:textSize="13sp"
-                android:lines="2"/>
+                android:layout_marginTop="5dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical">
                 <LinearLayout
@@ -74,16 +82,17 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:orientation="horizontal"
+                    android:layout_gravity="end"
                     android:background="@drawable/jobalert_round_colorprimary2">
                     <TextView
                         android:id="@+id/txtLastTime"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Last Date: 30 Sep, 2024"
-                        android:layout_marginEnd="15dp"
+                        android:padding="8dp"
                         android:textColor="@color/white"
                         android:gravity="end|center_vertical"
                         android:fontFamily="@font/teachers_medium"

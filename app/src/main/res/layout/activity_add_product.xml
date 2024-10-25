@@ -87,6 +87,28 @@
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false"
+                    style="@style/MyDenseOutlined"
+                    app:boxBackgroundColor="@color/box_gray"
+                    app:boxStrokeColor="@color/box_border"
+                    app:boxStrokeWidth="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneNumberEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/teachers_regular"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:maxLength="10"
+                        android:textColorHint="@color/hintcolor"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -210,7 +232,7 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardChoose"
+                        android:id="@+id/addMoreImages"
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -225,7 +247,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Choose"
+                            android:text="Multiple image"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
                             android:textSize="13sp"
@@ -233,7 +255,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/txtFileName"
+                        android:id="@+id/txtFileName2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -246,38 +268,6 @@
                         android:textSize="15sp"
                         android:layout_centerVertical="true"/>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/addMoreImages"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="end"
-                    android:background="@drawable/round_edit_dark_gray">
-
-                    <TextView
-                        android:id="@+id/txtFileName2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:singleLine="true"
-                        android:gravity="end"
-                        android:text="add Images"
-                        android:fontFamily="@font/teachers_medium"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:layout_centerVertical="true"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/add_ic"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="10dp"/>
                 </LinearLayout>
 
 

@@ -9,11 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCategoriesItems.SubCategoriesItemsModel
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
 class SaleAdapter(
-    private val items: List<ProductData>,
+    private var items: List<ProductData>,
     private val onItemClick: (ProductData) -> Unit // Click listener function
 ) : RecyclerView.Adapter<SaleAdapter.ViewHolder>() {
 
@@ -64,4 +65,11 @@ class SaleAdapter(
     override fun getItemCount(): Int {
         return items.size
     }
+
+    //search
+    fun updateList(newItems: List<ProductData>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
+
 }

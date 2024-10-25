@@ -107,7 +107,7 @@
                                 android:src="@drawable/marker_ic" />
 
                             <TextView
-                                android:id="@+id/txtlocation"
+                                android:id="@+id/txtAddress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
@@ -128,18 +128,18 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:layout_marginLeft="12dp"
+                                android:layout_marginStart="12dp"
                                 android:src="@drawable/call_ic" />
 
                             <TextView
                                 android:id="@+id/txtmobile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
+                                android:layout_marginStart="8dp"
                                 android:fontFamily="@font/teachers_regular"
-                                android:text=" +91 98765 43210"
+                                android:text=" +91 94********"
                                 android:textColor="@color/black"
-                                android:textSize="15dp" />
+                                android:textSize="15sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -153,18 +153,18 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:layout_marginLeft="12dp"
+                                android:layout_marginStart="12dp"
                                 android:src="@drawable/email_ic" />
 
                             <TextView
                                 android:id="@+id/txtemail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
+                                android:layout_marginStart="8dp"
                                 android:fontFamily="@font/teachers_regular"
                                 android:text="ecvhospital@gmail.com"
                                 android:textColor="@color/black"
-                                android:textSize="15dp" />
+                                android:textSize="15sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -247,6 +247,42 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/teachers_semibold"
+                    android:text="Land Line Number"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:src="@drawable/call_ic" />
+
+                    <TextView
+                        android:id="@+id/txtlandLineNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:fontFamily="@font/teachers_regular"
+                        android:text="00000000"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/teachers_semibold"
                     android:text="About Us"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp" />
@@ -320,6 +356,16 @@
                     android:text="Location"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:fontFamily="@font/teachers_regular"
+                    android:text="@string/note"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
 
                 <WebView
                     android:id="@+id/webviewLocation"

@@ -1,6 +1,7 @@
 package com.smy3infotech.divyaangdisha.Activitys.JobAlerts
 
 import android.os.Bundle
+import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class JobAlertDetailsActivity : AppCompatActivity() {
     }
 
     lateinit var title:String
+    lateinit var description:String
     lateinit var post_date:String
     lateinit var last_date:String
 
@@ -25,6 +27,7 @@ class JobAlertDetailsActivity : AppCompatActivity() {
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.blue), false)
 
         title= intent.getStringExtra("title").toString()
+        description= intent.getStringExtra("description").toString()
         post_date= intent.getStringExtra("post_date").toString()
         last_date= intent.getStringExtra("last_date").toString()
 
@@ -37,13 +40,18 @@ class JobAlertDetailsActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Job Alerts Details"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        JobAlertDetailsApi()
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            JobAlertDetailsApi()
+        }
 
     }
 
     private fun JobAlertDetailsApi() {
-
         binding.txtSub.text = title
+        binding.txtDec.text = Html.fromHtml(description, Html.FROM_HTML_MODE_LEGACY)
         binding.txtPostDate.text = post_date
         binding.txtLastDate.text = last_date
     }

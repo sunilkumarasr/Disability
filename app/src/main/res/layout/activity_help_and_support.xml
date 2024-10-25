@@ -93,6 +93,7 @@
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Phone Number"
                             android:singleLine="true"
+                            android:maxLength="10"
                             android:textColorHint="@color/hintcolor"
                             android:inputType="phone"/>
                     </com.google.android.material.textfield.TextInputLayout>

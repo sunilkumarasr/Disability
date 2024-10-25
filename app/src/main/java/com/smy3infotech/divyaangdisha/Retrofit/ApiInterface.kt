@@ -7,14 +7,19 @@ import com.smy3infotech.divyaangdisha.AdaptersAndModels.AskListModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AskQuestionsModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AskQuestionsRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.CategoriesModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Citys.CitysModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ContactUsResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.CreatePasswordRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.CreatePasswordResponse
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.DeletePostImageModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.DeleteProductImageModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EmailRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnquerySaleRequest
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnquieryPostModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnquieryProductModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Faq.FaqModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ForgotEmailResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.HelpAndSupport.HelpAndSupportRequest
@@ -40,8 +45,10 @@ import com.smy3infotech.divyaangdisha.AdaptersAndModels.RegisterResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SalesBannersModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.TermsConditionsResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SalesHome.SaleModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.SocialMediaModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.State.StateModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCategoriesItems.SubCategoriesItemsModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.UpdateLocationResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.UpdateProfileResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.UseFullLinks.UseFullLinksModel
 import okhttp3.MultipartBody
@@ -95,8 +102,21 @@ interface ApiInterface {
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
         @Part("phone") phone: RequestBody,
+        @Part("location") location: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
+        @Part("km") km: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<UpdateProfileResponse>
+
+    @Multipart
+    @POST("update_user_location")
+    fun updateLocation(
+        @Part("user_id") user_id: RequestBody,
+        @Part("location") location: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody
+    ): Call<UpdateLocationResponse>
 
     @GET("aboutus")
     fun aboutusApi(): Call<AboutusResponse>
@@ -142,12 +162,14 @@ interface ApiInterface {
         @Part("product") product: RequestBody,
         @Part("actual_price") actualPrice: RequestBody,
         @Part("offer_price") offerPrice: RequestBody,
+        @Part("phone") phone: RequestBody,
         @Part("color") color: RequestBody,
         @Part("brand") brand: RequestBody,
         @Part("address") address: RequestBody,
         @Part("features") features: RequestBody,
         @Part("description") description: RequestBody,
         @Part("created_by") userId: RequestBody,
+        @Part("location") location: RequestBody,
         @Part additional_images: List<MultipartBody.Part>
     ): Call<AddProductResponse>
 
@@ -157,6 +179,7 @@ interface ApiInterface {
         @Part("product") product: RequestBody,
         @Part("actual_price") actualPrice: RequestBody,
         @Part("offer_price") offerPrice: RequestBody,
+        @Part("phone") phone: RequestBody,
         @Part("color") color: RequestBody,
         @Part("brand") brand: RequestBody,
         @Part("address") address: RequestBody,
@@ -164,17 +187,34 @@ interface ApiInterface {
         @Part("description") description: RequestBody,
         @Part("updated_by") userId: RequestBody,
         @Part("product_id") product_id: RequestBody,
+        @Part("location") location: RequestBody,
         @Part additional_images: List<MultipartBody.Part>
     ): Call<AddProductResponse>
 
     @GET("sales_all_product_list")
-    fun saleApi(): Call<SaleModel>
+    fun saleApi(@Query("location") category_id: String?): Call<SaleModel>
 
     @POST("sale_enquiry")
     fun enquerySaleApi(@Body enquerySaleRequest: EnquerySaleRequest): Call<EnqueryResponse>
 
-    @GET("product")
-    fun categoriesBasedItemsApi(@Query("category_id") category_id: String?): Call<List<SubCategoriesItemsModel>>
+    @GET("subcategories")
+    fun subcategoriesApi(@Query("category_id") category_id: String?): Call<List<SubCategoriesModel>>
+
+    @GET("product_listing_cat_subcat")
+    fun categoriesBasedItemsApi(
+        @Query("category_id") category_id: String?,
+        @Query("subcategory_id") subcategory_id: String?,
+        @Query("latitude") latitude: String?,
+        @Query("longitude") longitude: String?,
+        @Query("km") km: String?,
+    ): Call<List<SubCategoriesItemsModel>>
+
+
+//    @GET("product_listing_cat_subcat")
+//    fun categoriesBasedItemsApi(
+//        @Query("category_id") category_id: String?,
+//        @Query("subcategory_id") subcategory_id: String?
+//    ): Call<List<SubCategoriesItemsModel>>
 
     @GET("get_sales_product_by_user")
     fun MyProductsListApi(@Query("created_by") userID: String?): Call<List<MyProductsModel>>
@@ -182,8 +222,14 @@ interface ApiInterface {
     @DELETE("delete_sales_product")
     fun deleteProductApi(@Query("product_id") product_id: String): Call<ProductItemDeleteModel>
 
+    @GET("delete_sale_images")
+    fun deleteProductImageApi(@Query("id") id: String?): Call<DeleteProductImageModel>
+
     @GET("sales_product_list/{product_id}")
     fun productDetailsApi(@Path("product_id") product_id: String): Call<ProductItemDetailsModel>
+
+    @GET("sale_enquiry_user")
+    fun EnquieryProductListApi(@Query("created_by") userID: String?, @Query("product") product_id: String?): Call<List<EnquieryProductModel>>
 
     //posts sales
     @GET("listing_banner_list")
@@ -192,11 +238,13 @@ interface ApiInterface {
     @Multipart
     @POST("add_post")
     fun addPostApi(
-        @Part("city") city: RequestBody,
+        @Part("location") location: RequestBody,
         @Part("category_id") category_id: RequestBody,
+        @Part("subcategory") subcategoryid: RequestBody,
         @Part("title") title: RequestBody,
         @Part("description") description: RequestBody,
         @Part("mobile") mobile: RequestBody,
+        @Part("landline") landline: RequestBody,
         @Part("mail") mail: RequestBody,
         @Part("address") address: RequestBody,
         @Part("about") about: RequestBody,
@@ -204,7 +252,6 @@ interface ApiInterface {
         @Part("created_by") created_by: RequestBody,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
-        @Part("location") location: RequestBody,
         @Part image: MultipartBody.Part,
         @Part additional_images: List<MultipartBody.Part>
     ): Call<AddPostResponse>
@@ -212,16 +259,17 @@ interface ApiInterface {
     @Multipart
     @POST("update_post")
     fun updatePostApi(
-        @Part("city") city: RequestBody,
+        @Part("location") location: RequestBody,
         @Part("category_id") category_id: RequestBody,
+        @Part("subcategory") subcategoryid: RequestBody,
         @Part("title") title: RequestBody,
         @Part("description") description: RequestBody,
         @Part("mobile") mobile: RequestBody,
+        @Part("landline") landline: RequestBody,
         @Part("mail") mail: RequestBody,
         @Part("address") address: RequestBody,
         @Part("about") about: RequestBody,
         @Part("services") services: RequestBody,
-        @Part("location") location: RequestBody,
         @Part("updated_by") updated_by: RequestBody,
         @Part("product_id") product_id: RequestBody,
         @Part("latitude") latitude: RequestBody,
@@ -245,5 +293,13 @@ interface ApiInterface {
     @DELETE("delete_post")
     fun deletePostApi(@Query("product_id") product_id: String): Call<PostItemDeleteModel>
 
+    @GET("delete_listing_images")
+    fun deletePostImageApi(@Query("id") id: String?): Call<DeletePostImageModel>
+
+    @GET("listing_enquiry_user")
+    fun EnquieryListApi(@Query("created_by") userID: String?, @Query("product_id") product_id: String?): Call<List<EnquieryPostModel>>
+
+    @GET("socialmedia")
+    fun socialMediaApi(): Call<List<SocialMediaModel>>
 
 }

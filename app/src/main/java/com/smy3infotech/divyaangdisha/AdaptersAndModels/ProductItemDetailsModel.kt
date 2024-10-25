@@ -20,6 +20,7 @@ data class ProductDataProduct(
     @SerializedName("actual_price") var actual_price: String? = null,
     @SerializedName("offer_price") var offer_price: String? = null,
     @SerializedName("color") var color: String? = null,
+    @SerializedName("phone") var phone: String? = null,
     @SerializedName("brand") var brand: String? = null,
     @SerializedName("address") var address: String? = null,
     @SerializedName("features") var features: String? = null,

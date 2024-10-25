@@ -49,33 +49,54 @@
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    app:hintEnabled="false"
-                    style="@style/MyDenseOutlined"
-                    app:boxBackgroundColor="@color/box_gray"
-                    app:boxStrokeColor="@color/box_border"
-                    app:boxStrokeWidth="0dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mobileEdit"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_edit_gray_light_edge">
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        app:ccp_showArrow="true"
+                        app:ccp_showFlag="true"
+                        app:ccp_autoFormatNumber="true"
+                        app:ccp_showPhoneCode="true"
+                        app:ccp_showFullName="false"
+                        app:ccp_textSize="13sp"
+                        app:ccp_arrowSize="13sp"
+                        app:ccpDialog_keyboardAutoPopup="false"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/teachers_regular"
-                        android:textSize="15sp"
-                        android:hint="Mobile"
-                        android:textColorHint="@color/hintcolor"
-                        android:inputType="phone"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        app:hintEnabled="false"
+                        style="@style/MyDenseOutlined"
+                        app:boxBackgroundColor="@color/box_gray"
+                        app:boxStrokeColor="@color/box_border"
+                        app:boxStrokeWidth="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/mobileEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/teachers_regular"
+                            android:hint="Phone Number"
+                            android:inputType="phone"
+                            android:maxLength="11"
+                            android:textColorHint="@color/hintcolor"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
 
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     app:hintEnabled="false"
                     style="@style/MyDenseOutlined"
                     app:boxBackgroundColor="@color/box_gray"
@@ -95,6 +116,135 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_edit_gray_light_edge">
+                        <TextView
+                            android:id="@+id/setLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:textColorHint="@color/hintcolor"
+                            android:text="Madhapur"/>
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/changeLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="35dp"
+                        app:cardElevation="3dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="change Location"
+                            android:singleLine="true"
+                            android:fontFamily="@font/teachers_regular"
+                            android:textColor="@color/text"
+                            android:textSize="13sp"
+                            android:layout_centerVertical="true"/>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/linearchangeLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        app:hintEnabled="false"
+                        style="@style/MyDenseOutlined"
+                        app:boxBackgroundColor="@color/box_gray"
+                        app:boxStrokeColor="@color/box_border"
+                        app:boxStrokeWidth="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editLocations"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:hint="Select Location"
+                            android:fontFamily="@font/teachers_regular"
+                            android:textColorHint="@color/hintcolor"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/clearLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="35dp"
+                        app:cardElevation="3dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Cancel"
+                            android:singleLine="true"
+                            android:fontFamily="@font/teachers_regular"
+                            android:textColor="@color/text"
+                            android:textSize="13sp"
+                            android:layout_centerVertical="true"/>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+
+                <ListView
+                    android:id="@+id/listViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Radius"
+                    android:textColor="@color/text"
+                    android:fontFamily="@font/teachers_medium"
+                    android:textSize="14sp"/>
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/kmSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:trackColorActive="@color/colorPrimary"
+                    app:thumbColor="@color/blue"
+                    android:valueFrom="1"
+                    android:valueTo="100"
+                    android:value="1"
+                    android:stepSize="1"
+                    app:labelBehavior="visible" />
+
+                <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"
@@ -111,6 +261,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"
@@ -128,6 +279,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"

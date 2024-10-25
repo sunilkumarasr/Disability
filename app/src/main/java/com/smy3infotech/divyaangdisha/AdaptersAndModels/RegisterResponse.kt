@@ -12,7 +12,8 @@ data class RegisterRequest(
     val email: String,
     val phone: String,
     val location: String,
-    val state: String,
-    val city: String,
+    val km: String,
+    val latitude: String,
+    val longitude: String,
     val password: String
 )

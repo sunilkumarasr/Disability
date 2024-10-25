@@ -4,119 +4,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout">
         <RelativeLayout
-            android:id="@+id/relativeTop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blue">
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/li"
+            <RelativeLayout
+                android:id="@+id/relativeTop"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:background="@color/blue">
+
                 <LinearLayout
+                    android:id="@+id/li"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="15dp"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="22sp"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/teachers_bold"
-                        android:text="Divyaangadisha"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgMenu"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/menu_ic"
+                            app:tint="@color/white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textSize="18sp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/teachers_bold"
+                            android:text="Divyaangadisha"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|end"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgNotification"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/notifications_ic"
+                            app:tint="@color/white"
+                            android:layout_marginEnd="15dp"/>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgWhatsapp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/whatsapp_ic"
+                            android:layout_marginEnd="15dp"/>
+                    </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical|end"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgNotification"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/notifications_ic"
-                        app:tint="@color/white"
-                        android:layout_marginEnd="15dp"/>
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgWhatsapp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/whatsapp_ic"
-                        android:layout_marginEnd="15dp"/>
-                </LinearLayout>
-            </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_card"
+                android:layout_below="@+id/relativeTop"/>
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardSearch"
+                android:id="@+id/bottom_card"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/li"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp">
-                <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
+                app:cardElevation="5dp">
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNavigationView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/search_ic"
-                        android:layout_marginStart="10dp"
-                        android:layout_gravity="center_vertical"/>
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:hint="Search...."/>
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+                    app:menu="@menu/menu_bottom"
+                    app:itemActiveIndicatorStyle="@drawable/bottom_nav_item_background"
+                    app:itemIconTint="@color/bottom_bg"
+                    app:itemTextColor="@color/bottom_bg"
+                    app:itemBackground="@color/white"
+                    app:labelVisibilityMode="labeled"/>
             </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
-            android:layout_width="match_parent"
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navView"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_card"
-            android:layout_below="@+id/relativeTop"/>
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/bottom_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="2dp"
-            app:cardElevation="5dp">
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-                app:menu="@menu/menu_bottom"
-                app:itemActiveIndicatorStyle="@drawable/bottom_nav_item_background"
-                app:itemIconTint="@color/bottom_bg"
-                app:itemTextColor="@color/bottom_bg"
-                app:itemBackground="@color/white"
-                app:labelVisibilityMode="labeled"/>
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/side_menu"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

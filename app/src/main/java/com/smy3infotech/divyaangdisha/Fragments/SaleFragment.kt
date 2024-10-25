@@ -2,6 +2,8 @@ package com.smy3infotech.divyaangdisha.Fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +13,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.denzcoskun.imageslider.models.SlideModel
 import com.smy3infotech.divyaangdisha.Activitys.Sales.AddProductActivity
 import com.smy3infotech.divyaangdisha.Activitys.Sales.ProductDetaisActivity
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SalesBannersModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SalesHome.ProductData
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SalesHome.SaleAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SalesHome.SaleModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCategoriesItems.SubCategoriesItemsAdapter
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCategoriesItems.SubCategoriesItemsModel
+import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
@@ -24,6 +30,11 @@ import com.smy3infotech.divyaangdisha.databinding.FragmentSaleBinding
 class SaleFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentSaleBinding
+
+
+    private lateinit var SaleAdapter: SaleAdapter
+    private var saleList = ArrayList<ProductData>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +57,15 @@ class SaleFragment : Fragment(), View.OnClickListener {
 
         SalesbannersApi()
         saleApi()
+
+        binding.editSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filter(s.toString())
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
     }
 
     override fun onClick(v: View?) {
@@ -98,10 +118,11 @@ class SaleFragment : Fragment(), View.OnClickListener {
 
 
     private fun saleApi() {
-        ViewController.showLoading(requireActivity())
+        val locationi = Preferences.loadStringValue(requireActivity(), Preferences.location, "")
 
+        ViewController.showLoading(requireActivity())
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.saleApi().enqueue(object : retrofit2.Callback<SaleModel> {
+        apiInterface.saleApi(locationi).enqueue(object : retrofit2.Callback<SaleModel>{
             override fun onResponse(
                 call: retrofit2.Call<SaleModel>,
                 response: retrofit2.Response<SaleModel>
@@ -110,31 +131,55 @@ class SaleFragment : Fragment(), View.OnClickListener {
                 if (response.isSuccessful) {
                     val rsp = response.body()
                     if (rsp != null) {
-                        DataSet(rsp.data) // Pass the list of ProductData
+                        saleList.clear()
+                        saleList.addAll(rsp.data)
+                        DataSet(saleList) // Pass the list of ProductData
                     } else {
-                        ViewController.showToast(requireActivity(), "Empty Response")
+                        binding.txtNoData.visibility = View.VISIBLE
                     }
                 } else {
-                    ViewController.showToast(requireActivity(), "Error: ${response.code()}")
+                    binding.txtNoData.visibility = View.VISIBLE
                 }
             }
 
             override fun onFailure(call: retrofit2.Call<SaleModel>, t: Throwable) {
                 Log.e("cat_error", t.message.toString())
                 ViewController.hideLoading()
+                binding.txtNoData.visibility = View.VISIBLE
                 ViewController.showToast(requireActivity(), "Try again: ${t.message}")
             }
         })
+
     }
     private fun DataSet(sale: List<ProductData>) {
         val layoutManager = GridLayoutManager(activity, 2) // 3 columns in the grid
         binding.recyclerview.layoutManager = layoutManager
-        binding.recyclerview.adapter = SaleAdapter(sale) { item ->
+        SaleAdapter = SaleAdapter(sale) { item ->
             // Handle item click
             startActivity(Intent(activity, ProductDetaisActivity::class.java).apply {
                 putExtra("product_id",item.product.id)
                 putExtra("product_Name",item.product.product)
             })
+        }
+        binding.recyclerview.adapter = SaleAdapter
+    }
+
+    //search
+    private fun filter(text: String) {
+        val filteredList = saleList.filter { item ->
+            item.product.product.contains(text, ignoreCase = true) ||
+            item.product.address.contains(text, ignoreCase = true)
+        }
+
+        if (filteredList.isEmpty()) {
+            binding.txtNoData.visibility = View.VISIBLE // Show "No Data" text
+        } else {
+            binding.txtNoData.visibility = View.GONE // Hide "No Data" text if items are found
+        }
+
+        // Update list only if catAdapter is initialized
+        if (::SaleAdapter.isInitialized) {
+            SaleAdapter.updateList(filteredList)
         }
     }
 

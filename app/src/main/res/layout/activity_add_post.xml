@@ -33,16 +33,20 @@
                     app:boxStrokeColor="@color/box_border"
                     app:boxStrokeWidth="0dp">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/cityEdit"
+                        android:id="@+id/locationEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="City"
+                        android:hint="Location"
                         android:singleLine="true"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <ListView
+                    android:id="@+id/listViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,7 +60,17 @@
                     android:layout_height="match_parent"/>
             </LinearLayout>
 
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_edit_gray_light_edge">
+                    <Spinner
+                        android:id="@+id/spinnerSubCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -93,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Desctiption"
+                        android:hint="description"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +131,29 @@
                         android:inputType="phone"
                         android:singleLine="true"
                         android:maxLength="10"
+                        android:textColorHint="@color/hintcolor"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false"
+                    style="@style/MyDenseOutlined"
+                    app:boxBackgroundColor="@color/box_gray"
+                    app:boxStrokeColor="@color/box_border"
+                    app:boxStrokeWidth="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/landLineNumberEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/teachers_regular"
+                        android:hint="Land Line Number"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:maxLength="15"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -272,7 +309,7 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardMultiImages"
+                        android:id="@+id/addMoreImages"
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -287,7 +324,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Choose"
+                            android:text="Multiple Images"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
                             android:textSize="13sp"
@@ -311,7 +348,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/addMoreImages"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
@@ -341,25 +378,12 @@
                         android:layout_marginEnd="10dp"/>
                 </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewImages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:hintEnabled="false"
-                    style="@style/MyDenseOutlined"
-                    app:boxBackgroundColor="@color/box_gray"
-                    app:boxStrokeColor="@color/box_border"
-                    app:boxStrokeWidth="0dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mapLocationEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/teachers_regular"
-                        android:hint="Map Location"
-                        android:singleLine="true"
-                        android:textColorHint="@color/hintcolor"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:orientation="horizontal" />
 
 
                 <androidx.cardview.widget.CardView

@@ -53,8 +53,13 @@ class ProductDetaisActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = product_Name
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        productDetailsApi()
 
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            productDetailsApi()
+        }
 
         binding.cardEnquiry.setOnClickListener {
             enqueryDailouge()
@@ -63,6 +68,7 @@ class ProductDetaisActivity : AppCompatActivity() {
 
 
     private fun productDetailsApi() {
+        Log.e("product_id_",product_id)
         ViewController.showLoading(this@ProductDetaisActivity)
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.productDetailsApi(product_id).enqueue(object :
@@ -91,6 +97,7 @@ class ProductDetaisActivity : AppCompatActivity() {
         binding.txtTitle.text = productDetails.data?.product?.product ?: ""
         binding.txtBrand.text = productDetails.data?.product?.brand ?: ""
         binding.txtColor.text = productDetails.data?.product?.color ?: ""
+        binding.txtPhone.text = "Phone Number: "+ productDetails.data?.product?.phone
         binding.txtOfferPrice.text = "₹ "+productDetails.data?.product?.offer_price
         binding.txtDec.text = productDetails.data?.product?.description ?: ""
         binding.txtAddress.text = productDetails.data?.product?.address ?: ""

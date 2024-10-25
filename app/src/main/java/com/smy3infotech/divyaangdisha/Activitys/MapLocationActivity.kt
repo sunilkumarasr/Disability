@@ -28,6 +28,7 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
+import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityMapLocationBinding
 
 class MapLocationActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -64,7 +65,7 @@ class MapLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Initialize Places API
         if (!Places.isInitialized()) {
-            Places.initialize(applicationContext, "AIzaSyCMpzC9h1qmCRgC6SYHVzKhn4vFHztXp-A")
+            Places.initialize(applicationContext, RetrofitClient.MapKey)
         }
         placesClient = Places.createClient(this)
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, suggestionsList)

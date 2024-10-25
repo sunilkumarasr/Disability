@@ -76,13 +76,18 @@ class LoginActivity : AppCompatActivity() {
                             Preferences.saveStringValue(applicationContext, Preferences.name,
                                 loginResponse.user?.name.toString()
                             )
+                            Preferences.saveStringValue(applicationContext, Preferences.location,
+                                loginResponse.user?.location.toString()
+                            )
                             startActivity(Intent(this@LoginActivity,OTPActivity::class.java).apply {
                                 putExtra("email",binding.emailEdit.editableText.trim().toString())
                                 putExtra("type","Login")
                             })
                             finish()
                         } else {
-                            ViewController.showToast(applicationContext, "Login Failed")
+                            if (loginResponse != null) {
+                                ViewController.showToast(applicationContext, loginResponse.message.toString())
+                            }
                         }
                     } else {
                         ViewController.showToast(applicationContext, "Error: ${response.code()}")

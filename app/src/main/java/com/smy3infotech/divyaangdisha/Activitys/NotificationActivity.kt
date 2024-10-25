@@ -34,7 +34,13 @@ class NotificationActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Notifications"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        NotificationsListApi()
+
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            NotificationsListApi()
+        }
     }
 
     private fun NotificationsListApi() {

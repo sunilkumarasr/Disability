@@ -46,7 +46,12 @@ class AskQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Ask Questions"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        AskListListApi()
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            AskListListApi()
+        }
 
         binding.cardAdd.setOnClickListener(this)
     }

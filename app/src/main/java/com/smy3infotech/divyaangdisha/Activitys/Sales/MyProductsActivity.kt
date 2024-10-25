@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.EnquiryProductActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.MyProductsListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.MyProductsModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProductItemDeleteModel
@@ -103,6 +104,12 @@ class MyProductsActivity : AppCompatActivity(), View.OnClickListener   {
         binding.recyclerview.layoutManager = LinearLayoutManager(this@MyProductsActivity)
         binding.recyclerview.adapter = MyProductsListAdapter(this@MyProductsActivity, myProductsModellist) { item , type->
             if (type != null) {
+                if(type.equals("Enquiry")){
+                    startActivity(Intent(this@MyProductsActivity, EnquiryProductActivity::class.java).apply {
+                        putExtra("post_id",item.id)
+                        putExtra("post_Name",item.product)
+                    })
+                }
                 if(type.equals("View")){
                     startActivity(Intent(this@MyProductsActivity, ProductDetaisActivity::class.java).apply {
                         putExtra("product_id",item.id)

@@ -32,29 +32,30 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.slider.Slider
+import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
 
-class LocationBottomSheetFragment  : BottomSheetDialogFragment(), OnMapReadyCallback {
+class LocationBottomSheetFragment  : BottomSheetDialogFragment(){
 
     private var listener: OnItemClickListener? = null
 
     interface OnItemClickListener {
-        fun onItemSelected(lat_value: String, longi_value: String)
+        fun onItemSelected(lat_value: String, longi_value: String, location: String, Klm: String)
     }
 
     private lateinit var listView: ListView
     private lateinit var editLocation: EditText
+    private lateinit var kmSlider: Slider
 
-    private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var placesClient: PlacesClient
     private lateinit var adapter: ArrayAdapter<String>
     private val suggestionsList = mutableListOf<String>()
     private val placeIdList = mutableListOf<String>()
-
-
-    private lateinit var lat: String
-    private lateinit var longi: String
+    var lat: String = ""
+    var longi: String = ""
+    var Km: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,12 +66,18 @@ class LocationBottomSheetFragment  : BottomSheetDialogFragment(), OnMapReadyCall
 
         listView = view.findViewById(R.id.listView);
         editLocation = view.findViewById(R.id.editLocation);
+        kmSlider = view.findViewById(R.id.kmSlider);
 
         // Assuming you have buttons or views to select a value
         val cardSubmit = view.findViewById<CardView>(R.id.cardSubmit)
         cardSubmit.setOnClickListener {
-            listener?.onItemSelected(lat,longi)
-            dismiss()
+            val locationText = editLocation.text.toString()
+            if (locationText.isNotEmpty()) {
+                listener?.onItemSelected(lat, longi, locationText, Km.toString())
+                dismiss()
+            } else {
+                Toast.makeText(requireActivity(), "Select your location", Toast.LENGTH_SHORT).show()
+            }
         }
 
         inits()
@@ -82,41 +89,62 @@ class LocationBottomSheetFragment  : BottomSheetDialogFragment(), OnMapReadyCall
 
     private fun inits() {
 
-        //map
-        val mapFragment = childFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        //radius
+        kmSlider.setLabelFormatter { value: Float ->
+            // Format the value with "Km" unit
+            "${value.toInt()} Km"
+        }
+        kmSlider.addOnChangeListener { slider, value, fromUser ->
+            // You can also handle changes here if needed
+            Log.d("Slider", "Value changed to: $value")
+            Km = value.toInt()
+        }
 
+
+        //location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         // Initialize Places API
         if (!Places.isInitialized()) {
-            Places.initialize(requireActivity(), "AIzaSyCMpzC9h1qmCRgC6SYHVzKhn4vFHztXp-A")
+            Places.initialize(requireActivity(), RetrofitClient.MapKey)
         }
         placesClient = Places.createClient(requireActivity())
         adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, suggestionsList)
         listView.adapter = adapter
 
-        // Add a TextWatcher to search location as the user types
-        editLocation.addTextChangedListener(object : TextWatcher {
+        // Add TextWatcher to search location as the user types
+        val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
 
             override fun afterTextChanged(s: Editable?) {
                 val query = s.toString()
                 if (query.isNotEmpty()) {
                     searchPlace(query)
-                } else {
-                    listView.visibility = ListView.GONE
+                }else{
+                    listView.visibility = View.GONE
                 }
+
             }
-        })
+        }
+
+        // Attach the TextWatcher to the EditText
+        editLocation.addTextChangedListener(textWatcher)
 
         // Handle list item clicks
         listView.setOnItemClickListener { parent, view, position, id ->
             val selectedPlaceId = placeIdList[position]
             val selectedPlaceName = suggestionsList[position]
+
+            editLocation.removeTextChangedListener(textWatcher)
+
+            editLocation.setText(selectedPlaceName)
+
+            editLocation.addTextChangedListener(textWatcher)
+
+            listView.visibility = View.GONE
             fetchPlaceDetails(selectedPlaceId, selectedPlaceName)
         }
     }
@@ -137,16 +165,17 @@ class LocationBottomSheetFragment  : BottomSheetDialogFragment(), OnMapReadyCall
                 }
 
                 if (suggestionsList.isNotEmpty()) {
-                    listView.visibility = ListView.VISIBLE
+                   listView.visibility = View.VISIBLE
                     adapter.notifyDataSetChanged()
                 } else {
-                    listView.visibility = ListView.GONE
+                    listView.visibility = View.GONE
                 }
             }
             .addOnFailureListener { exception ->
                 Log.e("MapsActivity", "Place search failed: $exception")
             }
     }
+
     private fun fetchPlaceDetails(placeId: String, placeName: String) {
         val placeFields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
 
@@ -157,79 +186,16 @@ class LocationBottomSheetFragment  : BottomSheetDialogFragment(), OnMapReadyCall
                 val place = response.place
                 val latLng = place.latLng
                 if (latLng != null) {
-                    Toast.makeText(
-                        requireActivity(),
-                        "Selected: $placeName\nLat: ${latLng.latitude}, Lng: ${latLng.longitude}",
-                        Toast.LENGTH_LONG
-                    ).show()
                     lat = latLng.latitude.toString()
                     longi = latLng.longitude.toString()
                 }
-                listView.visibility = ListView.GONE
             }
             .addOnFailureListener { exception ->
                 Log.e("MapsActivity", "Place details fetch failed: $exception")
             }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
-            mMap.isMyLocationEnabled = true
-            getCurrentLocation()
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
-        }
 
-        mMap.setOnMapClickListener { latLng ->
-            mMap.clear()
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(latLng)
-                    .title("Picked Location")
-            )
-            // Move the camera to the picked location
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-            // You can now use this picked location (latLng.latitude, latLng.longitude)
-            lat = latLng.latitude.toString()
-            longi = latLng.longitude.toString()
-            Toast.makeText(requireActivity(), "Location Picked: ${latLng.latitude}, ${latLng.longitude}", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun getCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            if (location != null) {
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                lat = location.latitude.toString()
-                longi = location.longitude.toString()
-                mMap.addMarker(
-                    MarkerOptions().position(currentLatLng).title("You are here")
-                )
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
-            }
-        }
-    }
-
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-    }
-    
     //set the listener
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener

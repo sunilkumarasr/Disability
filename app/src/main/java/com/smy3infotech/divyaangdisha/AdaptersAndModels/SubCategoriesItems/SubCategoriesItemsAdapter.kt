@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.smy3infotech.divyaangdisha.R
 
 class SubCategoriesItemsAdapter(
-    private val items: List<SubCategoriesItemsModel>,
+    private var items: List<SubCategoriesItemsModel>,
     private val onItemClick: (SubCategoriesItemsModel, String) -> Unit // Click listener function
 ) : RecyclerView.Adapter<SubCategoriesItemsAdapter.ViewHolder>() {
 
@@ -70,5 +70,11 @@ class SubCategoriesItemsAdapter(
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    //search
+    fun updateList(newItems: List<SubCategoriesItemsModel>) {
+        items = newItems
+        notifyDataSetChanged()
     }
 }

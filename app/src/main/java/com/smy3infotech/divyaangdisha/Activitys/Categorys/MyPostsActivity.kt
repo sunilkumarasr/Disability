@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.EnquiryPostActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.MyPostsList.MyPostListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.MyPostsList.MyPostsModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.PostItemDeleteModel
@@ -101,6 +102,13 @@ class MyPostsActivity : AppCompatActivity(),View.OnClickListener {
         binding.recyclerview.layoutManager = LinearLayoutManager(this@MyPostsActivity)
         binding.recyclerview.adapter = MyPostListAdapter(joblist) { item , type->
             if (type != null) {
+
+                if(type.equals("Enquiry")){
+                    startActivity(Intent(this@MyPostsActivity, EnquiryPostActivity::class.java).apply {
+                        putExtra("post_id",item.id)
+                        putExtra("post_Name",item.title)
+                    })
+                }
                 if(type.equals("View")){
                     startActivity(Intent(this@MyPostsActivity, PostCategoriesDetailsActivity::class.java).apply {
                         putExtra("category_id",item.category_id)
@@ -119,7 +127,6 @@ class MyPostsActivity : AppCompatActivity(),View.OnClickListener {
             }
         }
     }
-
 
     private fun deleteDialog(id: String) {
         val dialogBuilder = AlertDialog.Builder(this@MyPostsActivity)

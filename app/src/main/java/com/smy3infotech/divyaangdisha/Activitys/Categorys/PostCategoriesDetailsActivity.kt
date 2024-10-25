@@ -75,7 +75,12 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = post_Name
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        categoriesItemsDetailsApi()
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            categoriesItemsDetailsApi()
+        }
 
         binding.cardCall.setOnClickListener {
             checkAndRequestPermission()
@@ -136,8 +141,10 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
             .placeholder(R.drawable.home_bannes).error(R.drawable.home_bannes)
             .into(binding.imgBanner)
         binding.txtName.text = postDetails.data?.product?.title ?: ""
-        binding.txtlocation.text = postDetails.data?.product?.location ?: ""
+        binding.txtAddress.text = postDetails.data?.product?.address ?: ""
+        binding.txtLocation.text = postDetails.data?.product?.location ?: ""
         binding.txtmobile.text = postDetails.data?.product?.mobile ?: ""
+        binding.txtlandLineNumber.text = postDetails.data?.product?.landline ?: ""
         binding.txtemail.text = postDetails.data?.product?.mail ?: ""
         binding.txtAbout.text =
             Html.fromHtml(postDetails.data?.product?.about ?: "", Html.FROM_HTML_MODE_LEGACY)

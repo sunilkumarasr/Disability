@@ -21,6 +21,22 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.white), false)
 
+
+        //clear location address
+        Preferences.saveStringValue(applicationContext, Preferences.lat,
+            ""
+        )
+        Preferences.saveStringValue(applicationContext, Preferences.longi,
+            ""
+        )
+        Preferences.saveStringValue(applicationContext, Preferences.km,
+            ""
+        )
+        Preferences.saveStringValue(applicationContext, Preferences.location,
+            ""
+        )
+
+
         binding.cardStart.setOnClickListener {
             val loginCheck = Preferences.loadStringValue(applicationContext, Preferences.LOGINCHECK, "")
 

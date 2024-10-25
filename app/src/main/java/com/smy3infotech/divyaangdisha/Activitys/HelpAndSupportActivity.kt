@@ -37,7 +37,11 @@ class HelpAndSupportActivity : AppCompatActivity() {
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         binding.cardLogin.setOnClickListener {
-            HelpAndSupportApi()
+            if(!ViewController.noInterNetConnectivity(applicationContext)){
+                ViewController.showToast(applicationContext, "Please check your connection ")
+            }else{
+                HelpAndSupportApi()
+            }
         }
 
     }
@@ -67,10 +71,12 @@ class HelpAndSupportActivity : AppCompatActivity() {
 
         if (!validateEmail(email)) {
             ViewController.showToast(applicationContext, "Enter Valid email")
+            return
         }
 
         if (!validateMobileNumber(phone)) {
             ViewController.showToast(applicationContext, "Enter Valid mobile number")
+            return
         }
 
         ViewController.showLoading(this@HelpAndSupportActivity)

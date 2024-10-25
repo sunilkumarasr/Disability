@@ -179,6 +179,7 @@ class HomeFragment : Fragment() {
             //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, JobAlertDetailsActivity::class.java).apply {
                 putExtra("title",item.title)
+                putExtra("description",item.description)
                 putExtra("post_date",item.post_date)
                 putExtra("last_date",item.last_date)
             })

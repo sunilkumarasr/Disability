@@ -35,7 +35,12 @@ class TermsAndConditionsActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Terms And Conditions"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        termsConditionsApi()
+
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            termsConditionsApi()
+        }
     }
 
     private fun termsConditionsApi() {

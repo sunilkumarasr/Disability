@@ -14,11 +14,9 @@
         android:id="@+id/imgLogo"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:scaleType="fitXY"
         android:src="@drawable/dummy_profile"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:visibility="gone"
         android:id="@+id/imgDelete"
         android:layout_width="35dp"
         android:layout_height="35dp"

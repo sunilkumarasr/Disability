@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".LocationBottomSheetFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="search your location"
+        android:padding="10dp"
+        android:textColor="@color/blue"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSearch"
         android:layout_width="match_parent"
@@ -43,39 +51,34 @@
         android:visibility="gone"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Or"
-        android:textSize="15sp"
-        android:textColor="@color/colorPrimary"
-        android:padding="10dp"
-        android:fontFamily="@font/teachers_semibold"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick Your Location"
-        android:textSize="18sp"
-        android:padding="10dp"
-        android:fontFamily="@font/teachers_semibold"
-        android:layout_gravity="center"/>
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Radius"
+        android:textColor="@color/text"
+        android:fontFamily="@font/teachers_medium"
+        android:textSize="14sp"/>
+    <com.google.android.material.slider.Slider
+        android:id="@+id/kmSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:trackColorActive="@color/colorPrimary"
+        app:thumbColor="@color/blue"
+        android:valueFrom="1"
+        android:valueTo="100"
+        android:value="1"
+        android:stepSize="1"
+        app:labelBehavior="visible" />
 
     <androidx.cardview.widget.CardView
-        android:visibility="gone"
         android:id="@+id/cardSubmit"
         android:layout_width="170dp"
         android:layout_height="45dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="-65dp"
         android:layout_marginBottom="25dp"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="35dp"
@@ -84,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Submite"
+            android:text="Submit"
             android:fontFamily="@font/teachers_medium"
             android:textColor="@color/white"
             android:textSize="18sp"

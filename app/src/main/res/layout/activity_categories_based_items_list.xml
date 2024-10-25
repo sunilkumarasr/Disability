@@ -16,25 +16,77 @@
             <include
                 layout="@layout/top_layout"/>
 
+            <LinearLayout
+                android:id="@+id/imgLocationChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:text="your location..."
+                    android:padding="10dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/blue"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_gravity="center"
+                    app:tint="@color/blue"
+                    android:src="@drawable/edit_ic"/>
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSearch"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/li"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/search_ic"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/editSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="Search...."/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/imageSlider"
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
                 app:iss_auto_cycle="true"
-                app:iss_corner_radius="18"
                 app:iss_delay="2000"
                 app:iss_indicator_align="BOTTOM"
                 app:iss_period="2000"
                 app:iss_text_color="@color/black"
-                app:iss_title_background="@color/trance" />
-
+                app:iss_title_background="@color/trance"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Crecyclerview"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
@@ -50,31 +102,11 @@
                 android:gravity="center"
                 android:text="No data found"
                 android:textColor="@color/blue"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:fontFamily="@font/teachers_semibold"
                 android:textAlignment="center"/>
 
         </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardBottom"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            app:cardCornerRadius="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="25dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="25dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="10dp">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/location"/>
-        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

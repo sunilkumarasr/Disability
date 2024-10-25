@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.util.Patterns
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
@@ -45,7 +46,6 @@ class AddProductActivity : AppCompatActivity() {
     //multi Images selection
     private val REQUEST_CODE_SELECT_IMAGES = 2000
     val imageUris = mutableListOf<Uri>()
-
 
     val requestPermissions = registerForActivityResult(RequestMultiplePermissions()) { results ->
         var permission = false;
@@ -90,8 +90,6 @@ class AddProductActivity : AppCompatActivity() {
             ViewController.showToast(this@AddProductActivity, "Accept permissions")
         }
     }
-    var imageType: String = ""
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,25 +104,14 @@ class AddProductActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Add Product"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { exitDialog() }
 
-        binding.cardChoose.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
-            } else {
-                requestPermissions.launch(arrayOf(READ_EXTERNAL_STORAGE))
-            }
-            imageType = "single"
-        }
         binding.addMoreImages.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
-            } else {
-                requestPermissions.launch(arrayOf(READ_EXTERNAL_STORAGE))
+            val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "image/*"
+                putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // Allow multiple selections
             }
-            imageType = "multi"
+
+            // Launch the intent
+            startActivityForResult(Intent.createChooser(intent, "Select Images"), REQUEST_CODE_SELECT_IMAGES)
         }
 
         binding.cardSubmit.setOnClickListener {
@@ -139,16 +126,19 @@ class AddProductActivity : AppCompatActivity() {
 
     private fun addProductApi() {
         val userId = Preferences.loadStringValue(this@AddProductActivity, Preferences.userId, "")
+        val locations = Preferences.loadStringValue(this@AddProductActivity, Preferences.location, "")
         Log.e("userId_",userId.toString())
 
         val productName=binding.productNameEdit.text?.trim().toString()
         val actualPrice=binding.ActualEdit.text?.trim().toString()
         val offerPrice=binding.offerPriceEdit.text?.trim().toString()
+        val phoneNumber_ =binding.phoneNumberEdit.text?.trim().toString()
         val color=binding.colorEdit.text?.trim().toString()
         val brand=binding.brandEdit.text?.trim().toString()
         val address=binding.addressEdit.text?.trim().toString()
         val features=binding.featuresEdit.text?.trim().toString()
         val description=binding.descriptionEdit.text?.trim().toString()
+
 
         if(productName.isEmpty()){
             ViewController.showToast(applicationContext, "Enter product name")
@@ -160,6 +150,10 @@ class AddProductActivity : AppCompatActivity() {
         }
         if(offerPrice.isEmpty()){
             ViewController.showToast(applicationContext, "Enter offer price")
+            return
+        }
+        if(phoneNumber_.isEmpty()){
+            ViewController.showToast(applicationContext, "Enter phone Number")
             return
         }
         if(color.isEmpty()){
@@ -182,20 +176,27 @@ class AddProductActivity : AppCompatActivity() {
             ViewController.showToast(applicationContext, "Enter description")
             return
         }
+        if (!validateMobileNumber(phoneNumber_)) {
+            ViewController.showToast(applicationContext, "Enter Valid mobile number")
+            return
+        }
         if(imageUris.size == 0){
             ViewController.showToast(applicationContext, "Please select Images")
             return
         }
 
+
         val productname_ = RequestBody.create(MultipartBody.FORM, productName)
         val actualPrice_ = RequestBody.create(MultipartBody.FORM, actualPrice)
         val offerPrice_ = RequestBody.create(MultipartBody.FORM, offerPrice)
+        val mobile = RequestBody.create(MultipartBody.FORM, phoneNumber_)
         val color_ = RequestBody.create(MultipartBody.FORM, color)
         val brand_ = RequestBody.create(MultipartBody.FORM, brand)
         val address_ = RequestBody.create(MultipartBody.FORM, address)
         val features_ = RequestBody.create(MultipartBody.FORM, features)
         val description_ = RequestBody.create(MultipartBody.FORM, description)
         val userId_ = RequestBody.create(MultipartBody.FORM, userId.toString())
+        val locations_ = RequestBody.create(MultipartBody.FORM, locations.toString())
 
 
         val additionalImages = mutableListOf<MultipartBody.Part>()
@@ -208,7 +209,7 @@ class AddProductActivity : AppCompatActivity() {
 
         ViewController.showLoading(this@AddProductActivity)
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.addProductApi(productname_, actualPrice_, offerPrice_, color_, brand_, address_, features_, description_, userId_, additionalImages).enqueue(object : Callback<AddProductResponse> {
+        apiInterface.addProductApi(productname_, actualPrice_, offerPrice_, mobile, color_, brand_, address_, features_, description_, userId_, locations_, additionalImages).enqueue(object : Callback<AddProductResponse> {
             override fun onResponse(call: Call<AddProductResponse>, response: Response<AddProductResponse>) {
                 ViewController.hideLoading()
                 if (response.isSuccessful) {
@@ -242,46 +243,55 @@ class AddProductActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (imageType.equals("single")){
-            //single image selection
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                selectedImageUri = data.data!!
-                val file = File(getRealPathFromURI(selectedImageUri!!))
-                binding.txtFileName.text = file.name
-            }
-        }else{
-            //multi image selection
-            if (resultCode == Activity.RESULT_OK) {
-                val clipData = data?.clipData
+        //multi image selection
+        if (resultCode == Activity.RESULT_OK) {
+            val clipData = data?.clipData
+            var invalidImageCount = 0
 
-                if (clipData != null) {
-                    for (i in 0 until clipData.itemCount) {
-                        val imageUri = clipData.getItemAt(i).uri
-                        if (isValidImage(imageUri)) {
+            if (clipData != null) {
+                for (i in 0 until clipData.itemCount) {
+                    val imageUri = clipData.getItemAt(i).uri
+                    if (isValidImage(imageUri)) {
+                        if (!imageUris.contains(imageUri)) {
                             imageUris.add(imageUri)
-                        }else{
-                            ViewController.showToast(applicationContext, "select jpeg or png images only")
                         }
-                    }
-                } else {
-                    // Single image was selected
-                    val imageUri = data?.data
-                    if (imageUri != null) {
-                        if (isValidImage(imageUri)) {
-                            imageUris.add(imageUri)
-                        }else{
-                            ViewController.showToast(applicationContext, "select jpeg or png images only")
-                        }
+                    } else {
+                        invalidImageCount++
                     }
                 }
+            } else {
+                // Handle single image selection
+                val imageUri = data?.data
+                if (imageUri != null) {
+                    if (isValidImage(imageUri)) {
+                        if (!imageUris.contains(imageUri)) {
+                            imageUris.add(imageUri)
+                        }
+                    } else {
+                        invalidImageCount++
+                    }
+                }
+            }
 
-                binding.txtFileName2.text = imageUris.size.toString()+ " - Images added"
+            binding.txtFileName2.text = "${imageUris.size} - Images added"
+
+            // Show a summary of invalid images
+            if (invalidImageCount > 0) {
+                ViewController.showToast(
+                    applicationContext,
+                    "$invalidImageCount invalid image(s) ignored"
+                )
             }
         }
     }
     private fun isValidImage(uri: Uri): Boolean {
         val mimeType = contentResolver.getType(uri)
         return mimeType == "image/jpeg" || mimeType == "image/png"
+    }
+
+    private fun validateMobileNumber(mobile: String): Boolean {
+        val mobilePattern = "^[6-9][0-9]{9}\$"
+        return Patterns.PHONE.matcher(mobile).matches() && mobile.matches(Regex(mobilePattern))
     }
 
     override fun onBackPressed() {

@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AddProductResponse
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.DeletePostImageModel
+import com.smy3infotech.divyaangdisha.AdaptersAndModels.DeleteProductImageModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EditProductImagesListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProductItemDetailsModel
 import com.smy3infotech.divyaangdisha.Config.Preferences
@@ -55,8 +57,11 @@ class EditProductActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Edit Product"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        productDetailsApi()
-
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            productDetailsApi()
+        }
 
         binding.cardMultiImages.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -108,6 +113,7 @@ class EditProductActivity : AppCompatActivity() {
         binding.productNameEdit.setText(productDetails.data?.product?.product ?: "")
         binding.ActualEdit.setText(productDetails.data?.product?.actual_price ?: "")
         binding.offerPriceEdit.setText(productDetails.data?.product?.offer_price ?: "")
+        binding.phoneNumberEdit.setText(productDetails.data?.product?.phone ?: "")
         binding.colorEdit.setText(productDetails.data?.product?.color ?: "")
         binding.brandEdit.setText(productDetails.data?.product?.brand ?: "")
         binding.addressEdit.setText(productDetails.data?.product?.address ?: "")
@@ -124,6 +130,8 @@ class EditProductActivity : AppCompatActivity() {
             var galleryimages = productDetails.data?.images?.toMutableList() ?: mutableListOf()
             binding.recyclerviewImages.adapter = EditProductImagesListAdapter(galleryimages) { item ->
                 // Handle image item click
+                //delete image
+                deleteProductImageApi(item.id)
             }
             binding.recyclerviewImages.visibility = View.VISIBLE
             binding.txtNoImages.visibility = View.GONE
@@ -132,17 +140,40 @@ class EditProductActivity : AppCompatActivity() {
             binding.txtNoImages.visibility = View.VISIBLE
         }
 
-
+    }
+    //delete image
+    private fun deleteProductImageApi(id: String?) {
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.deleteProductImageApi(id).enqueue(object :
+            Callback<DeleteProductImageModel> {
+            override fun onResponse(call: Call<DeleteProductImageModel>, response: Response<DeleteProductImageModel>) {
+                ViewController.hideLoading()
+                if (response.isSuccessful) {
+                    val deleteResponse = response.body()
+                    if (deleteResponse != null && deleteResponse.message.equals("Image deleted successfully")) {
+                        productDetailsApi()
+                    }
+                }
+            }
+            override fun onFailure(call: Call<DeleteProductImageModel>, t: Throwable) {
+                ViewController.hideLoading()
+                ViewController.showToast(applicationContext, "Try again")
+                Log.e("Tryagain:_ ", t.message.toString())
+            }
+        })
     }
 
     //update product
     private fun updateProductApi() {
         val userId = Preferences.loadStringValue(this@EditProductActivity, Preferences.userId, "")
+        val locations = Preferences.loadStringValue(this@EditProductActivity, Preferences.location, "")
+
         Log.e("userId_",userId.toString())
 
         val productName=binding.productNameEdit.text?.trim().toString()
         val actualPrice=binding.ActualEdit.text?.trim().toString()
         val offerPrice=binding.offerPriceEdit.text?.trim().toString()
+        val phoneNumber =binding.phoneNumberEdit.text?.trim().toString()
         val color=binding.colorEdit.text?.trim().toString()
         val brand=binding.brandEdit.text?.trim().toString()
         val address=binding.addressEdit.text?.trim().toString()
@@ -159,6 +190,10 @@ class EditProductActivity : AppCompatActivity() {
         }
         if(offerPrice.isEmpty()){
             ViewController.showToast(applicationContext, "Enter offer price")
+            return
+        }
+        if(phoneNumber.isEmpty()){
+            ViewController.showToast(applicationContext, "Enter Mobile Number")
             return
         }
         if(color.isEmpty()){
@@ -185,6 +220,7 @@ class EditProductActivity : AppCompatActivity() {
         val productname_ = RequestBody.create(MultipartBody.FORM, productName)
         val actualPrice_ = RequestBody.create(MultipartBody.FORM, actualPrice)
         val offerPrice_ = RequestBody.create(MultipartBody.FORM, offerPrice)
+        val phoneNumber_ = RequestBody.create(MultipartBody.FORM, phoneNumber)
         val color_ = RequestBody.create(MultipartBody.FORM, color)
         val brand_ = RequestBody.create(MultipartBody.FORM, brand)
         val address_ = RequestBody.create(MultipartBody.FORM, address)
@@ -192,6 +228,7 @@ class EditProductActivity : AppCompatActivity() {
         val description_ = RequestBody.create(MultipartBody.FORM, description)
         val userId_ = RequestBody.create(MultipartBody.FORM, userId.toString())
         val product_id_ = RequestBody.create(MultipartBody.FORM, product_id)
+        val locations_ = RequestBody.create(MultipartBody.FORM, locations.toString())
 
         //gallery
         val additionalImages = mutableListOf<MultipartBody.Part>()
@@ -207,7 +244,7 @@ class EditProductActivity : AppCompatActivity() {
         }
 
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.updateProductApi(productname_, actualPrice_, offerPrice_, color_, brand_, address_, features_, description_, userId_, product_id_, additionalImages).enqueue(object : Callback<AddProductResponse> {
+        apiInterface.updateProductApi(productname_, actualPrice_, offerPrice_, phoneNumber_, color_, brand_, address_, features_, description_, userId_, product_id_, locations_, additionalImages).enqueue(object : Callback<AddProductResponse> {
             override fun onResponse(call: Call<AddProductResponse>, response: Response<AddProductResponse>) {
                 ViewController.hideLoading()
                 if (response.isSuccessful) {
@@ -228,7 +265,6 @@ class EditProductActivity : AppCompatActivity() {
             }
         })
     }
-
 
     private fun getRealPathFromURI(uri: Uri): String {
         val projection = arrayOf(MediaStore.Images.Media.DATA)

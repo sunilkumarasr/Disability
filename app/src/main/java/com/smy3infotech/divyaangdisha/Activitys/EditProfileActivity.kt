@@ -10,14 +10,24 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
+import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
+import com.google.android.libraries.places.api.net.PlacesClient
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Citys.CitysModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.State.StateModel
@@ -91,6 +101,19 @@ class EditProfileActivity : AppCompatActivity() {
     var stateId: String = ""
     var cityId: String = ""
 
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var placesClient: PlacesClient
+    private lateinit var adapter: ArrayAdapter<String>
+    private val suggestionsList = mutableListOf<String>()
+    private val placeIdList = mutableListOf<String>()
+
+    var SelectLocations: String = ""
+    var lat: String = ""
+    var longi: String = ""
+    var Km: Int = 0
+    var c: String = "0"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -104,7 +127,24 @@ class EditProfileActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Edit Profile"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        getProfileApi()
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            getProfileApi()
+        }
+
+        location()
+
+        binding.kmSlider.setLabelFormatter { value: Float ->
+            // Format the value with "Km" unit
+            "${value.toInt()} Km"
+        }
+        binding.kmSlider.addOnChangeListener { slider, value, fromUser ->
+            // You can also handle changes here if needed
+            Log.d("Slider", "Value changed to: $value")
+            Km = value.toInt()
+        }
+
 
         binding.cardChoose.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
@@ -117,8 +157,25 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         binding.cardUpdate.setOnClickListener {
-            updateProfileApi()
+            if(!ViewController.noInterNetConnectivity(applicationContext)){
+                ViewController.showToast(applicationContext, "Please check your connection ")
+            }else{
+                updateProfileApi()
+            }
         }
+
+        binding.changeLocation.setOnClickListener {
+            c = "1"
+            binding.linearLocation.visibility = View.GONE
+            binding.linearchangeLocation.visibility = View.VISIBLE
+        }
+
+        binding.clearLocation.setOnClickListener {
+            c = "0"
+            binding.linearLocation.visibility = View.VISIBLE
+            binding.linearchangeLocation.visibility = View.GONE
+        }
+
 
     }
 
@@ -143,14 +200,29 @@ class EditProfileActivity : AppCompatActivity() {
                         stateList()
                         citysList()
 
+
+                        lat = rsp.data?.latitude.toString()
+                        longi = rsp.data?.longitude.toString()
+                        Km = rsp.data?.km?.toIntOrNull() ?: 0
+
+                        val sliderValue = when {
+                            Km < 1 -> 1f
+                            Km > 100 -> 100f
+                            else -> Km.toFloat()
+                        }
+                        binding.kmSlider.value = sliderValue
+
                         binding.nameEdit.setText(rsp.data?.name)
                         binding.emailEdit.setText(rsp.data?.email)
                         binding.mobileEdit.setText(rsp.data?.phone)
-                        binding.txtLocation.setText(rsp.data?.location)
+                        binding.setLocation.setText(rsp.data?.location)
+                        SelectLocations = rsp.data?.location.toString()
+                        //binding.editLocations.setText(rsp.data?.location)
                         if (!rsp.data?.image.equals("")) {
                             Glide.with(binding.profileImage).load(rsp.data?.image)
                                 .into(binding.profileImage)
                         }
+
                     }
                 } else {
                     ViewController.showToast(this@EditProfileActivity, "Error: ${response.code()}")
@@ -170,7 +242,8 @@ class EditProfileActivity : AppCompatActivity() {
         val name = binding.nameEdit.text?.trim().toString()
         val email = binding.emailEdit.text?.trim().toString()
         val mobile = binding.mobileEdit.text?.trim().toString()
-        val location = binding.txtLocation.text?.trim().toString()
+        val location = SelectLocations
+
 
         // Validate inputs
         if (name.isEmpty()) {
@@ -185,20 +258,25 @@ class EditProfileActivity : AppCompatActivity() {
             ViewController.showToast(applicationContext, "Enter mobile")
             return
         }
-        if (location.isEmpty()) {
-            ViewController.showToast(applicationContext, "Enter location")
-            return
+
+        if (c.equals("1")) {
+            if (binding.editLocations.text?.trim().toString().isEmpty()) {
+                ViewController.showToast(applicationContext, "Select Location")
+                return
+            }
         }
-        if (!validateMobileNumber(mobile)) {
-            ViewController.showToast(applicationContext, "Enter Valid mobile number")
-            return
-        }
+
+        binding.ccp.registerCarrierNumberEditText(binding.mobileEdit)
 
         // Prepare form data
         val userId_ = RequestBody.create(MultipartBody.FORM, userId.toString())
         val name_ = RequestBody.create(MultipartBody.FORM, name)
         val email_ = RequestBody.create(MultipartBody.FORM, email)
-        val mobile_ = RequestBody.create(MultipartBody.FORM, mobile)
+        val mobile_ = RequestBody.create(MultipartBody.FORM, binding.ccp.fullNumber)
+        val location_ = RequestBody.create(MultipartBody.FORM, location)
+        val lat_ = RequestBody.create(MultipartBody.FORM, lat)
+        val longi_ = RequestBody.create(MultipartBody.FORM, longi)
+        val Km_ = RequestBody.create(MultipartBody.FORM, Km.toString())
 
         val body: MultipartBody.Part
         if (selectedImageUri != null) {
@@ -212,7 +290,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         ViewController.showLoading(this@EditProfileActivity)
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.updateProfileApi(userId_, name_, email_, mobile_, body)
+        apiInterface.updateProfileApi(userId_, name_, email_, mobile_ , location_, lat_, longi_, Km_,  body)
             .enqueue(object : Callback<UpdateProfileResponse> {
                 override fun onResponse(
                     call: Call<UpdateProfileResponse>,
@@ -261,7 +339,6 @@ class EditProfileActivity : AppCompatActivity() {
         binding.txtFileName.text = file.name
     }
 
-
     //update profile
     private fun createEmptyImagePart(): MultipartBody.Part {
         // Create an empty RequestBody
@@ -301,7 +378,6 @@ class EditProfileActivity : AppCompatActivity() {
             }
         })
     }
-
     private fun stateDataSet(state: List<StateModel>) {
 
         for (i in state.indices) {
@@ -339,13 +415,116 @@ class EditProfileActivity : AppCompatActivity() {
             }
         })
     }
-
     private fun CityDataSet(citys: List<CitysModel>) {
         for (i in citys.indices) {
             if (citys[i].id.equals(cityId)) {
                 binding.spinnerCity.text = citys[i].city
             }
         }
+    }
+
+
+    private fun location() {
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@EditProfileActivity)
+
+        // Initialize Places API
+        if (!Places.isInitialized()) {
+            Places.initialize(this@EditProfileActivity, RetrofitClient.MapKey)
+        }
+        placesClient = Places.createClient(this@EditProfileActivity)
+        adapter = ArrayAdapter(this@EditProfileActivity, android.R.layout.simple_list_item_1, suggestionsList)
+        binding.listViews.adapter = adapter
+
+        // Add TextWatcher to search location as the user types
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString()
+                if (query.isNotEmpty()) {
+                    searchPlace(query)
+                }else{
+                    binding.listViews.visibility = View.GONE
+                }
+
+            }
+        }
+
+        // Attach the TextWatcher to the EditText
+        binding.editLocations.addTextChangedListener(textWatcher)
+
+        // Handle list item clicks
+        binding.listViews.setOnItemClickListener { parent, view, position, id ->
+            val selectedPlaceId = placeIdList[position]
+            val selectedPlaceName = suggestionsList[position]
+
+            // Fetch place details and set the selected location
+            // fetchPlaceDetails(selectedPlaceId, selectedPlaceName)
+
+            // Remove TextWatcher before updating EditText to avoid triggering it
+            binding.editLocations.removeTextChangedListener(textWatcher)
+
+            // Set the selected place in the EditText
+            binding.editLocations.setText(selectedPlaceName)
+
+
+            // Reattach the TextWatcher after setting the text
+            binding.editLocations.addTextChangedListener(textWatcher)
+
+            // Hide the ListView after selecting a location
+            binding.listViews.visibility = View.GONE
+
+            fetchPlaceDetails(selectedPlaceId, selectedPlaceName)
+        }
+    }
+    private fun searchPlace(query: String) {
+        val request = FindAutocompletePredictionsRequest.builder()
+            .setQuery(query)
+            .build()
+
+        placesClient.findAutocompletePredictions(request)
+            .addOnSuccessListener { response ->
+                suggestionsList.clear()
+                placeIdList.clear()
+
+                for (prediction in response.autocompletePredictions) {
+                    suggestionsList.add(prediction.getFullText(null).toString())
+                    placeIdList.add(prediction.placeId)
+                }
+
+                if (suggestionsList.isNotEmpty()) {
+                    binding.listViews.visibility = View.VISIBLE
+                    adapter.notifyDataSetChanged()
+                } else {
+                    binding.listViews.visibility = View.GONE
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("MapsActivity", "Place search failed: $exception")
+            }
+    }
+    private fun fetchPlaceDetails(placeId: String, placeName: String) {
+        val placeFields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
+
+        val request = com.google.android.libraries.places.api.net.FetchPlaceRequest.builder(placeId, placeFields).build()
+
+        placesClient.fetchPlace(request)
+            .addOnSuccessListener { response ->
+                val place = response.place
+                val latLng = place.latLng
+                if (latLng != null) {
+                    lat = latLng.latitude.toString()
+                    longi = latLng.longitude.toString()
+                    SelectLocations = placeName
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("MapsActivity", "Place details fetch failed: $exception")
+            }
     }
 
 }

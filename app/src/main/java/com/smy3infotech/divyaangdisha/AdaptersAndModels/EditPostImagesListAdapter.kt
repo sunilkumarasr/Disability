@@ -30,12 +30,15 @@ class EditPostImagesListAdapter(
         val item = items[position]
         Glide.with(holder.imgLogo).load(RetrofitClient.Image_Path+item.additionalImage.toString()).into(holder.imgLogo)
 
-        holder.imgDelete.setOnClickListener {
-            items.removeAt(position)
+//        holder.imgDelete.setOnClickListener {
+//            items.removeAt(position)
+//            // Notify the adapter that the item was removed
+//            notifyItemRemoved(position)
+//            notifyItemRangeChanged(position, items.size)
+//        }
 
-            // Notify the adapter that the item was removed
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, items.size)
+        holder.imgDelete.setOnClickListener {
+            onItemClick(items[position])
         }
 
 
@@ -44,4 +47,5 @@ class EditPostImagesListAdapter(
     override fun getItemCount(): Int {
         return items.size
     }
+
 }

@@ -1,5 +1,6 @@
 package com.smy3infotech.divyaangdisha.AdaptersAndModels.JobAlerts
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class JobAlertHomeAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtTitle: TextView = itemView.findViewById(R.id.txtTitle)
+        val txtDec: TextView = itemView.findViewById(R.id.txtDec)
         val txtPostTime: TextView = itemView.findViewById(R.id.txtPostTime)
         val txtLastTime: TextView = itemView.findViewById(R.id.txtLastTime)
 
@@ -36,6 +38,7 @@ class JobAlertHomeAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.txtTitle.text = item.title
+        holder.txtDec.text = Html.fromHtml(item.description, Html.FROM_HTML_MODE_LEGACY)
         holder.txtPostTime.text = item.post_date
         holder.txtLastTime.text = item.last_date
     }

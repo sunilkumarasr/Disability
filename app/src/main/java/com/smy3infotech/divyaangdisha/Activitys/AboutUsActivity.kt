@@ -35,7 +35,11 @@ class AboutUsActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "About us"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
-        aboutUsApi()
+        if(!ViewController.noInterNetConnectivity(applicationContext)){
+            ViewController.showToast(applicationContext, "Please check your connection ")
+        }else{
+            aboutUsApi()
+        }
 
     }
 

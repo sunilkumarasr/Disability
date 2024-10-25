@@ -82,13 +82,41 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/linearEnqury"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_enquery_edit">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/eye_ic"
+                        app:tint="@color/selectedRed"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Enquiry"
+                        android:textColor="@color/selectedRed"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/teachers_regular"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearView"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
                     android:layout_marginEnd="5dp"
+                    android:orientation="horizontal"
                     android:background="@drawable/round_view_edit_blue">
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="18dp"
@@ -114,8 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="5dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_red">
                     <androidx.appcompat.widget.AppCompatImageView
@@ -163,6 +190,7 @@
                         android:fontFamily="@font/teachers_regular"
                         android:textSize="13sp"/>
                 </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
