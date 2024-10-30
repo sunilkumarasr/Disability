@@ -19,6 +19,7 @@ import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnquerySaleRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProductItemDetailsModel
+import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
@@ -52,8 +53,6 @@ class ProductDetaisActivity : AppCompatActivity() {
     private fun inits() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = product_Name
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
-
-
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){
             ViewController.showToast(applicationContext, "Please check your connection ")
@@ -93,6 +92,7 @@ class ProductDetaisActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun productDataSet(productDetails: ProductItemDetailsModel) {
         binding.txtTitle.text = productDetails.data?.product?.product ?: ""
         binding.txtBrand.text = productDetails.data?.product?.brand ?: ""
@@ -193,12 +193,14 @@ class ProductDetaisActivity : AppCompatActivity() {
     }
 
     private fun enquerySaleApi(name_: String, phone_: String, email_: String, message_: String) {
+        val userId = Preferences.loadStringValue(this@ProductDetaisActivity, Preferences.userId, "")
+
         ViewController.showLoading(this@ProductDetaisActivity)
 
         Log.e("product", product_id)
 
         val apiInterface = RetrofitClient.apiInterface
-        val enqueryRequest = EnquerySaleRequest(name_, phone_, email_, message_, product_id)
+        val enqueryRequest = EnquerySaleRequest(name_, phone_, email_, message_, product_id, userId.toString())
 
         apiInterface.enquerySaleApi(enqueryRequest).enqueue(object : Callback<EnqueryResponse> {
             override fun onResponse(

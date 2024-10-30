@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.PostBannersModel
@@ -41,6 +42,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
 
     lateinit var category_id:String
     lateinit var category_Name:String
+    lateinit var sub_id: String
 
     private lateinit var catAdapter: SubCategoriesItemsAdapter
     private var categoriesList = ArrayList<SubCategoriesItemsModel>()
@@ -170,7 +172,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
                 )
             }
         }
-        binding.imageSlider.setImageList(imageList)
+        binding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
     }
 
     private fun subcategoriesApi() {
@@ -214,12 +216,14 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
         binding.Crecyclerview.layoutManager = LinearLayoutManager(this@CategoriesBasedItemsListActivity, LinearLayoutManager.HORIZONTAL, false)
         binding.Crecyclerview.adapter = SubCategoriesAdapter(categoriesl) { item ->
             //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
+            sub_id = item.id
             categoriesBasedItemsApi(item.id)
         }
 
         //auto run for first item
         if (categoriesl.isNotEmpty()) {
             val firstSubcategory = categoriesl[0]
+            sub_id = firstSubcategory.id
             categoriesBasedItemsApi(firstSubcategory.id)// Auto run for the first subcategory
         }
 
@@ -284,6 +288,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
             }else{
                 startActivity(Intent(this@CategoriesBasedItemsListActivity, PostCategoriesDetailsActivity::class.java).apply {
                     putExtra("category_id",category_id)
+                    putExtra("sub_id",sub_id)
                     putExtra("post_id",item.id)
                     putExtra("post_Name",item.title)
                 })

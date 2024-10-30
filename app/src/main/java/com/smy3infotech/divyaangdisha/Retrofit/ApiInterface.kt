@@ -229,7 +229,7 @@ interface ApiInterface {
     fun productDetailsApi(@Path("product_id") product_id: String): Call<ProductItemDetailsModel>
 
     @GET("sale_enquiry_user")
-    fun EnquieryProductListApi(@Query("created_by") userID: String?, @Query("product") product_id: String?): Call<List<EnquieryProductModel>>
+    fun EnquieryProductListApi(@Query("product") product_id: String?): Call<List<EnquieryProductModel>>
 
     //posts sales
     @GET("listing_banner_list")
@@ -297,7 +297,7 @@ interface ApiInterface {
     fun deletePostImageApi(@Query("id") id: String?): Call<DeletePostImageModel>
 
     @GET("listing_enquiry_user")
-    fun EnquieryListApi(@Query("created_by") userID: String?, @Query("product_id") product_id: String?): Call<List<EnquieryPostModel>>
+    fun EnquieryListApi(@Query("product_id") product_id: String?): Call<List<EnquieryPostModel>>
 
     @GET("socialmedia")
     fun socialMediaApi(): Call<List<SocialMediaModel>>

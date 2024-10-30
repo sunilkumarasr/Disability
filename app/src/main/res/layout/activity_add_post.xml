@@ -23,30 +23,26 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
-                <com.google.android.material.textfield.TextInputLayout
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="10dp"
-                    app:hintEnabled="false"
-                    style="@style/MyDenseOutlined"
-                    app:boxBackgroundColor="@color/box_gray"
-                    app:boxStrokeColor="@color/box_border"
-                    app:boxStrokeWidth="0dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/locationEdit"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_edit_gray_light_edge">
+                    <TextView
+                        android:id="@+id/txtLocation"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:singleLine="true"
                         android:textSize="15sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Location"
-                        android:singleLine="true"
-                        android:textColorHint="@color/hintcolor"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <ListView
-                    android:id="@+id/listViews"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="Select Location"/>
+                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

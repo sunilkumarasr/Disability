@@ -43,6 +43,8 @@ import com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCatListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SubCategoriesItems.SubCategoriesItemsModel
 import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
+import com.smy3infotech.divyaangdisha.LocationBottomSheetFragment
+import com.smy3infotech.divyaangdisha.MapBottomSheetFragment
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityAddPostBinding
@@ -59,13 +61,7 @@ class AddPostActivity : AppCompatActivity() {
         ActivityAddPostBinding.inflate(layoutInflater)
     }
 
-    //location
-    private lateinit var mMap: GoogleMap
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var placesClient: PlacesClient
-    private lateinit var adapter: ArrayAdapter<String>
-    private val suggestionsList = mutableListOf<String>()
-    private val placeIdList = mutableListOf<String>()
+
     var lat: String = ""
     var longi: String = ""
 
@@ -139,7 +135,6 @@ class AddPostActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Add Post"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { exitDialog() }
 
-        location()
         categoriesApi()
         setupRecyclerView()
 
@@ -185,94 +180,11 @@ class AddPostActivity : AppCompatActivity() {
             }
         }
 
-    }
 
-    //location
-    private fun location() {
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@AddPostActivity)
-
-        // Initialize Places API
-        if (!Places.isInitialized()) {
-            Places.initialize(this@AddPostActivity, RetrofitClient.MapKey)
-        }
-        placesClient = Places.createClient(this@AddPostActivity)
-        adapter = ArrayAdapter(this@AddPostActivity, android.R.layout.simple_list_item_1, suggestionsList)
-        binding.listViews.adapter = adapter
-
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                val query = s.toString()
-                if (query.isNotEmpty()) {
-                    searchPlace(query)
-                }else{
-                    binding.listViews.visibility = View.GONE
-                }
-
-            }
+        binding.txtLocation.setOnClickListener {
+            LocationBottom()
         }
 
-        binding.locationEdit.addTextChangedListener(textWatcher)
-        binding.listViews.setOnItemClickListener { parent, view, position, id ->
-            val selectedPlaceId = placeIdList[position]
-            val selectedPlaceName = suggestionsList[position]
-            binding.locationEdit.removeTextChangedListener(textWatcher)
-            binding.locationEdit.setText(selectedPlaceName)
-            binding.locationEdit.addTextChangedListener(textWatcher)
-
-            binding.listViews.visibility = View.GONE
-
-            fetchPlaceDetails(selectedPlaceId, selectedPlaceName)
-        }
-    }
-    private fun searchPlace(query: String) {
-        val request = FindAutocompletePredictionsRequest.builder()
-            .setQuery(query)
-            .build()
-
-        placesClient.findAutocompletePredictions(request)
-            .addOnSuccessListener { response ->
-                suggestionsList.clear()
-                placeIdList.clear()
-
-                for (prediction in response.autocompletePredictions) {
-                    suggestionsList.add(prediction.getFullText(null).toString())
-                    placeIdList.add(prediction.placeId)
-                }
-
-                if (suggestionsList.isNotEmpty()) {
-                    binding.listViews.visibility = View.VISIBLE
-                    adapter.notifyDataSetChanged()
-                } else {
-                    binding.listViews.visibility = View.GONE
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.e("MapsActivity", "Place search failed: $exception")
-            }
-    }
-    private fun fetchPlaceDetails(placeId: String, placeName: String) {
-        val placeFields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
-
-        val request = com.google.android.libraries.places.api.net.FetchPlaceRequest.builder(placeId, placeFields).build()
-
-        placesClient.fetchPlace(request)
-            .addOnSuccessListener { response ->
-                val place = response.place
-                val latLng = place.latLng
-                if (latLng != null) {
-                    lat = latLng.latitude.toString()
-                    longi = latLng.longitude.toString()
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.e("MapsActivity", "Place details fetch failed: $exception")
-            }
     }
 
     //categories list
@@ -376,7 +288,7 @@ class AddPostActivity : AppCompatActivity() {
         val userId = Preferences.loadStringValue(this@AddPostActivity, Preferences.userId, "")
         Log.e("userId_",userId.toString())
 
-        val mapLocation_ =binding.locationEdit.text?.trim().toString()
+        val mapLocation_ =binding.txtLocation.text?.trim().toString()
         val title_ =binding.titleEdit.text?.trim().toString()
         val desctiption_ =binding.desctiptionEdit.text?.trim().toString()
         val phoneNumber_ =binding.phoneNumberEdit.text?.trim().toString()
@@ -387,12 +299,8 @@ class AddPostActivity : AppCompatActivity() {
         val servicesList_ =binding.servicesListEdit.text?.trim().toString()
 
 
-        if(mapLocation_.isEmpty()){
-            ViewController.showToast(applicationContext, "Enter Location")
-            return
-        }
         if(lat.isEmpty() || longi.isEmpty()){
-            ViewController.showToast(applicationContext, "Enter select correct location")
+            ViewController.showToast(applicationContext, "select location")
             return
         }
         if(title_.isEmpty()){
@@ -431,7 +339,6 @@ class AddPostActivity : AppCompatActivity() {
             ViewController.showToast(applicationContext, "Please select cover image")
             return
         }
-
         if (!validateEmail(email_)) {
             ViewController.showToast(applicationContext, "Enter Valid email")
             return
@@ -607,6 +514,21 @@ class AddPostActivity : AppCompatActivity() {
         }
         binding.recyclerViewImages.layoutManager = GridLayoutManager(this@AddPostActivity, 3)
         binding.recyclerViewImages.adapter = imageAdapter
+    }
+
+    private fun LocationBottom() {
+        val bottomSheet = MapBottomSheetFragment()
+        bottomSheet.setInitialData("", "", "", "") // Example values
+        bottomSheet.setOnItemClickListener(object : MapBottomSheetFragment.OnItemClickListener {
+            override fun onItemSelected(lat_value: String, longi_value: String, locationsss: String) {
+
+                lat = lat_value
+                longi = longi_value
+                binding.txtLocation.text = locationsss
+
+            }
+        })
+        bottomSheet.show(supportFragmentManager, "MyBottomSheetFragment")
     }
 
     override fun onBackPressed() {

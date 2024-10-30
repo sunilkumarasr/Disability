@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp">
         <LinearLayout
@@ -87,15 +87,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="3dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_enquery_edit">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="3dp"
                         android:src="@drawable/eye_ic"
                         app:tint="@color/selectedRed"/>
                     <TextView
@@ -106,7 +106,7 @@
                         android:textColor="@color/selectedRed"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/teachers_regular"
-                        android:textSize="13sp"/>
+                        android:textSize="9sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,15 +114,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="3dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_view_edit_blue">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
                         android:src="@drawable/view_ic"
                         app:tint="@color/blue"/>
                     <TextView
@@ -133,7 +133,7 @@
                         android:textColor="@color/blue"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/teachers_regular"
-                        android:textSize="13sp"/>
+                        android:textSize="9sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,15 +141,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="3dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_red">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="3dp"
                         android:src="@drawable/edit_ic"
                         app:tint="#F29E0E"/>
                     <TextView
@@ -160,7 +160,7 @@
                         android:textColor="#F29E0E"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/teachers_regular"
-                        android:textSize="13sp"/>
+                        android:textSize="9sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -168,15 +168,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="3dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_delete_edit_red">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="3dp"
                         android:src="@drawable/delete_ic"
                         app:tint="@color/colorPrimary"/>
                     <TextView
@@ -187,7 +187,7 @@
                         android:textColor="@color/colorPrimary"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/teachers_regular"
-                        android:textSize="13sp"/>
+                        android:textSize="9sp"/>
                 </LinearLayout>
 
             </LinearLayout>

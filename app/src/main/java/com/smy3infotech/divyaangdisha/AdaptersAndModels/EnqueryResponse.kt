@@ -13,7 +13,9 @@ data class EnqueryRequest(
     val email: String,
     val message: String,
     val product_id: String,
-    val category_id: String
+    val category_id: String,
+    val subcategory_id: String,
+    val created_by: String
 )
 
 data class EnquerySaleRequest(
@@ -21,5 +23,6 @@ data class EnquerySaleRequest(
     val phone: String,
     val email: String,
     val message: String,
-    val product: String
+    val product: String,
+    val created_by: String
 )

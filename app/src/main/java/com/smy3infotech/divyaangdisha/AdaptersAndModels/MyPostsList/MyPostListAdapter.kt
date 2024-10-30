@@ -78,7 +78,6 @@ class MyPostListAdapter(
         holder.txtTitle.text = item.title
         Glide.with(holder.imgLogo).load(item.image).error(R.drawable.vision_dummy).into(holder.imgLogo)
 
-
     }
 
     override fun getItemCount(): Int {

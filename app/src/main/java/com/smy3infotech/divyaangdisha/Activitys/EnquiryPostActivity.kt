@@ -52,13 +52,9 @@ class EnquiryPostActivity : AppCompatActivity() {
 
 
     private fun EnquieryListApi() {
-
-        val userId = Preferences.loadStringValue(this@EnquiryPostActivity, Preferences.userId, "")
-        Log.e("userId_",userId.toString())
-
         ViewController.showLoading(this@EnquiryPostActivity)
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.EnquieryListApi(userId,post_id).enqueue(object : retrofit2.Callback<List<EnquieryPostModel>> {
+        apiInterface.EnquieryListApi(post_id).enqueue(object : retrofit2.Callback<List<EnquieryPostModel>> {
             override fun onResponse(
                 call: retrofit2.Call<List<EnquieryPostModel>>,
                 response: retrofit2.Response<List<EnquieryPostModel>>

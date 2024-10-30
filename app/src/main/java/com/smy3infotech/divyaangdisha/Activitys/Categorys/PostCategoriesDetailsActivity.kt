@@ -24,11 +24,18 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.ItemsImagesListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.PostItemDetailsModel
+import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
@@ -43,11 +50,18 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         ActivityPostViewBinding.inflate(layoutInflater)
     }
 
+
+    private lateinit var googleMap: GoogleMap
+    private var marker: Marker? = null
+
+
 //    AIzaSyDvW-fjH0kspIU4CFSFKwNPNQpUnN4K-QQ
 
     lateinit var category_id: String
+    lateinit var sub_id: String
     lateinit var post_id: String
     lateinit var post_Name: String
+
 
     //call
     companion object {
@@ -60,8 +74,10 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.blue), false)
+        binding.mapView.onCreate(savedInstanceState)
 
         category_id = intent.getStringExtra("category_id").toString()
+        sub_id = intent.getStringExtra("sub_id").toString()
         post_id = intent.getStringExtra("post_id").toString()
         post_Name = intent.getStringExtra("post_Name").toString()
 
@@ -95,6 +111,9 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
 
 
     }
+
+
+
 
     private fun categoriesItemsDetailsApi() {
         ViewController.showLoading(this@PostCategoriesDetailsActivity)
@@ -165,7 +184,6 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
             binding.recyclerviewImages.layoutManager = layoutManager
             binding.recyclerviewImages.adapter = postDetails.data?.images?.let {
                 ItemsImagesListAdapter(it) { item ->
-
                 }
             }
         } else {
@@ -174,32 +192,27 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         }
 
 
-//        binding.webview.settings.setJavaScriptEnabled(true)
-//
-//        binding.webview.webViewClient = object : WebViewClient() {
-//            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-//                if (url != null) {
-//                    view?.loadUrl(url)
-//                }
-//                return true
-//            }
-//        }
-//        binding.webview.loadUrl(postDetails.data?.location_url.toString())
+        val latitudeString = postDetails.data?.product?.latitude ?: ""
+        val longitudeString = postDetails.data?.product?.longitude ?: ""
+        val latitude: Double? = latitudeString.toDoubleOrNull()
+        val longitude: Double? = longitudeString.toDoubleOrNull()
 
-        binding.webviewLocation.getSettings().setAllowFileAccess(true)
-        binding.webviewLocation.getSettings().setPluginState(WebSettings.PluginState.ON)
-        binding.webviewLocation.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND)
-        binding.webviewLocation.setWebViewClient(WebViewClient())
-        binding.webviewLocation.getSettings().setJavaScriptEnabled(true)
-        binding.webviewLocation.getSettings().setLoadWithOverviewMode(true)
-        binding.webviewLocation.getSettings().setUseWideViewPort(true)
-        val displaymetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displaymetrics)
-        val height = displaymetrics.heightPixels
-        val width = displaymetrics.widthPixels
-        binding.webviewLocation.loadData("<iframe height=600 width= $width src=\"${postDetails.data?.location_url.toString()}\"></iframe>", "text/html",
-            "utf-8" )
+        binding.mapView.getMapAsync { googleMap ->
+            this.googleMap = googleMap
+            if (latitude != null) {
+                if (longitude != null) {
+                    setupMap(latitude, longitude)
+                }
+            }
+        }
 
+    }
+
+    private fun setupMap(latitude: Double, longitude: Double) {
+        val location = LatLng(latitude, longitude)
+        // Add a marker and move the camera
+        marker = googleMap.addMarker(MarkerOptions().position(location).title(binding.txtLocation.text?.trim().toString()))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
     }
 
     //call
@@ -310,13 +323,14 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
 
 
     private fun enqueryApi(name_: String, phone_: String, email_: String, message_: String) {
+        val userId = Preferences.loadStringValue(this@PostCategoriesDetailsActivity, Preferences.userId, "")
         ViewController.showLoading(this@PostCategoriesDetailsActivity)
 
         Log.e("post_id_", post_id)
         Log.e("category_id_", category_id)
 
         val apiInterface = RetrofitClient.apiInterface
-        val enqueryRequest = EnqueryRequest(name_, phone_, email_, message_, post_id, category_id)
+        val enqueryRequest = EnqueryRequest(name_, phone_, email_, message_, post_id, category_id, sub_id,  userId.toString())
 
         apiInterface.enqueryApi(enqueryRequest).enqueue(object : Callback<EnqueryResponse> {
             override fun onResponse(
@@ -344,6 +358,27 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
                 ViewController.showToast(applicationContext, "Try again: ${t.message}")
             }
         })
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.mapView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        binding.mapView.onLowMemory()
     }
 
 }
