@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="Enquiry"
+                        android:text="Enquiries"
                         android:textColor="@color/selectedRed"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/teachers_regular"

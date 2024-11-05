@@ -1,26 +1,44 @@
 {
   "project_info": {
-    "project_number": "902792602427",
-    "project_id": "divyaangdisha-e6ca2",
-    "storage_bucket": "divyaangdisha-e6ca2.appspot.com"
+    "project_number": "135864032741",
+    "project_id": "disability-91229",
+    "storage_bucket": "disability-91229.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:902792602427:android:c19ce8783d13efb0a5cd1e",
+        "mobilesdk_app_id": "1:135864032741:android:3ff8636b9c33af5260630c",
         "android_client_info": {
-          "package_name": "com.smy3infotech.divyaangdisha"
+          "package_name": "com.smy3infotech.divyaangdishaa"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "135864032741-p04tppgudd620ceut0a5mq36apejfdrb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smy3infotech.divyaangdishaa",
+            "certificate_hash": "44dcb9a2b68803b43100463d301fd9e63ff05a0a"
+          }
+        },
+        {
+          "client_id": "135864032741-8sggen9kgvsmlkki1om5f6fdo7dnh8rq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCMpzC9h1qmCRgC6SYHVzKhn4vFHztXp-A"
+          "current_key": "AIzaSyBkZdwfcVTy3TI7v_91utiFOR5BWDKku-A"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135864032741-8sggen9kgvsmlkki1om5f6fdo7dnh8rq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

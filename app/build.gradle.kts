@@ -1,14 +1,15 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.android.application")
+    id("kotlin-android")
+    id("com.google.gms.google-services") // Using the traditional id method
 }
 
 android {
-    namespace = "com.smy3infotech.divyaangdisha"
+    namespace = "com.smy3infotech.divyaangdishaa"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.smy3infotech.divyaangdisha"
+        applicationId = "com.smy3infotech.divyaangdishaa"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -48,6 +49,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(libs.androidx.activity)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -72,5 +75,11 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
+
+    // Firebase BOM to manage Firebase library versions
+    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    // Firebase Messaging
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-analytics")
 
 }

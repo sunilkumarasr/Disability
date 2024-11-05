@@ -8,11 +8,6 @@
         android:title="Company Info" />
 
     <item
-        android:id="@+id/nav_jobalert"
-        android:icon="@drawable/job_alert_menu"
-        android:title="Job Alerts" />
-
-    <item
         android:id="@+id/nav_terms"
         android:icon="@drawable/post_list_menu"
         android:title="Terms and Conditions" />

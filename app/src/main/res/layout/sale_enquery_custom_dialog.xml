@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:fontFamily="@font/teachers_regular"
-            android:hint="Eamil Address"
+            android:hint="Email Address"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/hintcolor"/>
     </com.google.android.material.textfield.TextInputLayout>
