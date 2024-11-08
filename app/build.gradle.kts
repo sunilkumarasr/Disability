@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.smy3infotech.divyaangdishaa"
+    namespace = "com.smy3infotech.divyaangdish"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.smy3infotech.divyaangdishaa"
+        applicationId = "com.smy3infotech.divyaangdish"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
