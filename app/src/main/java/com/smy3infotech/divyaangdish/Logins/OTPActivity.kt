@@ -71,7 +71,6 @@ class OTPActivity : AppCompatActivity() {
             Log.e("FCM_TOKEN", "FCM Token: $token")
         })
 
-
         var count = 0
         fun setFocusable(){
             count++
