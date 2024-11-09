@@ -143,7 +143,7 @@ interface ApiInterface {
     @GET("home_banner_list")
     fun HomebannersApi(): Call<List<HomeBannersModel>>
 
-    @GET("notification")
+    @GET("firebase_notification")
     fun NotificationsListApi(): Call<List<NotificationModel>>
 
     @GET("state")

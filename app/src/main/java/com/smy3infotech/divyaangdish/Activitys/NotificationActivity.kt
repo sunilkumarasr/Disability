@@ -29,57 +29,49 @@ class NotificationActivity : AppCompatActivity() {
 
     }
 
-
     private fun inits() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Notifications"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
-
-
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){
             ViewController.showToast(applicationContext, "Please check your connection ")
         }else{
             NotificationsListApi()
         }
+
     }
 
     private fun NotificationsListApi() {
-        if(!ViewController.noInterNetConnectivity(this@NotificationActivity)){
-            ViewController.showToast(this@NotificationActivity, "Please check your connection ")
-            return
-        }else {
-            ViewController.showLoading(this@NotificationActivity)
-            val apiInterface = RetrofitClient.apiInterface
-            apiInterface.NotificationsListApi().enqueue(object : retrofit2.Callback<List<NotificationModel>> {
-                override fun onResponse(
-                    call: retrofit2.Call<List<NotificationModel>>,
-                    response: retrofit2.Response<List<NotificationModel>>
-                ) {
-                    ViewController.hideLoading()
-                    if (response.isSuccessful) {
-                        val rsp = response.body()
-                        if (rsp != null) {
-                            val joblist = response.body()
-                            if (joblist != null) {
-                                NotificationDataSet(joblist)
-                            }
+        ViewController.showLoading(this@NotificationActivity)
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.NotificationsListApi().enqueue(object : retrofit2.Callback<List<NotificationModel>> {
+            override fun onResponse(
+                call: retrofit2.Call<List<NotificationModel>>,
+                response: retrofit2.Response<List<NotificationModel>>
+            ) {
+                ViewController.hideLoading()
+                if (response.isSuccessful) {
+                    val rsp = response.body()
+                    if (rsp != null) {
+                        val joblist = response.body()
+                        if (joblist != null) {
+                            NotificationDataSet(joblist)
                         }
-                    } else {
-                        ViewController.showToast(
-                            this@NotificationActivity,
-                            "Error: ${response.code()}"
-                        )
                     }
+                } else {
+                    ViewController.showToast(
+                        this@NotificationActivity,
+                        "Error: ${response.code()}"
+                    )
                 }
+            }
 
-                override fun onFailure(call: retrofit2.Call<List<NotificationModel>>, t: Throwable) {
-                    Log.e("cat_error", t.message.toString())
-                    ViewController.hideLoading()
-                    ViewController.showToast(this@NotificationActivity, "Try again: ${t.message}")
-                }
-            })
-        }
-
+            override fun onFailure(call: retrofit2.Call<List<NotificationModel>>, t: Throwable) {
+                Log.e("cat_error", t.message.toString())
+                ViewController.hideLoading()
+                ViewController.showToast(this@NotificationActivity, "Try again: ${t.message}")
+            }
+        })
     }
     private fun NotificationDataSet(joblist: List<NotificationModel>) {
         binding.recyclerview.layoutManager = LinearLayoutManager(this@NotificationActivity)

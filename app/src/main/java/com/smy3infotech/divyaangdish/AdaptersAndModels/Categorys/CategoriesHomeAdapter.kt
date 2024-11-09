@@ -44,4 +44,5 @@ class CategoriesHomeAdapter(
     override fun getItemCount(): Int {
         return items.size
     }
+
 }
