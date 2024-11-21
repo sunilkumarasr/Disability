@@ -47,7 +47,7 @@ class OTPActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        FirebaseApp.initializeApp(this)
+        //FirebaseApp.initializeApp(this)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.blue), false)
 
         email= intent.getStringExtra("email").toString()

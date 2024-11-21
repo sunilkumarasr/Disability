@@ -2,7 +2,10 @@ package com.smy3infotech.divyaangdisha.Logins
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.LoginRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.LoginResponse
 import com.smy3infotech.divyaangdisha.Config.Preferences
@@ -38,6 +41,18 @@ class LoginActivity : AppCompatActivity() {
                 loginApi()
             }
         }
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+           // UtilValues.FALCON_FCM_TOKEN = (task.result)
+        }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("45", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            //token = task.result.toString()
+            Log.e("FCM_TOKEN", "FCM Token: ${task.result}")
+        })
 
     }
 

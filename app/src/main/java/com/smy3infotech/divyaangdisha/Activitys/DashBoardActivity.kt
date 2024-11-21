@@ -82,8 +82,22 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
 
         binding.imgNotification.setOnClickListener(this)
         binding.imgWhatsapp.setOnClickListener(this)
+
+        val intent=getIntent().getStringExtra("isNotification")
+        if(intent=="1")
+        {
+            startActivity(Intent(this@DashBoardActivity, NotificationActivity::class.java))
+        }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val intent=getIntent().getStringExtra("isNotification")
+        if(intent=="1")
+        {
+            startActivity(Intent(this@DashBoardActivity, NotificationActivity::class.java))
+        }
+    }
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.imgNotification -> {

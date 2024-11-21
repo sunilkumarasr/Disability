@@ -1,26 +1,30 @@
-package com.smy3infotech.divyaangdisha.Config
+package com.smy3infotech.divyaangdisha
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
+import android.text.Html
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.google.firebase.messaging.FirebaseMessagingService
-import com.google.firebase.messaging.RemoteMessage
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import com.smy3infotech.divyaangdisha.Activitys.NotificationActivity
-import com.smy3infotech.divyaangdisha.R
 import org.json.JSONException
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.lang.System.currentTimeMillis
+import java.util.Random
+
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -45,6 +49,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         Log.e("onMessageReceived: ", p0.notification.toString())
 
+        sendNotification(p0);
+        if(true)
+        {
+            return
+        }
+        if(p0.notification!=null)
+        {
+          val title=  p0.notification!!.title
+          val body=  p0.notification!!.body
+            sendNotification(p0)
+        }else
         if (p0.data.isNotEmpty()) {
             try {
                 val params: Map<String?, String?> = p0.data
@@ -80,7 +95,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                         this,
                         0,
                         intent,
-                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_IMMUTABLE
                     )
                 } else {
                     PendingIntent.getActivity(
@@ -115,7 +130,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     )
 //            notification.setColor(ContextCompat.getColor(this, R.color.red))
                 }
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.drawable.ic_notification)
                     .setContentTitle("Disability")
                     .setContentTitle(title)
                     .setContentText(body)
@@ -140,7 +155,109 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
 
 
+
     }
+
+    private fun sendNotification(remoteMessage: RemoteMessage) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val channelId = "FalconNotification"
+        val channelName = "New Deals"
+        Log.e("remoteMessage", "remoteMessage " + remoteMessage.notification)
+        Log.e("remoteMessage", "remoteMessage " + remoteMessage.data.toString())
+
+        try {
+            val obj = JSONObject(remoteMessage.data.toString())
+            val title = obj.getString("title")
+            val body = obj.getString("body")
+            //Log.e("remoteMessage","remoteMessage "+remoteMessage.getNotification().getTitle());
+            //Log.e("remoteMessage","remoteMessage "+remoteMessage.getNotification().getBody());
+            val notificationId = Random().nextInt(1000)
+
+            // Log.d("EDITABLE",remoteMessage.);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val importance = NotificationManager.IMPORTANCE_HIGH
+                val mChannel = NotificationChannel(
+                    channelId, channelName, importance
+                )
+                notificationManager.createNotificationChannel(mChannel)
+            }
+
+            val inboxStyle = NotificationCompat.BigTextStyle()
+            val mBuilder: NotificationCompat.Builder = NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setStyle(inboxStyle)
+                .setPriority(Notification.PRIORITY_MAX)
+                .setAutoCancel(true)
+                .setContentText(
+                    Html
+                        .fromHtml("<i>$body</i>")
+                )
+                .setContentTitle(title)
+
+            val stackBuilder = TaskStackBuilder.create(this)
+            val intent = Intent(
+                this,
+                NotificationActivity::class.java
+            )
+            intent.putExtra("isNotification", "1")
+            stackBuilder.addNextIntent(intent)
+            val resultPendingIntent = stackBuilder.getPendingIntent(
+                0,
+                PendingIntent.FLAG_MUTABLE
+            )
+            mBuilder.setContentIntent(resultPendingIntent)
+
+            notificationManager.notify(1, mBuilder.build())
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+  /*  private fun sendNotification(remoteMessage: RemoteMessage) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val channelId = "def"
+        val channelName = "New Deals"
+        val notificationId = Random().nextInt(1000)
+
+        // Log.d("EDITABLE",remoteMessage.);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val mChannel = NotificationChannel(
+                channelId, channelName, importance
+            )
+            notificationManager.createNotificationChannel(mChannel)
+        }
+
+        val inboxStyle = NotificationCompat.BigTextStyle()
+        val mBuilder: NotificationCompat.Builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setStyle(inboxStyle)
+            .setPriority(Notification.PRIORITY_MAX)
+            .setAutoCancel(true)
+            .setContentText(
+                Html
+                    .fromHtml("<i>" + remoteMessage.notification!!.body + "</i>")
+            )
+            .setContentTitle(remoteMessage.notification!!.title)
+
+        val stackBuilder = TaskStackBuilder.create(this)
+        val intent=Intent(this, NotificationActivity::class.java);
+        intent.putExtra("isNotification","1");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+        stackBuilder.addNextIntentWithParentStack(intent);
+        val resultPendingIntent = stackBuilder.getPendingIntent(
+            0,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0,  *//* Request code *//*intent,
+            PendingIntent.FLAG_MUTABLE
+        )
+        mBuilder.setContentIntent(pendingIntent)
+
+        notificationManager.notify(1, mBuilder.build())
+    }*/
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun checkNotificationChannel(CHANNEL_ID: String) {

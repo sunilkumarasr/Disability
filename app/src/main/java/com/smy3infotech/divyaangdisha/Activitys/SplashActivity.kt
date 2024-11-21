@@ -7,10 +7,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.Logins.LoginActivity
@@ -27,7 +30,18 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.white), false)
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("45", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            //token = task.result.toString()
+            Log.e("FCM_TOKEN", "FCM Token: ${task.result}")
+        })
+       val title= intent.getStringExtra("title")
+        val    notificationMessage= intent.getStringExtra("isNotification").toString()
 
+        Log.e("notificationMessage","notificationMessage "+notificationMessage+ "title "+title)
         askNotificationPermission()
         if (ActivityCompat.checkSelfPermission(
                 applicationContext,
@@ -65,11 +79,13 @@ class SplashActivity : AppCompatActivity() {
 
         binding.cardStart.setOnClickListener {
             val loginCheck = Preferences.loadStringValue(applicationContext, Preferences.LOGINCHECK, "")
-            val notificationMessage = intent.getStringExtra("notification_message")
-
+            //val notificationMessage = intent.getStringExtra("notification_message")
+        val    notificationMessage= intent.getStringExtra("isNotification").toString()
             if (loginCheck.equals("Login")) {
-                if (notificationMessage != null) {
-                    startActivity(Intent(this@SplashActivity, NotificationActivity::class.java))
+                if (notificationMessage=="1") {
+                   val inetnt=Intent(this@SplashActivity, NotificationActivity::class.java)
+                    inetnt.putExtra("isNotification","1")
+                    startActivity(inetnt)
                 }else{
                     startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
                 }
@@ -82,6 +98,11 @@ class SplashActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        Log.e("On New INtent","OnNew Intent");
     }
 
 
