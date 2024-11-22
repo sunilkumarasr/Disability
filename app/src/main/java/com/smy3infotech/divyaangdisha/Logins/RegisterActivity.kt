@@ -123,7 +123,7 @@ class RegisterActivity : AppCompatActivity(){
             return
         }
 
-        binding.ccp.registerCarrierNumberEditText(binding.mobileEdit)
+        val countryCode = binding.ccp.selectedCountryCode
 
         if (!validateEmail(email)) {
             ViewController.showToast(applicationContext, "Enter Valid Email")
@@ -131,7 +131,7 @@ class RegisterActivity : AppCompatActivity(){
             ViewController.showLoading(this@RegisterActivity)
 
             val apiInterface = RetrofitClient.apiInterface
-            val registerRequest = RegisterRequest(name_,email,binding.ccp.fullNumber,location_, Km.toString() , lat, longi, password_)
+            val registerRequest = RegisterRequest(name_, email, countryCode.toString(), mobileNumber_,  location_, Km.toString() , lat, longi, password_)
 
             apiInterface.registerApi(registerRequest).enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {

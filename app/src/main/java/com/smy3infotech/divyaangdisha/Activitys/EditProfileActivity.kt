@@ -135,6 +135,9 @@ class EditProfileActivity : AppCompatActivity() {
 
         location()
 
+
+
+
         binding.kmSlider.setLabelFormatter { value: Float ->
             // Format the value with "Km" unit
             "${value.toInt()} Km"
@@ -215,6 +218,8 @@ class EditProfileActivity : AppCompatActivity() {
                         binding.nameEdit.setText(rsp.data?.name)
                         binding.emailEdit.setText(rsp.data?.email)
                         binding.mobileEdit.setText(rsp.data?.phone)
+                        rsp.data?.country_code?.toInt()
+                            ?.let { binding.ccp.setCountryForPhoneCode(it) }
                         binding.setLocation.setText(rsp.data?.location)
                         SelectLocations = rsp.data?.location.toString()
                         //binding.editLocations.setText(rsp.data?.location)
@@ -244,7 +249,6 @@ class EditProfileActivity : AppCompatActivity() {
         val mobile = binding.mobileEdit.text?.trim().toString()
         val location = SelectLocations
 
-
         // Validate inputs
         if (name.isEmpty()) {
             ViewController.showToast(applicationContext, "Enter name")
@@ -266,13 +270,14 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
-        binding.ccp.registerCarrierNumberEditText(binding.mobileEdit)
+        val countryCode = binding.ccp.selectedCountryCode
 
         // Prepare form data
         val userId_ = RequestBody.create(MultipartBody.FORM, userId.toString())
         val name_ = RequestBody.create(MultipartBody.FORM, name)
         val email_ = RequestBody.create(MultipartBody.FORM, email)
-        val mobile_ = RequestBody.create(MultipartBody.FORM, binding.ccp.fullNumber)
+        val countryCode_ = RequestBody.create(MultipartBody.FORM, countryCode.toString())
+        val mobile_ = RequestBody.create(MultipartBody.FORM, mobile)
         val location_ = RequestBody.create(MultipartBody.FORM, location)
         val lat_ = RequestBody.create(MultipartBody.FORM, lat)
         val longi_ = RequestBody.create(MultipartBody.FORM, longi)
@@ -290,7 +295,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         ViewController.showLoading(this@EditProfileActivity)
         val apiInterface = RetrofitClient.apiInterface
-        apiInterface.updateProfileApi(userId_, name_, email_, mobile_ , location_, lat_, longi_, Km_,  body)
+        apiInterface.updateProfileApi(userId_, name_, email_, countryCode_, mobile_ , location_, lat_, longi_, Km_,  body)
             .enqueue(object : Callback<UpdateProfileResponse> {
                 override fun onResponse(
                     call: Call<UpdateProfileResponse>,

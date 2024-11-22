@@ -101,6 +101,7 @@ interface ApiInterface {
         @Part("user_id") user_id: RequestBody,
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
+        @Part("country_code") country_code: RequestBody,
         @Part("phone") phone: RequestBody,
         @Part("location") location: RequestBody,
         @Part("latitude") latitude: RequestBody,

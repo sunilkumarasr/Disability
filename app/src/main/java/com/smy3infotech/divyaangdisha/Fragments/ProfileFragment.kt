@@ -88,7 +88,7 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
                     if (rsp != null) {
                         binding.txtName.text = rsp.data?.name.toString()
                         binding.txtEmail.text = rsp.data?.email.toString()
-                        binding.txtMobile.text = rsp.data?.phone.toString()
+                        binding.txtMobile.text = rsp.data?.country_code.toString()+"-"+rsp.data?.phone.toString()
                         if (!rsp.data?.image.equals("")){
                             Glide.with(binding.profileImage).load(rsp.data?.image).into(binding.profileImage)
                         }

@@ -10,6 +10,7 @@ data class ProfileResponse(
 data class Data(
     @SerializedName("id"  ) var id  : String?    = null,
     @SerializedName("name" ) var name : String? = null,
+    @SerializedName("country_code" ) var country_code : String? = null,
     @SerializedName("phone" ) var phone : String? = null,
     @SerializedName("location" ) var location : String? = null,
     @SerializedName("latitude" ) var latitude : String? = null,

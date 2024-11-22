@@ -124,7 +124,7 @@
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Phone Number"
                             android:inputType="phone"
-                            android:maxLength="11"
+                            android:maxLength="15"
                             android:textColorHint="@color/hintcolor"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
