@@ -135,9 +135,6 @@ class EditProfileActivity : AppCompatActivity() {
 
         location()
 
-
-
-
         binding.kmSlider.setLabelFormatter { value: Float ->
             // Format the value with "Km" unit
             "${value.toInt()} Km"
