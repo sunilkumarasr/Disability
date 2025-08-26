@@ -88,6 +88,8 @@ dependencies {
     //zoom image
     implementation ("com.github.chrisbanes:PhotoView:2.3.0")
 
+    //bottom navigation
+    implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
 
 }

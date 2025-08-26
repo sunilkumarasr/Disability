@@ -27,6 +27,7 @@ import com.smy3infotech.divyaangdisha.Fragments.SaleFragment
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityDashBoardBinding
+import me.ibrahimsn.lib.SmoothBottomBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +43,8 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
     lateinit var profilepic: ImageView
     lateinit var profile_name: TextView
 
-    private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var bottomNavigationView: SmoothBottomBar
+    private lateinit var bottomBar: SmoothBottomBar
 
     //fragments
     private val homeFragment = HomeFragment()
@@ -56,7 +58,7 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
         setContentView(binding.root)
         ViewController.changeStatusBarColor(
             this,
-            ContextCompat.getColor(this, R.color.colorPrimaryLight),
+            ContextCompat.getColor(this, R.color.colorPrimary),
             false
         )
 
@@ -118,45 +120,43 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
         }
     }
 
+
+
     //bottom menu
     private fun bottomMenu() {
         replaceFragment(homeFragment)
-        bottomNavigationView = findViewById(R.id.bottomNavigationView)
-        // Set listener for item selection
-        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
 
-            menuItem.isChecked = true
+        bottomBar = findViewById(R.id.bottomBar)
 
-            when (menuItem.itemId) {
-                R.id.home -> {
+        bottomBar.setOnItemSelectedListener { index ->
+            when (index) {
+                0 -> {
                     replaceFragment(homeFragment)
                     true
                 }
-
-                R.id.categories -> {
+                1 -> {
                     replaceFragment(categoriesFragment)
                     true
                 }
-
-                R.id.sale -> {
-                    replaceFragment(saleFragment)
-                    true
-                }
-
-                R.id.profile -> {
+//                2 -> {
+//                    replaceFragment(saleFragment)
+//                    true
+//                }
+                2 -> {
                     replaceFragment(profileFragment)
                     true
                 }
-
                 else -> false
             }
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_layout, fragment)
             .commit()
     }
+
 
     private fun getProfileApi() {
         val userId = Preferences.loadStringValue(this@DashBoardActivity , Preferences.userId, "")

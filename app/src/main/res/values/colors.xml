@@ -6,6 +6,7 @@
     <color name="colorStart">#b5dbfd</color>
     <color name="colorCenter">#e6f3fe</color>
     <color name="colorEnd">#ffffff</color>
+    <color name="colorIndicator">#83c3fb</color>
     <color name="black">#000000</color>
     <color name="txtHeader">#474747</color>
     <color name="txtdes">#5F5F5F</color>
