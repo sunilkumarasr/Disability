@@ -51,12 +51,21 @@ class ContactUsActivity : AppCompatActivity() {
 
 
         binding.txtFacebook.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtFacebook.startAnimation(animations)
+
             openFacebookPage()
         }
         binding.txtInstagram.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtInstagram.startAnimation(animations)
+
             openInstagramPage()
         }
         binding.txtTwitter.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtTwitter.startAnimation(animations)
+
             openTwitterPage()
         }
 

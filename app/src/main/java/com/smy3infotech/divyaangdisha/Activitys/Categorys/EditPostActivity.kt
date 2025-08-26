@@ -7,6 +7,7 @@ import android.Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -38,12 +39,15 @@ import com.smy3infotech.divyaangdisha.MapBottomSheetFragment
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityEditPostBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
 
 class EditPostActivity : AppCompatActivity() {
 
@@ -139,10 +143,16 @@ class EditPostActivity : AppCompatActivity() {
         categoriesApi()
 
         binding.txtLocation.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtLocation.startAnimation(animations)
+
             LocationBottom()
         }
 
         binding.cardImages.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardImages.startAnimation(animations)
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -154,6 +164,9 @@ class EditPostActivity : AppCompatActivity() {
         }
 
         binding.cardMultiImages.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardMultiImages.startAnimation(animations)
+
             val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "image/*"
                 putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // Allow multiple selections
@@ -164,12 +177,18 @@ class EditPostActivity : AppCompatActivity() {
             imageType = "multi"
         }
         binding.addMoreImages.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.addMoreImages.startAnimation(animations)
+
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGES)
         }
 
         binding.cardSubmit.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardSubmit.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -365,9 +384,15 @@ class EditPostActivity : AppCompatActivity() {
         //cover image
         val body: MultipartBody.Part
         if (selectedImageUri != null) {
-            val file = File(getRealPathFromURI(selectedImageUri!!))
-            val requestFile = RequestBody.create(MultipartBody.FORM, file)
-            body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+            //cover image
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+            val compressedFile = File(cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+            val outputStream = FileOutputStream(compressedFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream) // Adjust quality here
+            outputStream.flush()
+            outputStream.close()
+            val requestFile = compressedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            body = MultipartBody.Part.createFormData("image", compressedFile.name, requestFile)
         } else {
             //send empty image
             body = coverEmptyImagePart()
@@ -379,9 +404,14 @@ class EditPostActivity : AppCompatActivity() {
             additionalImages.clear()
         }else{
             for (uri in imageUris) {
-                val file = File(getRealPathFromURI(uri))
-                val requestFile = RequestBody.create(MultipartBody.FORM, file)
-                val part = MultipartBody.Part.createFormData("additional_images[]", file.name, requestFile)
+                val bitMap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                val compressedFile = File(cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+                val outPutStream = FileOutputStream(compressedFile)
+                bitMap.compress(Bitmap.CompressFormat.JPEG, 50, outPutStream) // 50 = quality
+                outPutStream.flush()
+                outPutStream.close()
+                val requestFile = compressedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                val part = MultipartBody.Part.createFormData("additional_images[]", compressedFile.name, requestFile)
                 additionalImages.add(part)
             }
         }

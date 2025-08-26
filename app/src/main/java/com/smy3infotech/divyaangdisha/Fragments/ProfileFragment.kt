@@ -37,13 +37,11 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
 
     private lateinit var binding: FragmentProfileBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-
 
         return binding.root
     }
@@ -109,54 +107,80 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
         when (v?.id) {
 
             R.id.imgEdit -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, EditProfileActivity::class.java))
             }
 
             R.id.linearJobalerts -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, JobAlertsActivity::class.java))
             }
 
             R.id.linearAboutUs -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, AboutUsActivity::class.java))
             }
 
             R.id.linearContactUs -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, ContactUsActivity::class.java))
             }
 
             R.id.linearAskQuestions -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, AskQuestionsActivity::class.java))
             }
 
             R.id.linearPostListings -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, MyPostsActivity::class.java))
             }
 
             R.id.linearProductListings -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, MyProductsActivity::class.java))
             }
 
             R.id.linearTermsandConditions -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, TermsAndConditionsActivity::class.java))
             }
 
             R.id.linearPrivacyPolicy -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, PrivacyPolicyActivity::class.java))
             }
 
             R.id.linearFAQ -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, FaqActivity::class.java))
             }
 
             R.id.linearHelpAndSupport -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, HelpAndSupportActivity::class.java))
             }
 
             R.id.linearUsefulLinks -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, UsefulLinksActivity::class.java))
             }
 
             R.id.linearLogout -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 logOut()
             }
 

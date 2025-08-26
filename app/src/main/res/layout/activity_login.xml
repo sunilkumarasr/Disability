@@ -45,7 +45,7 @@
                     android:text="Login to continue using the app!"
                     android:textColor="@color/text"
                     android:fontFamily="@font/teachers_medium"
-                    android:textSize="14sp"
+                    android:textSize="17sp"
                     android:textAlignment="center"/>
 
 
@@ -62,7 +62,7 @@
                         android:id="@+id/emailEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="Email"
                         android:fontFamily="@font/teachers_regular"
                         android:textColorHint="@color/hintcolor"
@@ -85,7 +85,7 @@
                         android:id="@+id/passwordEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="password"
                         android:fontFamily="@font/teachers_regular"
                         android:textColorHint="@color/hintcolor"
@@ -100,13 +100,13 @@
                     android:fontFamily="@font/teachers_semibold"
                     android:textColor="@color/text"
                     android:layout_marginTop="10dp"
-                    android:textSize="14sp"
+                    android:textSize="17dp"
                     android:layout_gravity="end"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardLogin"
                     android:layout_width="170dp"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
@@ -120,9 +120,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Sign in"
-                        android:fontFamily="@font/teachers_medium"
+                        android:fontFamily="@font/teachers_bold"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:layout_centerVertical="true"/>
                 </androidx.cardview.widget.CardView>
 
@@ -138,9 +138,9 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:text="Don't have an account?"
-                        android:fontFamily="@font/teachers_semibold"
+                        android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/text"
-                        android:textSize="14sp" />
+                        android:textSize="16dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -149,7 +149,7 @@
                         android:fontFamily="@font/teachers_semibold"
                         android:text="Register"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
 

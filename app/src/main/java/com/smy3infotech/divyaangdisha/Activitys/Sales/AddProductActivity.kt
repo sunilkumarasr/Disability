@@ -7,6 +7,7 @@ import android.Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -26,12 +27,15 @@ import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityAddProductBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
 
 class AddProductActivity : AppCompatActivity() {
 
@@ -105,6 +109,9 @@ class AddProductActivity : AppCompatActivity() {
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { exitDialog() }
 
         binding.addMoreImages.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.addMoreImages.startAnimation(animations)
+
             val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "image/*"
                 putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // Allow multiple selections
@@ -115,6 +122,9 @@ class AddProductActivity : AppCompatActivity() {
         }
 
         binding.cardSubmit.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardSubmit.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -201,11 +211,22 @@ class AddProductActivity : AppCompatActivity() {
 
         val additionalImages = mutableListOf<MultipartBody.Part>()
         for (uri in imageUris) {
-            val file = File(getRealPathFromURI(uri))
-            val requestFile = RequestBody.create(MultipartBody.FORM, file)
-            val part = MultipartBody.Part.createFormData("additional_images[]", file.name, requestFile)
+            // 1. Get bitmap from URI
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+
+            // 2. Compress bitmap to JPEG
+            val compressedFile = File(cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+            val outputStream = FileOutputStream(compressedFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream) // 50 = quality
+            outputStream.flush()
+            outputStream.close()
+
+            // 3. Create MultipartBody.Part from compressed file
+            val requestFile = compressedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val part = MultipartBody.Part.createFormData("additional_images[]", compressedFile.name, requestFile)
             additionalImages.add(part)
         }
+
 
         ViewController.showLoading(this@AddProductActivity)
         val apiInterface = RetrofitClient.apiInterface

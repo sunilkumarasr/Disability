@@ -12,12 +12,9 @@
         android:layout_height="110dp"
         android:src="@drawable/dummy_profile"/>
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:background="?attr/selectableItemBackground"
-        android:src="@android:drawable/ic_delete"
-        android:contentDescription="Remove Image" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/cancel_ic" />
 </RelativeLayout>

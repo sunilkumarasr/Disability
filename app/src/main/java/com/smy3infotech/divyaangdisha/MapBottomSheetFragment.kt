@@ -28,6 +28,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
 class MapBottomSheetFragment  : BottomSheetDialogFragment()  {
@@ -85,9 +86,15 @@ class MapBottomSheetFragment  : BottomSheetDialogFragment()  {
         cardSubmit = view.findViewById(R.id.cardSubmit)
 
         cardCancel.setOnClickListener {
+            val animations = ViewController.animation()
+            cardCancel.startAnimation(animations)
+
             dismiss()
         }
         cardSubmit.setOnClickListener {
+            val animations = ViewController.animation()
+            cardSubmit.startAnimation(animations)
+
             if (lat.equals("")){
                 Toast.makeText(requireActivity(),"select your location", Toast.LENGTH_SHORT).show()
             }else{

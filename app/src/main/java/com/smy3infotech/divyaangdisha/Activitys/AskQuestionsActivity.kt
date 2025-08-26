@@ -106,6 +106,8 @@ class AskQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
 
             R.id.cardAdd -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 AddshowDialog()
             }
 

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 
 class MyProductsListAdapter(
@@ -31,6 +32,8 @@ class MyProductsListAdapter(
 
         init {
             linearEnqury.setOnClickListener {
+                val animations = ViewController.animation()
+                linearEnqury.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position],"Enquiry")
@@ -38,6 +41,8 @@ class MyProductsListAdapter(
             }
 
             linearView.setOnClickListener {
+                val animations = ViewController.animation()
+                linearView.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position],"View")
@@ -45,6 +50,8 @@ class MyProductsListAdapter(
             }
 
             linearEdit.setOnClickListener {
+                val animations = ViewController.animation()
+                linearEdit.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position],"Edit")
@@ -52,6 +59,8 @@ class MyProductsListAdapter(
             }
 
             linearDelete.setOnClickListener {
+                val animations = ViewController.animation()
+                linearDelete.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position],"Delete")

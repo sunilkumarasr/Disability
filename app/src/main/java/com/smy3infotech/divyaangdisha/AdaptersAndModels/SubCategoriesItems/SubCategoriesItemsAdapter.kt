@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 
 class SubCategoriesItemsAdapter(
@@ -29,12 +30,16 @@ class SubCategoriesItemsAdapter(
 
         init {
             linearCall.setOnClickListener {
+                val animations = ViewController.animation()
+                linearCall.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position], "call")
                 }
             }
             linearViewMore.setOnClickListener {
+                val animations = ViewController.animation()
+                linearViewMore.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position], "view")

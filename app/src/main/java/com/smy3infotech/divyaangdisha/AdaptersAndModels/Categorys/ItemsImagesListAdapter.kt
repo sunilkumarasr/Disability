@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ImageDataList
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
@@ -21,6 +22,9 @@ class ItemsImagesListAdapter(
 
         init {
             itemView.setOnClickListener {
+                val animations = ViewController.animation()
+                itemView.startAnimation(animations)
+
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position])

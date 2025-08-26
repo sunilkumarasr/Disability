@@ -1,6 +1,8 @@
 package com.smy3infotech.divyaangdisha.Activitys
 
 import android.Manifest
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -8,6 +10,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,17 +23,24 @@ import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.Logins.LoginActivity
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.databinding.ActivitySplashBinding
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
 
 class SplashActivity : AppCompatActivity() {
+
 
     val binding: ActivitySplashBinding by lazy {
         ActivitySplashBinding.inflate(layoutInflater)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.white), false)
+        ViewController.changeStatusBarColor(
+            this,
+            ContextCompat.getColor(this, R.color.white),
+            false
+        )
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.e("45", "Fetching FCM registration token failed", task.exception)
@@ -38,10 +49,13 @@ class SplashActivity : AppCompatActivity() {
             //token = task.result.toString()
             Log.e("FCM_TOKEN", "FCM Token: ${task.result}")
         })
-       val title= intent.getStringExtra("title")
-        val    notificationMessage= intent.getStringExtra("isNotification").toString()
+        val title = intent.getStringExtra("title")
+        val notificationMessage = intent.getStringExtra("isNotification").toString()
 
-        Log.e("notificationMessage","notificationMessage "+notificationMessage+ "title "+title)
+        Log.e(
+            "notificationMessage",
+            "notificationMessage " + notificationMessage + "title " + title
+        )
         askNotificationPermission()
         if (ActivityCompat.checkSelfPermission(
                 applicationContext,
@@ -63,48 +77,83 @@ class SplashActivity : AppCompatActivity() {
 
 
         //clear location address
-        Preferences.saveStringValue(applicationContext, Preferences.lat,
+        Preferences.saveStringValue(
+            applicationContext, Preferences.lat,
             ""
         )
-        Preferences.saveStringValue(applicationContext, Preferences.longi,
+        Preferences.saveStringValue(
+            applicationContext, Preferences.longi,
             ""
         )
-        Preferences.saveStringValue(applicationContext, Preferences.km,
+        Preferences.saveStringValue(
+            applicationContext, Preferences.km,
             ""
         )
-        Preferences.saveStringValue(applicationContext, Preferences.location,
+        Preferences.saveStringValue(
+            applicationContext, Preferences.location,
             ""
         )
 
+        inits()
 
-        binding.cardStart.setOnClickListener {
-            val loginCheck = Preferences.loadStringValue(applicationContext, Preferences.LOGINCHECK, "")
-            //val notificationMessage = intent.getStringExtra("notification_message")
-        val    notificationMessage= intent.getStringExtra("isNotification").toString()
+
+    }
+
+
+    private fun inits() {
+
+        logoAnimation()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            val loginCheck =
+                Preferences.loadStringValue(applicationContext, Preferences.LOGINCHECK, "")
+            val notificationMessage = intent.getStringExtra("isNotification").toString()
             if (loginCheck.equals("Login")) {
-                if (notificationMessage=="1") {
-                   val inetnt=Intent(this@SplashActivity, NotificationActivity::class.java)
-                    inetnt.putExtra("isNotification","1")
+                if (notificationMessage == "1") {
+                    val inetnt = Intent(this@SplashActivity, NotificationActivity::class.java)
+                    inetnt.putExtra("isNotification", "1")
                     startActivity(inetnt)
-                }else{
+                } else {
                     startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
                 }
-            }else{
+            } else {
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             }
+        }, 2000)
+    }
 
-        }
 
+    private fun logoAnimation() {
+        val splashLogo: ImageView = findViewById(R.id.imgLogo)
 
+        // Get screen width to calculate start offset (logo starts off-screen left)
+        val screenWidth = resources.displayMetrics.widthPixels.toFloat()
 
+        // Animations
+        val scaleX = ObjectAnimator.ofFloat(splashLogo, "scaleX", 0f, 1f)
+        val scaleY = ObjectAnimator.ofFloat(splashLogo, "scaleY", 0f, 1f)
+        val fadeIn = ObjectAnimator.ofFloat(splashLogo, "alpha", 0f, 1f)
+        val moveFromLeft = ObjectAnimator.ofFloat(splashLogo, "translationX", -screenWidth, 0f)
+
+       // Set durations
+        scaleX.duration = 1000
+        scaleY.duration = 1000
+        fadeIn.duration = 1000
+        moveFromLeft.duration = 1000
+
+        // Combine animations
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(scaleX, scaleY, fadeIn, moveFromLeft)
+
+        // Start animation
+        animatorSet.start()
 
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        Log.e("On New INtent","OnNew Intent");
+        Log.e("On New INtent", "OnNew Intent");
     }
-
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -114,7 +163,8 @@ class SplashActivity : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
                 }, 1500)
             }
-        }
+    }
+
 
     private fun askNotificationPermission() {
         // This is only necessary for API level >= 33 (TIRAMISU)
@@ -150,6 +200,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -158,6 +209,12 @@ class SplashActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         Handler(Looper.getMainLooper()).postDelayed({
         }, 1500)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        inits()
     }
 
 

@@ -138,15 +138,17 @@ class OTPActivity : AppCompatActivity() {
 
 
         binding.cardLogin.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardLogin.startAnimation(animations)
             otpApi()
         }
 
         binding.txtResend.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtResend.startAnimation(animations)
             //resend otp
             forgotApi()
         }
-
-
 
 
     }

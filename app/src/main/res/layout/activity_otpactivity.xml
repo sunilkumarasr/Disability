@@ -67,11 +67,13 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
                                 android:layout_marginTop="15dp"
                                 android:text="OTP has been sent to your mobile. it will automatically fill the input box"
                                 android:textColor="@color/text"
                                 android:fontFamily="@font/teachers_medium"
-                                android:textSize="14sp"
+                                android:textSize="17sp"
                                 android:textAlignment="center"/>
 
                             <LinearLayout
@@ -94,12 +96,12 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:orientation="horizontal">
-
                                         <androidx.appcompat.widget.AppCompatEditText
-                                            android:layout_width="40dp"
-                                            android:layout_height="45dp"
-                                            android:background="@null"
                                             android:id="@+id/pinEdit1"
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="18sp"
+                                            android:background="@null"
                                             android:fontFamily="sans-serif"
                                             android:ems="1"
                                             android:gravity="center"
@@ -125,10 +127,11 @@
                                         android:orientation="horizontal">
 
                                         <androidx.appcompat.widget.AppCompatEditText
-                                            android:layout_width="40dp"
-                                            android:layout_height="45dp"
-                                            android:background="@null"
                                             android:id="@+id/pinEdit2"
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="18sp"
+                                            android:background="@null"
                                             android:ems="1"
                                             android:fontFamily="sans-serif"
                                             android:gravity="center"
@@ -154,12 +157,13 @@
                                         android:orientation="horizontal">
 
                                         <androidx.appcompat.widget.AppCompatEditText
-                                            android:layout_width="40dp"
-                                            android:layout_height="45dp"
-                                            android:background="@null"
-                                            android:ems="1"
-                                            android:fontFamily="sans-serif"
                                             android:id="@+id/pinEdit3"
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="18sp"
+                                            android:background="@null"
+                                            android:ems="1"
+                                            android:fontFamily="sans-serif"
                                             android:gravity="center"
                                             android:inputType="phone"
                                             android:maxLength="1"
@@ -182,18 +186,20 @@
                                         android:layout_height="match_parent"
                                         android:orientation="horizontal">
                                         <androidx.appcompat.widget.AppCompatEditText
-                                            android:layout_width="40dp"
-                                            android:layout_height="45dp"
+                                            android:id="@+id/pinEdit4"
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="18sp"
                                             android:background="@null"
                                             android:ems="1"
                                             android:fontFamily="sans-serif"
-                                            android:id="@+id/pinEdit4"
                                             android:gravity="center"
                                             android:inputType="phone"
                                             android:maxLength="1"
                                             android:hint="0"
                                             android:paddingHorizontal="10dp"
-                                            android:paddingVertical="2dp" />
+                                            android:paddingVertical="2dp"
+                                            android:imeOptions="actionDone"/>
                                     </LinearLayout>
                                 </com.google.android.material.card.MaterialCardView>
 
@@ -202,7 +208,7 @@
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/cardLogin"
                                 android:layout_width="170dp"
-                                android:layout_height="45dp"
+                                android:layout_height="50dp"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="25dp"
                                 android:layout_marginEnd="25dp"
@@ -218,7 +224,7 @@
                                     android:text="Submit"
                                     android:fontFamily="@font/teachers_medium"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp"
+                                    android:textSize="20sp"
                                     android:layout_centerVertical="true"/>
                             </androidx.cardview.widget.CardView>
 
@@ -243,7 +249,7 @@
                                 android:text="Resend code"
                                 android:fontFamily="@font/teachers_semibold"
                                 android:textColor="@color/colorPrimary"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:layout_centerVertical="true"/>
 
                         </LinearLayout>

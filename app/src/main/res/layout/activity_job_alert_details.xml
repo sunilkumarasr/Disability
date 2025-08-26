@@ -25,29 +25,29 @@
                     android:id="@+id/txtSub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:text="XXX"
                     android:textColor="@color/blue"
-                    android:textSize="18dp"/>
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/txtDec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:text="XXX"
                     android:textColor="@color/txtdes"
-                    android:textSize="15dp"/>
+                    android:textSize="17dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:text="Post Date"
                     android:textColor="@color/black"
-                    android:textSize="15dp"/>
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/txtPostDate"
                     android:layout_width="match_parent"
@@ -55,16 +55,16 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/teachers_medium"
                     android:text="XXX"
-                    android:textSize="15dp"/>
+                    android:textSize="17dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:text="Last Date"
                     android:textColor="@color/black"
-                    android:textSize="15dp"/>
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/txtLastDate"
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/teachers_medium"
                     android:text="XXX"
-                    android:textSize="15dp"/>
+                    android:textSize="17dp"/>
             </LinearLayout>
         </ScrollView>
 

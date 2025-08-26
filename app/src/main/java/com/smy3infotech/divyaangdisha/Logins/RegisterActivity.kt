@@ -72,6 +72,9 @@ class RegisterActivity : AppCompatActivity(){
         }
 
         binding.cardLogin.setOnClickListener{
+            val animations = ViewController.animation()
+            binding.cardLogin.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -80,12 +83,15 @@ class RegisterActivity : AppCompatActivity(){
         }
 
         binding.loginLinear.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.loginLinear.startAnimation(animations)
             finish()
         }
 
     }
 
     private fun registerApi() {
+
         val name_=binding.nameEdit.text.toString()
         val email=binding.emailEdit.text?.trim().toString()
         val mobileNumber_=binding.mobileEdit.text?.trim().toString()

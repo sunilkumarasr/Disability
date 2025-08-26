@@ -23,7 +23,7 @@
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="180dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="10dp"
@@ -61,9 +61,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Premium Clay Style Wheelchair"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -80,18 +80,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="Brand:"
-                                    android:textSize="14sp"
+                                    android:textSize="17sp"
                                     android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_semibold"/>
+                                    android:fontFamily="@font/teachers_medium"/>
                                 <TextView
                                     android:id="@+id/txtBrand"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="AGeasy"
-                                    android:textSize="14sp"
+                                    android:textSize="16sp"
                                     android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_semibold"/>
+                                    android:fontFamily="@font/teachers_medium"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -103,18 +103,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="Colour:"
-                                    android:textSize="14sp"
+                                    android:textSize="17sp"
                                     android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_semibold"/>
+                                    android:fontFamily="@font/teachers_medium"/>
                                 <TextView
                                     android:id="@+id/txtColor"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="Silver"
-                                    android:textSize="14sp"
+                                    android:textSize="16sp"
                                     android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_semibold"/>
+                                    android:fontFamily="@font/teachers_medium"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:visibility="gone"
@@ -209,9 +209,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -238,9 +238,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Offer Price"
-                        android:textSize="14sp"
+                        android:textSize="17sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/teachers_semibold"/>
+                        android:fontFamily="@font/teachers_medium"/>
 
                     <TextView
                         android:id="@+id/txtOfferPrice"
@@ -248,9 +248,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Price : ₹ 0000"
-                        android:textSize="14sp"
+                        android:textSize="17sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/teachers_semibold"/>
+                        android:fontFamily="@font/teachers_medium"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -262,18 +262,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Actual Price"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textColor="@color/gray"
-                        android:fontFamily="@font/teachers_semibold"/>
+                        android:fontFamily="@font/teachers_medium"/>
                     <TextView
                         android:id="@+id/txtActulePrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="₹3570"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textColor="@color/gray"
-                        android:fontFamily="@font/teachers_semibold"/>
+                        android:fontFamily="@font/teachers_medium"/>
                 </LinearLayout>
             </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -297,18 +297,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Description:"
-                            android:textSize="14sp"
+                            android:textSize="17sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                         <TextView
                             android:id="@+id/txtDec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/note_short"
                             android:layout_marginTop="5dp"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textColor="@color/gray"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -330,18 +330,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Address:"
-                            android:textSize="14sp"
+                            android:textSize="17sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                         <TextView
                             android:id="@+id/txtAddress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/note_short"
                             android:layout_marginTop="5dp"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textColor="@color/gray"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -349,7 +349,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEnquiry"
                     android:layout_width="180dp"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
@@ -365,7 +365,7 @@
                         android:text="Enquiry Now"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:layout_centerVertical="true"/>
                 </androidx.cardview.widget.CardView>
 

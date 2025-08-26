@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
@@ -39,6 +40,8 @@ class EditProductImagesListAdapter(
 //        }
 
         holder.imgDelete.setOnClickListener {
+            val animations = ViewController.animation()
+            holder.imgDelete.startAnimation(animations)
             onItemClick(items[position])
         }
 

@@ -20,6 +20,7 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.slider.Slider
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
 
@@ -58,6 +59,9 @@ class LocationBottomSheetFragment  : BottomSheetDialogFragment(){
         // Assuming you have buttons or views to select a value
         val cardSubmit = view.findViewById<CardView>(R.id.cardSubmit)
         cardSubmit.setOnClickListener {
+            val animations = ViewController.animation()
+            cardSubmit.startAnimation(animations)
+
             val locationText = editLocation.text.toString()
             if (locationText.isNotEmpty()) {
                 listener?.onItemSelected(lat, longi, locationText, Km.toString())

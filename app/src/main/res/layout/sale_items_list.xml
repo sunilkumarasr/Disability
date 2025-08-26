@@ -3,22 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:orientation="horizontal"
-    android:background="#F2F2F2">
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="3dp"
+        app:cardElevation="5dp"
         app:cardBackgroundColor="@color/white"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:outlineAmbientShadowColor="@color/blue"
+        android:outlineSpotShadowColor="@color/blue"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,72 +30,72 @@
                 android:layout_height="110dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/vision_dummy"/>
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:text="Wheelchair"
-                android:fontFamily="@font/teachers_semibold"
-                android:textSize="16sp"
-                android:textColor="@color/text"
-                android:layout_gravity="center_vertical"
-                android:singleLine="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="10dp">
                 <TextView
-                    android:id="@+id/txtOfferPrice"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:text="₹ 4000"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:text="Wheelchair"
+                    android:fontFamily="@font/teachers_medium"
                     android:textSize="15sp"
-                    android:textColor="@color/text"
+                    android:textColor="@color/black"
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"/>
-                <TextView
-                    android:id="@+id/txtActulePrice"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:text="₹3570"
-                    android:fontFamily="@font/teachers_semibold"
-                    android:textSize="14sp"
-                    android:textColor="#8A8A8A"
-                    android:layout_gravity="center_vertical"
-                    android:singleLine="true"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/marker_ic"/>
-                <TextView
-                    android:id="@+id/txtLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/txtOfferPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹4000"
+                        android:fontFamily="@font/teachers_medium"
+                        android:textSize="13sp"
+                        android:textColor="@color/text"
+                        android:layout_gravity="center_vertical"
+                        android:singleLine="true"/>
+                    <TextView
+                        android:id="@+id/txtActulePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="₹3570"
+                        android:fontFamily="@font/teachers_regular"
+                        android:textSize="12sp"
+                        android:textColor="@color/hintcolor"
+                        android:layout_gravity="center_vertical"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:text="Banjara Hills, Hyderabad"
-                    android:fontFamily="@font/teachers_semibold"
-                    android:textSize="15sp"
-                    android:textColor="#707070"
-                    android:layout_gravity="center_vertical"
-                    android:singleLine="true"/>
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="15dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/marker_ic"
+                        app:tint="@color/hintcolor"/>
+                    <TextView
+                        android:id="@+id/txtLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="Banjara Hills, Hyderabad"
+                        android:fontFamily="@font/teachers_regular"
+                        android:textSize="12sp"
+                        android:textColor="@color/hintcolor"
+                        android:singleLine="true"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

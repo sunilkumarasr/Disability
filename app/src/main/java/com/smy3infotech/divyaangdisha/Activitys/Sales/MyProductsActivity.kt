@@ -50,13 +50,16 @@ class MyProductsActivity : AppCompatActivity(), View.OnClickListener   {
             MyProductsListApi()
         }
 
-        binding.linearAddProducts.setOnClickListener(this)
+        binding.CardAddProducts.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
 
-            R.id.linearAddProducts -> {
+            R.id.CardAddProducts -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
+
                 startActivity(Intent(this@MyProductsActivity, AddProductActivity::class.java))
             }
 

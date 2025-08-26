@@ -27,14 +27,20 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.txtForgot.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtForgot.startAnimation(animations)
             startActivity(Intent(this@LoginActivity, ForgotActivity::class.java))
         }
 
         binding.registerLinear.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.registerLinear.startAnimation(animations)
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
 
         binding.cardLogin.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardLogin.startAnimation(animations)
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -89,6 +95,12 @@ class LoginActivity : AppCompatActivity() {
                             )
                             Preferences.saveStringValue(applicationContext, Preferences.name,
                                 loginResponse.user?.name.toString()
+                            )
+                            Preferences.saveStringValue(applicationContext, Preferences.email,
+                                loginResponse.user?.email.toString()
+                            )
+                            Preferences.saveStringValue(applicationContext, Preferences.phone,
+                                loginResponse.user?.phone.toString()
                             )
                             Preferences.saveStringValue(applicationContext, Preferences.location,
                                 loginResponse.user?.location.toString()

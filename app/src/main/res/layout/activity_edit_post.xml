@@ -26,7 +26,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
@@ -37,7 +37,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:singleLine="true"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
@@ -46,7 +46,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
@@ -58,7 +58,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
@@ -81,7 +81,7 @@
                         android:id="@+id/titleEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Title"
                         android:textColorHint="@color/hintcolor"/>
@@ -100,7 +100,7 @@
                         android:id="@+id/DesctiptionEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Desctiption"
                         android:textColorHint="@color/hintcolor"/>
@@ -119,7 +119,7 @@
                         android:id="@+id/phoneNumberEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Phone Number"
                         android:inputType="phone"
@@ -140,7 +140,7 @@
                         android:id="@+id/LandNumberEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Landline Number"
                         android:inputType="phone"
@@ -160,7 +160,7 @@
                         android:id="@+id/emailEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Email"
                         android:textColorHint="@color/hintcolor"/>
@@ -179,7 +179,7 @@
                         android:id="@+id/addressEdit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="Address"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
@@ -200,7 +200,7 @@
                         android:id="@+id/aboutCompanyEdit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="About Company"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
@@ -221,7 +221,7 @@
                         android:id="@+id/servicesListEdit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="Services List"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
@@ -234,12 +234,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Cover Photo"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:textColor="@color/text"
-                    android:textSize="13sp"/>
+                    android:textSize="18sp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
@@ -262,7 +262,7 @@
                             android:text="Choose"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
-                            android:textSize="13sp"
+                            android:textSize="18sp"
                             android:layout_centerVertical="true"/>
                     </androidx.cardview.widget.CardView>
 
@@ -282,18 +282,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Gallery Photos"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:textColor="@color/text"
-                    android:textSize="13sp"/>
+                    android:textSize="18sp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardMultiImages"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="5dp"
@@ -310,7 +310,7 @@
                             android:text="Multiple Images"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
-                            android:textSize="13sp"
+                            android:textSize="18sp"
                             android:layout_centerVertical="true"/>
                     </androidx.cardview.widget.CardView>
 
@@ -325,7 +325,7 @@
                         android:text="Upload Image.jpg"
                         android:fontFamily="@font/teachers_regular"
                         android:textColor="@color/text"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -382,7 +382,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardSubmit"
                     android:layout_width="180dp"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
@@ -398,7 +398,7 @@
                         android:text="Submit"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:layout_centerVertical="true"/>
                 </androidx.cardview.widget.CardView>
 

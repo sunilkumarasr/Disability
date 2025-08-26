@@ -23,7 +23,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profileImage"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="190dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/helpdesk_banner_ic"
                     android:scaleType="fitXY"/>
@@ -47,7 +47,7 @@
                             android:id="@+id/nameEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Name"
                             android:singleLine="true"
@@ -68,7 +68,7 @@
                             android:id="@+id/emailEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Email Address"
                             android:singleLine="true"
@@ -89,7 +89,7 @@
                             android:id="@+id/mobileEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Phone Number"
                             android:singleLine="true"
@@ -112,7 +112,7 @@
                             android:id="@+id/messageEdit"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:hint="Write a Message"
                             android:fontFamily="@font/teachers_regular"
                             android:layout_gravity="start"
@@ -124,7 +124,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardLogin"
                         android:layout_width="180dp"
-                        android:layout_height="45dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_marginStart="25dp"
                         android:layout_marginEnd="25dp"
@@ -140,11 +140,9 @@
                             android:text="Submit"
                             android:fontFamily="@font/teachers_medium"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:layout_centerVertical="true"/>
                     </androidx.cardview.widget.CardView>
-
-
 
                 </LinearLayout>
             </LinearLayout>

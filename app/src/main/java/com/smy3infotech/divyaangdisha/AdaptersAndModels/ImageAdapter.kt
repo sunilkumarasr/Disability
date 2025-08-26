@@ -33,7 +33,7 @@ class ImageAdapter(
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
-        val removeButton: ImageButton = itemView.findViewById(R.id.btnRemove)
+        val removeButton: ImageView = itemView.findViewById(R.id.btnRemove)
 
         fun bind(imageUri: Uri) {
             imageView.setImageURI(imageUri)  // Display image

@@ -69,6 +69,8 @@ class SaleFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.cardAdd -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
                 startActivity(Intent(activity, AddProductActivity::class.java))
             }
 
@@ -138,7 +140,6 @@ class SaleFragment : Fragment(), View.OnClickListener {
                     binding.txtNoData.visibility = View.VISIBLE
                 }
             }
-
             override fun onFailure(call: retrofit2.Call<SaleModel>, t: Throwable) {
                 Log.e("cat_error", t.message.toString())
                 ViewController.hideLoading()

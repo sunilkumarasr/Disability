@@ -11,6 +11,8 @@ object Preferences {
     const val LOGINCHECK = "LOGINCHECK"
     const val userId = "userId"
     const val name = "name"
+    const val email = "email"
+    const val phone = "phone"
     const val lat = "lat"
     const val longi = "longi"
     const val location = "location"

@@ -49,13 +49,16 @@ class MyPostsActivity : AppCompatActivity(),View.OnClickListener {
             MyPostsListApi()
         }
 
-        binding.linearAddPost.setOnClickListener(this)
+        binding.CardAddPost.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
 
-            R.id.linearAddPost -> {
+            R.id.CardAddPost -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
+
                 startActivity(Intent(this@MyPostsActivity, AddPostActivity::class.java))
             }
         }

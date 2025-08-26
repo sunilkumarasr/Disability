@@ -147,6 +147,9 @@ class EditProfileActivity : AppCompatActivity() {
 
 
         binding.cardChoose.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardChoose.startAnimation(animations)
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -157,6 +160,9 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         binding.cardUpdate.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardUpdate.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -165,12 +171,18 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         binding.changeLocation.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.changeLocation.startAnimation(animations)
+
             c = "1"
             binding.linearLocation.visibility = View.GONE
             binding.linearchangeLocation.visibility = View.VISIBLE
         }
 
         binding.clearLocation.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.clearLocation.startAnimation(animations)
+
             c = "0"
             binding.linearLocation.visibility = View.VISIBLE
             binding.linearchangeLocation.visibility = View.GONE

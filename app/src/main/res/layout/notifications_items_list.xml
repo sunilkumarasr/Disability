@@ -15,8 +15,8 @@
         android:orientation="horizontal"
         android:padding="10dp">
         <RelativeLayout
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:background="@drawable/round_circle_colorprimary"
             android:layout_marginTop="5dp"/>
 
@@ -33,7 +33,7 @@
                 android:textColor="@color/black"
                 android:text="Lorem ipsum"
                 android:fontFamily="@font/teachers_regular"
-                android:textSize="15sp"/>
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/txtBody"
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:textColor="@color/txtdes"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper."
                 android:fontFamily="@font/teachers_regular"
-                android:textSize="13sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -97,6 +97,9 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
         }
 
         binding.imgLocationChange.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.imgLocationChange.startAnimation(animations)
+
             bottomPopup()
         }
 

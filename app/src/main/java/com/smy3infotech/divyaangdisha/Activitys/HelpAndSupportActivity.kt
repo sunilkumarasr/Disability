@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.HelpAndSupport.HelpAndSupportRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.HelpAndSupport.HelpAndSupportResponse
+import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
@@ -36,7 +37,17 @@ class HelpAndSupportActivity : AppCompatActivity() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Help And Support"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
+        val nameN = Preferences.loadStringValue(this@HelpAndSupportActivity, Preferences.name, "")
+        val emailN = Preferences.loadStringValue(this@HelpAndSupportActivity, Preferences.email, "")
+        val phoneN = Preferences.loadStringValue(this@HelpAndSupportActivity, Preferences.phone, "")
+        binding.nameEdit.setText(nameN)
+        binding.emailEdit.setText(emailN)
+        binding.mobileEdit.setText(phoneN)
+
+
         binding.cardLogin.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardLogin.startAnimation(animations)
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -47,6 +58,7 @@ class HelpAndSupportActivity : AppCompatActivity() {
     }
 
     private fun HelpAndSupportApi() {
+
         val name=binding.nameEdit.text?.trim().toString()
         val email=binding.emailEdit.text?.trim().toString()
         val phone=binding.mobileEdit.text?.trim().toString()

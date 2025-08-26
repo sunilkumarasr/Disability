@@ -2,6 +2,7 @@ package com.smy3infotech.divyaangdisha.Activitys.JobAlerts
 
 import android.os.Bundle
 import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -51,9 +52,23 @@ class JobAlertDetailsActivity : AppCompatActivity() {
 
     private fun JobAlertDetailsApi() {
         binding.txtSub.text = title
-        binding.txtDec.text = Html.fromHtml(description, Html.FROM_HTML_MODE_LEGACY)
+        val processedHtml = autoLinkUrls(description ?: "")
+        binding.txtDec.text = Html.fromHtml(processedHtml, Html.FROM_HTML_MODE_LEGACY)
+        binding.txtDec.movementMethod = LinkMovementMethod.getInstance()
+        binding.txtDec.linksClickable = true
+
         binding.txtPostDate.text = post_date
         binding.txtLastDate.text = last_date
     }
+
+
+    fun autoLinkUrls(html: String): String {
+        val urlRegex = "(https?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+)".toRegex()
+        return urlRegex.replace(html) {
+            val url = it.value
+            "<a href=\"$url\">$url</a>"
+        }
+    }
+
 
 }

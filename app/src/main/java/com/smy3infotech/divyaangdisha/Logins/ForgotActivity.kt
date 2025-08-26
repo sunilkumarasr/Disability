@@ -35,10 +35,15 @@ class ForgotActivity : AppCompatActivity() {
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         binding.txtLogin.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtLogin.startAnimation(animations)
             finish()
         }
 
         binding.cardForgot.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardForgot.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{

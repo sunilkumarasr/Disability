@@ -25,8 +25,8 @@
             android:padding="10dp"
             android:textColor="@color/blue"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper."
-            android:fontFamily="@font/teachers_medium"
-            android:textSize="13sp"/>
+            android:fontFamily="@font/teachers_regular"
+            android:textSize="18sp"/>
     </androidx.cardview.widget.CardView>
 
 

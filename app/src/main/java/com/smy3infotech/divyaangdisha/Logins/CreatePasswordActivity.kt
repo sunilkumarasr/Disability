@@ -42,6 +42,9 @@ class CreatePasswordActivity : AppCompatActivity() {
         }
 
         binding.cardLogin.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardLogin.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{

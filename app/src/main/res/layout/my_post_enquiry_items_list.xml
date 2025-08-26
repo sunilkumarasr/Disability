@@ -27,28 +27,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/teachers_medium"
+            android:fontFamily="@font/teachers_regular"
             android:text="Email"
             android:textColor="@color/black"
-            android:textSize="15sp"/>
+            android:textSize="16sp"/>
         <TextView
             android:id="@+id/txtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/teachers_medium"
+            android:fontFamily="@font/teachers_regular"
             android:text="Phone"
             android:textColor="@color/black"
-            android:textSize="15sp"/>
+            android:textSize="16sp"/>
         <TextView
             android:id="@+id/txtMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/teachers_medium"
+            android:fontFamily="@font/teachers_regular"
             android:text="Message"
             android:textColor="@color/black"
-            android:textSize="15sp"/>
+            android:textSize="16sp"/>
     </LinearLayout>
 
 

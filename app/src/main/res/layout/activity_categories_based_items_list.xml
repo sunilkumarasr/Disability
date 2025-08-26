@@ -31,11 +31,11 @@
                     android:layout_marginStart="15dp"
                     android:text="your location..."
                     android:padding="10dp"
-                    android:textSize="13sp"
+                    android:textSize="18sp"
                     android:textColor="@color/blue"/>
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_marginStart="15dp"
                     android:layout_gravity="center"
                     app:tint="@color/blue"
@@ -45,7 +45,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardSearch"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/li"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
@@ -56,17 +56,19 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/search_ic"
                         android:layout_marginStart="10dp"
+                        app:tint="@color/gray"
                         android:layout_gravity="center_vertical"/>
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/editSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:hint="Search...."/>
+                        android:hint="Search...."
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

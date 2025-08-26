@@ -1,11 +1,13 @@
 package com.smy3infotech.divyaangdisha.AdaptersAndModels.JobAlerts
 
 import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 
 class JobAlertHomeAdapter(
@@ -21,6 +23,8 @@ class JobAlertHomeAdapter(
 
         init {
             itemView.setOnClickListener {
+                val animations = ViewController.animation()
+                itemView.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position])
@@ -39,6 +43,8 @@ class JobAlertHomeAdapter(
         val item = items[position]
         holder.txtTitle.text = item.title
         holder.txtDec.text = Html.fromHtml(item.description, Html.FROM_HTML_MODE_LEGACY)
+        holder.txtDec.movementMethod = LinkMovementMethod.getInstance()
+        holder.txtDec.linksClickable = true
         holder.txtPostTime.text = item.post_date
         holder.txtLastTime.text = item.last_date
     }

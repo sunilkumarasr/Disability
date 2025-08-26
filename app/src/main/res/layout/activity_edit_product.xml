@@ -36,7 +36,7 @@
                         android:id="@+id/productNameEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Product Name"
                         android:textColorHint="@color/hintcolor"/>
@@ -55,7 +55,7 @@
                         android:id="@+id/ActualEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Actual Price"
                         android:inputType="number"
@@ -75,7 +75,7 @@
                         android:id="@+id/offerPriceEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Offer Price"
                         android:inputType="number"
@@ -95,7 +95,7 @@
                         android:id="@+id/phoneNumberEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Phone Number"
                         android:inputType="phone"
@@ -117,7 +117,7 @@
                         android:id="@+id/colorEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Colour"
                         android:singleLine="true"
@@ -137,7 +137,7 @@
                         android:id="@+id/brandEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Brand"
                         android:singleLine="true"
@@ -159,7 +159,7 @@
                         android:id="@+id/addressEdit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="Address"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
@@ -213,20 +213,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Max 200 characters allowed"
+                    android:layout_marginTop="3dp"
                     android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/teachers_medium"
                     android:layout_gravity="end"
-                    android:textSize="11dp"/>
+                    android:textSize="13dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardMultiImages"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="5dp"
@@ -243,7 +244,7 @@
                             android:text="Multiple images"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
-                            android:textSize="13sp"
+                            android:textSize="18sp"
                             android:layout_centerVertical="true"/>
                     </androidx.cardview.widget.CardView>
 
@@ -258,7 +259,7 @@
                         android:text="Upload Image.jpg"
                         android:fontFamily="@font/teachers_regular"
                         android:textColor="@color/text"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"/>
 
                 </LinearLayout>
@@ -313,11 +314,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"/>
 
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardSubmit"
                     android:layout_width="180dp"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
@@ -333,7 +333,7 @@
                         android:text="Submit"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:layout_centerVertical="true"/>
                 </androidx.cardview.widget.CardView>
 

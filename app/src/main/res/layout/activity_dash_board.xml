@@ -16,7 +16,7 @@
                 android:id="@+id/relativeTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue">
+                android:background="@color/colorPrimaryLight">
 
                 <LinearLayout
                     android:id="@+id/li"
@@ -35,14 +35,14 @@
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:src="@drawable/menu_ic"
-                            app:tint="@color/white"/>
+                            app:tint="@color/black"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:textSize="18sp"
-                            android:textColor="@color/white"
-                            android:fontFamily="@font/teachers_bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/teachers_medium"
                             android:text="Divyaangadisha"/>
                     </LinearLayout>
                     <LinearLayout
@@ -56,17 +56,17 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/notifications_ic"
-                            app:tint="@color/white"
+                            app:tint="@color/black"
                             android:layout_marginEnd="15dp"/>
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgWhatsapp"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
+                            app:tint="@color/black"
                             android:src="@drawable/whatsapp_ic"
                             android:layout_marginEnd="15dp"/>
                     </LinearLayout>
                 </LinearLayout>
-
 
             </RelativeLayout>
 

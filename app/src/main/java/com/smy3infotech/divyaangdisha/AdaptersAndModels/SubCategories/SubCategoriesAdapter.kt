@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
+import com.smy3infotech.divyaangdisha.Config.ViewController
 
 class SubCategoriesAdapter(
     private val items: List<SubCategoriesModel>,
@@ -23,6 +24,8 @@ class SubCategoriesAdapter(
 
         init {
             itemView.setOnClickListener {
+                val animations = ViewController.animation()
+                itemView.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     notifyItemChanged(selectedPosition)  // Deselect previously selected item

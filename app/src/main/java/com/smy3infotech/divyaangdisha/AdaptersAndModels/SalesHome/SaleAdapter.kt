@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 
@@ -26,6 +27,8 @@ class SaleAdapter(
 
         init {
             itemView.setOnClickListener {
+                val animations = ViewController.animation()
+                itemView.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position])
@@ -52,10 +55,10 @@ class SaleAdapter(
             .into(holder.imgLogo)
 
         holder.txtTitle.text = item.product.product
-        holder.txtOfferPrice.text = "₹ " + item.product.offer_price
+        holder.txtOfferPrice.text = "₹" + item.product.offer_price
         holder.txtLocation.text = item.product.address
 
-        val spannableString = SpannableString("₹ " + item.product.actual_price)
+        val spannableString = SpannableString("₹" + item.product.actual_price)
         spannableString.setSpan(StrikethroughSpan(), 0, spannableString.length, 0)
         holder.txtActulePrice.text = spannableString
 

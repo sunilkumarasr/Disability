@@ -43,7 +43,7 @@
                         android:id="@+id/nameEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
                         android:hint="Name"
                         android:textColorHint="@color/hintcolor"/>
@@ -51,7 +51,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
@@ -81,7 +81,7 @@
                             android:id="@+id/mobileEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:fontFamily="@font/teachers_regular"
                             android:hint="Phone Number"
                             android:inputType="phone"
@@ -109,7 +109,7 @@
                         android:focusableInTouchMode="false"
                         android:filterTouchesWhenObscured="false"
                         android:fontFamily="@font/teachers_regular"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:hint="Email"
                         android:textColorHint="@color/hintcolor"
                         android:inputType="textEmailAddress"/>
@@ -123,9 +123,9 @@
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="0.5"
+                        android:layout_weight="1"
                         android:orientation="horizontal"
                         android:background="@drawable/round_edit_gray_light_edge">
                         <TextView
@@ -134,15 +134,15 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
+                            android:textSize="18sp"
                             android:textColorHint="@color/hintcolor"
                             android:text="Madhapur"/>
                     </LinearLayout>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/changeLocation"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginTop="5dp"
@@ -153,12 +153,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_gravity="center"
                             android:text="change Location"
                             android:singleLine="true"
-                            android:fontFamily="@font/teachers_regular"
+                            android:fontFamily="@font/teachers_medium"
                             android:textColor="@color/text"
-                            android:textSize="13sp"
+                            android:textSize="18sp"
                             android:layout_centerVertical="true"/>
                     </androidx.cardview.widget.CardView>
 
@@ -230,7 +232,7 @@
                     android:text="Radius"
                     android:textColor="@color/text"
                     android:fontFamily="@font/teachers_medium"
-                    android:textSize="14sp"/>
+                    android:textSize="18sp"/>
                 <com.google.android.material.slider.Slider
                     android:id="@+id/kmSlider"
                     android:layout_width="match_parent"
@@ -299,7 +301,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray">
@@ -320,9 +322,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Choose File"
-                            android:fontFamily="@font/teachers_regular"
+                            android:fontFamily="@font/teachers_medium"
                             android:textColor="@color/text"
-                            android:textSize="13sp"
+                            android:textSize="18sp"
                             android:layout_centerVertical="true"/>
                     </androidx.cardview.widget.CardView>
 
@@ -330,15 +332,15 @@
                         android:id="@+id/txtFileName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginEnd="15dp"
-                        android:singleLine="true"
-                        android:gravity="end"
-                        android:text="Profile_Picture.jpg"
                         android:fontFamily="@font/teachers_regular"
+                        android:gravity="end"
+                        android:singleLine="true"
+                        android:text="Profile_Picture.jpg"
                         android:textColor="@color/text"
-                        android:textSize="15sp"
-                        android:layout_centerVertical="true"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -346,7 +348,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardUpdate"
                     android:layout_width="180dp"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
@@ -362,7 +364,7 @@
                         android:text="Update Profile"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:layout_centerVertical="true"/>
                 </androidx.cardview.widget.CardView>
 

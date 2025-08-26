@@ -49,6 +49,8 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.cardAdd -> {
+                val animations = ViewController.animation()
+                binding.cardAdd.startAnimation(animations)
                 startActivity(Intent(activity, AddPostActivity::class.java))
             }
 

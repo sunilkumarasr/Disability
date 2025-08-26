@@ -82,4 +82,12 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-analytics")
 
+    //button target Suggestions
+    implementation ("uk.co.samuelwall:material-tap-target-prompt:3.0.0")
+
+    //zoom image
+    implementation ("com.github.chrisbanes:PhotoView:2.3.0")
+
+
+
 }

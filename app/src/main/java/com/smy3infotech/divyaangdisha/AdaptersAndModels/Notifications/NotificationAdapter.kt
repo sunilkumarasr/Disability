@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 
 class NotificationAdapter(
@@ -18,6 +19,8 @@ class NotificationAdapter(
 
         init {
             itemView.setOnClickListener {
+                val animations = ViewController.animation()
+                itemView.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position])

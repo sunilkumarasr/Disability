@@ -56,7 +56,7 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
         setContentView(binding.root)
         ViewController.changeStatusBarColor(
             this,
-            ContextCompat.getColor(this, R.color.blue),
+            ContextCompat.getColor(this, R.color.colorPrimaryLight),
             false
         )
 
@@ -101,10 +101,16 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.imgNotification -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
+
                 startActivity(Intent(this@DashBoardActivity, NotificationActivity::class.java))
             }
 
             R.id.imgWhatsapp -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
+
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=+9441085061&text=Hi%20there"))
                 startActivity(browserIntent)
             }

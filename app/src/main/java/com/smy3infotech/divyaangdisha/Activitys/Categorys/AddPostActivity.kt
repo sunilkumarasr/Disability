@@ -7,6 +7,7 @@ import android.Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -35,12 +36,15 @@ import com.smy3infotech.divyaangdisha.MapBottomSheetFragment
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.ActivityAddPostBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
 
 class AddPostActivity : AppCompatActivity() {
 
@@ -126,6 +130,9 @@ class AddPostActivity : AppCompatActivity() {
         setupRecyclerView()
 
         binding.cardImages.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardImages.startAnimation(animations)
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -149,6 +156,9 @@ class AddPostActivity : AppCompatActivity() {
 
         //multipile images
         binding.addMoreImages.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.addMoreImages.startAnimation(animations)
+
             val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "image/*"
                 putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // Allow multiple selections
@@ -160,6 +170,9 @@ class AddPostActivity : AppCompatActivity() {
         }
 
         binding.cardSubmit.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardSubmit.startAnimation(animations)
+
             if(!ViewController.noInterNetConnectivity(applicationContext)){
                 ViewController.showToast(applicationContext, "Please check your connection ")
             }else{
@@ -169,6 +182,9 @@ class AddPostActivity : AppCompatActivity() {
 
 
         binding.txtLocation.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.txtLocation.startAnimation(animations)
+
             LocationBottom()
         }
 
@@ -359,27 +375,26 @@ class AddPostActivity : AppCompatActivity() {
         val long_ = RequestBody.create(MultipartBody.FORM, longi)
 
         //cover image
-        val file = File(getRealPathFromURI(selectedImageUri!!))
-        val requestFile = RequestBody.create(MultipartBody.FORM, file)
-        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+        val compressedFile = File(cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+        val outputStream = FileOutputStream(compressedFile)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream) // Adjust quality here
+        outputStream.flush()
+        outputStream.close()
+        val requestFile = compressedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("image", compressedFile.name, requestFile)
 
-
-//        //gallery
-//        Log.e("img_", imageUris.toString())
-//        imageUris.let { Log.e("img_1", it.toString()) }
-//        val additionalImages = mutableListOf<MultipartBody.Part>()
-//        for (uri in imageUris) {
-//            val file = File(getRealPathFromURI(uri))
-//            val requestFile = RequestBody.create(MultipartBody.FORM, file)
-//            val part = MultipartBody.Part.createFormData("additional_images[]", file.name, requestFile)
-//            additionalImages.add(part)
-//        }
 
         val additionalImages = mutableListOf<MultipartBody.Part>()
         for (uri in imageUris) {
-            val file = File(getRealPathFromURI(uri))
-            val requestFile = RequestBody.create(MultipartBody.FORM, file)
-            val part = MultipartBody.Part.createFormData("additional_images[]", file.name, requestFile)
+            val bitMap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            val compressedFile = File(cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+            val outPutStream = FileOutputStream(compressedFile)
+            bitMap.compress(Bitmap.CompressFormat.JPEG, 50, outPutStream) // 50 = quality
+            outPutStream.flush()
+            outPutStream.close()
+            val requestFile = compressedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val part = MultipartBody.Part.createFormData("additional_images[]", compressedFile.name, requestFile)
             additionalImages.add(part)
         }
 

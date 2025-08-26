@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
+import com.smy3infotech.divyaangdisha.Activitys.ZoomImageActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.ItemsImagesListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EnqueryResponse
@@ -93,13 +94,22 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         }
 
         binding.cardCall.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardCall.startAnimation(animations)
+
             checkAndRequestPermission()
         }
 
         binding.cardEnquiry.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardEnquiry.startAnimation(animations)
+
             enqueryDailouge()
         }
         binding.cardEnquiry1.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardEnquiry1.startAnimation(animations)
+
             enqueryDailouge()
         }
 
@@ -153,6 +163,11 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
             .load(RetrofitClient.Image_Path + postDetails.data?.product?.image)
             .placeholder(R.drawable.home_bannes).error(R.drawable.home_bannes)
             .into(binding.imgBanner)
+        binding.imgBanner.setOnClickListener {
+            val intent = Intent(this, ZoomImageActivity::class.java)
+            intent.putExtra("ImageUrl", RetrofitClient.Image_Path + postDetails.data?.product?.image)
+            startActivity(intent)
+        }
         binding.txtName.text = postDetails.data?.product?.title ?: ""
         binding.txtAddress.text = postDetails.data?.product?.address ?: ""
         binding.txtLocation.text = postDetails.data?.product?.location ?: ""
@@ -178,6 +193,9 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
             binding.recyclerviewImages.layoutManager = layoutManager
             binding.recyclerviewImages.adapter = postDetails.data?.images?.let {
                 ItemsImagesListAdapter(it) { item ->
+                    val intent = Intent(this, ZoomImageActivity::class.java)
+                    intent.putExtra("ImageUrl", RetrofitClient.Image_Path+item.additionalImage.toString())
+                    startActivity(intent)
                 }
             }
         } else {
@@ -270,8 +288,14 @@ class PostCategoriesDetailsActivity : AppCompatActivity() {
         val messageEdit = dialog.findViewById<EditText>(R.id.messageEdit)
         val cardLogin = dialog.findViewById<CardView>(R.id.cardLogin)
 
-        cardLogin.setOnClickListener {
+        val nameN = Preferences.loadStringValue(this@PostCategoriesDetailsActivity, Preferences.name, "")
+        val emailN = Preferences.loadStringValue(this@PostCategoriesDetailsActivity, Preferences.email, "")
+        val phoneN = Preferences.loadStringValue(this@PostCategoriesDetailsActivity, Preferences.phone, "")
+        nameEdit.setText(nameN)
+        emailEdit.setText(emailN)
+        phoneEdit.setText(phoneN)
 
+        cardLogin.setOnClickListener {
             val name_ = nameEdit.text.toString()
             val phone_ = phoneEdit.text.toString().trim()
             val email_ = emailEdit.text.toString().trim()

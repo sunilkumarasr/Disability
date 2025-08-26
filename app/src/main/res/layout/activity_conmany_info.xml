@@ -37,7 +37,7 @@
                     android:text="@string/note"
                     android:fontFamily="@font/teachers_regular"
                     android:textColor="@color/text"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:layout_centerVertical="true"/>
             </LinearLayout>
         </ScrollView>

@@ -61,6 +61,9 @@ class ProductDetaisActivity : AppCompatActivity() {
         }
 
         binding.cardEnquiry.setOnClickListener {
+            val animations = ViewController.animation()
+            binding.cardEnquiry.startAnimation(animations)
+
             enqueryDailouge()
         }
     }
@@ -149,8 +152,14 @@ class ProductDetaisActivity : AppCompatActivity() {
         val messageEdit = dialog.findViewById<EditText>(R.id.messageEdit)
         val cardLogin = dialog.findViewById<CardView>(R.id.cardLogin)
 
-        cardLogin.setOnClickListener {
+        val nameN = Preferences.loadStringValue(this@ProductDetaisActivity, Preferences.name, "")
+        val emailN = Preferences.loadStringValue(this@ProductDetaisActivity, Preferences.email, "")
+        val phoneN = Preferences.loadStringValue(this@ProductDetaisActivity, Preferences.phone, "")
+        nameEdit.setText(nameN)
+        emailEdit.setText(emailN)
+        phoneEdit.setText(phoneN)
 
+        cardLogin.setOnClickListener {
             val name_ = nameEdit.text.toString()
             val phone_ = phoneEdit.text.toString()
             val eamil_ = emailEdit.text.toString()

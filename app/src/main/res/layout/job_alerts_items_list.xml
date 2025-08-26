@@ -10,8 +10,8 @@
     android:orientation="horizontal">
 
     <RelativeLayout
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:background="@drawable/round_circle_colorprimary"
         android:layout_marginTop="5dp"/>
 
@@ -36,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:text="IIMC Recruitment 2024: Apply online for 18 non-teaching posts"
-                android:fontFamily="@font/teachers_semibold"
-                android:textSize="15sp"/>
+                android:fontFamily="@font/teachers_medium"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/txtDec"
@@ -46,8 +46,8 @@
                 android:layout_marginStart="15dp"
                 android:maxLines="2"
                 android:text="IIMC Recruitment 2024: Apply online for 18 non-teaching posts"
-                android:fontFamily="@font/teachers_medium"
-                android:textSize="13sp"
+                android:fontFamily="@font/teachers_regular"
+                android:textSize="16sp"
                 android:layout_marginTop="5dp"/>
 
             <LinearLayout
@@ -83,7 +83,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="45dp"
                     android:orientation="horizontal"
                     android:layout_gravity="end"
                     android:background="@drawable/jobalert_round_colorprimary2">
@@ -96,7 +96,7 @@
                         android:textColor="@color/white"
                         android:gravity="end|center_vertical"
                         android:fontFamily="@font/teachers_medium"
-                        android:textSize="13sp"/>
+                        android:textSize="15sp"/>
                 </LinearLayout>
             </LinearLayout>
 

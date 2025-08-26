@@ -4,368 +4,511 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue">
-
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryLight">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="3dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/dummy_profile" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="15dp">
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImage"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="2dp"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/dummy_profile" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="K sunil"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/txtName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="K sunil"
-                        android:singleLine="true"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:singleLine="true"
+                    android:text="sunil@gmail.com"
+                    android:textColor="@color/txtdes"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/txtEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:singleLine="true"
-                        android:text="sunil@gmail.com"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/txtMobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="+91 94410 85061"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:cardCornerRadius="25dp"
-                    app:cardBackgroundColor="@color/white"
-                    android:layout_gravity="center">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgEdit"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/edit_p_menu" />
-                </androidx.cardview.widget.CardView>
-
+                <TextView
+                    android:id="@+id/txtMobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="+91 94410 85061"
+                    android:textColor="@color/txtdes"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                app:cardElevation="1dp"
+                app:cardCornerRadius="25dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/edit_p_menu" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:background="@drawable/round_top_edgeonly">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/round_top_edgeonly">
+                android:padding="8dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/linearJobalerts"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/job_alert_menu"
-                        android:layout_marginStart="15dp"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/job_alert_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Job Alerts"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/linearAboutUs"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/about_menu"
-                        android:layout_marginStart="15dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="About Us"
-                        android:layout_marginStart="15dp"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"/>
-                </LinearLayout>
-                <View
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"/>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/linearContactUs"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        app:tint="@color/gray"
-                        android:src="@drawable/headphone_menu"
-                        android:layout_marginStart="15dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Contact Us"
-                        android:layout_marginStart="15dp"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"/>
-                </LinearLayout>
-                <View
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:background="@color/colorPrimaryLight"/>
 
 
                 <LinearLayout
                     android:id="@+id/linearAskQuestions"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ask_question_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/ask_question_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Suggestions"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
                 <LinearLayout
                     android:id="@+id/linearPostListings"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/post_list_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/post_list_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="My Posts"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
                 <LinearLayout
                     android:id="@+id/linearProductListings"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/product_list_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/product_list_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="My Sale"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/linearAboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/about_menu" />
+                    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="About Us"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
 
                 <LinearLayout
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/linearTermsandConditions"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/post_list_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/post_list_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Terms And Conditions"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
 
                 <LinearLayout
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/linearPrivacyPolicy"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/privacy_policy_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/privacy_policy_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Privacy Policy"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
 
                 <LinearLayout
                     android:id="@+id/linearFAQ"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/faq_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/faq_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="FAQ"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
 
                 <LinearLayout
                     android:id="@+id/linearHelpAndSupport"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/help_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/help_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Help and Support"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
+                <LinearLayout
+                    android:id="@+id/linearContactUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/headphone_menu" />
+                    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Us"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
                 <LinearLayout
                     android:id="@+id/linearUsefulLinks"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/useful_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/useful_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Useful links"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
 
                 <LinearLayout
@@ -374,29 +517,42 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        app:tint="@color/gray"
-                        android:src="@drawable/logout_menu"
-                        android:layout_marginStart="15dp"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginStart="15dp"
+                        app:cardBackgroundColor="@color/colorPrimaryLight">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/logout_menu" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Logout"
-                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"/>
-
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimaryLight"/>
 
             </LinearLayout>
+        </ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+
+
 
 </layout>
