@@ -3,6 +3,9 @@
     <color name="colorPrimary">#379ff9</color>
     <color name="darkcolorPrimary">#379ff9</color>
     <color name="colorPrimaryLight">#e1f3ff</color>
+    <color name="colorStart">#b5dbfd</color>
+    <color name="colorCenter">#e6f3fe</color>
+    <color name="colorEnd">#ffffff</color>
     <color name="black">#000000</color>
     <color name="txtHeader">#474747</color>
     <color name="txtdes">#5F5F5F</color>

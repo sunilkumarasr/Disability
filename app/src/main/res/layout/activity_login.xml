@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_bg">
+        android:background="@color/white">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Login here"
-                    android:fontFamily="@font/teachers_bold"
+                    android:fontFamily="@font/teachers_semibold"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="25sp" />
@@ -62,7 +62,7 @@
                         android:id="@+id/emailEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:hint="Email"
                         android:fontFamily="@font/teachers_regular"
                         android:textColorHint="@color/hintcolor"
@@ -85,8 +85,8 @@
                         android:id="@+id/passwordEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:hint="password"
+                        android:textSize="20sp"
+                        android:hint="Password"
                         android:fontFamily="@font/teachers_regular"
                         android:textColorHint="@color/hintcolor"
                         android:inputType="textPassword"/>
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forgot your Password?"
-                    android:fontFamily="@font/teachers_semibold"
+                    android:fontFamily="@font/teachers_medium"
                     android:textColor="@color/text"
                     android:layout_marginTop="10dp"
                     android:textSize="17dp"
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Sign in"
-                        android:fontFamily="@font/teachers_bold"
+                        android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:layout_centerVertical="true"/>
@@ -146,7 +146,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="@font/teachers_semibold"
+                        android:fontFamily="@font/teachers_medium"
                         android:text="Register"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp" />
