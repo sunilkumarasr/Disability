@@ -143,7 +143,7 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="3dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/round_edit_red">
+                    android:background="@drawable/round_edit_orange">
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="13dp"
                         android:layout_height="13dp"

@@ -179,7 +179,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
     }
 
     private fun subcategoriesApi() {
-        binding.txtNoData.visibility = View.GONE
+        binding.linearNoData.visibility = View.GONE
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.subcategoriesApi(category_id).enqueue(object : retrofit2.Callback<List<SubCategoriesModel>> {
             override fun onResponse(
@@ -194,11 +194,11 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
                             if (categories.size != 0) {
                                 subcategoriesdataList(categories)
                             } else {
-                                binding.txtNoData.visibility = View.VISIBLE
+                                binding.linearNoData.visibility = View.VISIBLE
                             }
                         }
                     } else {
-                        binding.txtNoData.visibility = View.VISIBLE
+                        binding.linearNoData.visibility = View.VISIBLE
                     }
                 } else {
                     ViewController.showToast(this@CategoriesBasedItemsListActivity, "Error: ${response.code()}")
@@ -207,7 +207,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
 
             override fun onFailure(call: retrofit2.Call<List<SubCategoriesModel>>, t: Throwable) {
                 Log.e("citys_error", t.message.toString())
-                binding.txtNoData.visibility = View.VISIBLE
+                binding.linearNoData.visibility = View.VISIBLE
 
             }
         })
@@ -233,9 +233,8 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
     }
 
     private fun categoriesBasedItemsApi(subId: String) {
-        binding.txtNoData.visibility = View.GONE
+        binding.linearNoData.visibility = View.GONE
         binding.recyclerview.visibility = View.VISIBLE
-        ViewController.showLoading(this@CategoriesBasedItemsListActivity)
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.categoriesBasedItemsApi(category_id, subId, lat, longi, Km).enqueue(object : retrofit2.Callback<List<SubCategoriesItemsModel>> {
             override fun onResponse(
@@ -255,15 +254,15 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
                                 categoriesDataSet(categoriesList)
                             } else {
                                 binding.recyclerview.visibility = View.GONE
-                                binding.txtNoData.visibility = View.VISIBLE
+                                binding.linearNoData.visibility = View.VISIBLE
                             }
                         } else {
                             binding.recyclerview.visibility = View.GONE
-                            binding.txtNoData.visibility = View.VISIBLE
+                            binding.linearNoData.visibility = View.VISIBLE
                         }
                     } else {
                         binding.recyclerview.visibility = View.GONE
-                        binding.txtNoData.visibility = View.VISIBLE
+                        binding.linearNoData.visibility = View.VISIBLE
                     }
                 } else {
                     ViewController.showToast(this@CategoriesBasedItemsListActivity, "Error: ${response.code()}")
@@ -272,9 +271,8 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
 
             override fun onFailure(call: retrofit2.Call<List<SubCategoriesItemsModel>>, t: Throwable) {
                 Log.e("cat_error", t.message.toString())
-                ViewController.hideLoading()
                 binding.recyclerview.visibility = View.GONE
-                binding.txtNoData.visibility = View.VISIBLE
+                binding.linearNoData.visibility = View.VISIBLE
             }
         })
 
@@ -307,9 +305,9 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
         }
 
         if (filteredList.isEmpty()) {
-            binding.txtNoData.visibility = View.VISIBLE
+            binding.linearNoData.visibility = View.VISIBLE
         } else {
-            binding.txtNoData.visibility = View.GONE
+            binding.linearNoData.visibility = View.GONE
         }
 
         // Update list only if catAdapter is initialized

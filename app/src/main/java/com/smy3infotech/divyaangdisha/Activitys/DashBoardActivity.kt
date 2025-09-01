@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -54,13 +55,10 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        ViewController.changeStatusBarColor(
-            this,
-            ContextCompat.getColor(this, R.color.colorPrimary),
-            false
-        )
+
 
         //login
         Preferences.saveStringValue(applicationContext, Preferences.LOGINCHECK, "Login")

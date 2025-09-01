@@ -91,5 +91,8 @@ dependencies {
     //bottom navigation
     implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
+    //lottie
+    implementation ("com.airbnb.android:lottie:6.0.0")
+
 
 }

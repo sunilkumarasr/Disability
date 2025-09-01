@@ -11,14 +11,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <!-- Top bar -->
             <RelativeLayout
                 android:id="@+id/relativeTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary">
+                android:background="@color/white">
 
                 <LinearLayout
                     android:id="@+id/li"
@@ -39,7 +40,7 @@
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:src="@drawable/menu_ic"
-                            app:tint="@color/white"/>
+                            app:tint="@color/black"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -47,7 +48,7 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@font/teachers_medium"
                             android:text="Divyaangadisha"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18sp"/>
                     </LinearLayout>
 
@@ -64,7 +65,7 @@
                             android:layout_height="30dp"
                             android:layout_marginEnd="15dp"
                             android:src="@drawable/notifications_ic"
-                            app:tint="@color/white"/>
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgWhatsapp"
@@ -72,7 +73,7 @@
                             android:layout_height="30dp"
                             android:layout_marginEnd="15dp"
                             android:src="@drawable/whatsapp_ic"
-                            app:tint="@color/white"/>
+                            app:tint="@color/black"/>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -82,25 +83,37 @@
                 android:id="@+id/frame_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/bottomBar"
                 android:layout_below="@+id/relativeTop"
+                android:layout_marginBottom="70dp"
                 android:background="@color/white"/>
 
             <!-- Bottom Smooth Bar -->
-            <me.ibrahimsn.lib.SmoothBottomBar
-                android:id="@+id/bottomBar"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardBottom"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:layout_alignParentBottom="true"
-                app:menu="@menu/menu_bottom"
-                app:backgroundColor="@color/colorPrimary"
-                app:indicatorColor="@color/colorIndicator"
-                app:itemIconTint="@color/bottom_bg"
-                app:itemTextColor="@color/bottom_bg"
-                app:iconSize="20dp"
-                app:textSize="12sp" />
-
-
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="35dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardElevation="8dp">
+                <me.ibrahimsn.lib.SmoothBottomBar
+                    android:id="@+id/bottomBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:menu="@menu/menu_bottom"
+                    app:backgroundColor="@color/colorPrimary"
+                    app:indicatorColor="@color/colorIndicator"
+                    app:itemIconTint="@color/bottom_bg"
+                    app:itemTextColor="@color/bottom_bg"
+                    app:iconSize="20dp"
+                    app:textSize="11sp" />
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 

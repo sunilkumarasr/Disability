@@ -4,19 +4,20 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
-import com.smy3infotech.divyaangdisha.Config.ViewController
 
 class SubCategoriesAdapter(
     private val items: List<SubCategoriesModel>,
-    private val onItemClick: (SubCategoriesModel) -> Unit // Click listener function
+    private val onItemClick: (SubCategoriesModel) -> Unit
 ) : RecyclerView.Adapter<SubCategoriesAdapter.ViewHolder>() {
 
     private var selectedPosition = 0
+    private var lastSelectedPosition = 0
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val linear: LinearLayout = itemView.findViewById(R.id.linear)
@@ -24,14 +25,13 @@ class SubCategoriesAdapter(
 
         init {
             itemView.setOnClickListener {
-                val animations = ViewController.animation()
-                itemView.startAnimation(animations)
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    notifyItemChanged(selectedPosition)  // Deselect previously selected item
-                    selectedPosition = position  // Update selected position
-                    notifyItemChanged(selectedPosition)  // Highlight the newly selected item
-                    onItemClick(items[position])  // Handle click event
+                    lastSelectedPosition = selectedPosition
+                    notifyItemChanged(selectedPosition) // Deselect old
+                    selectedPosition = position
+                    notifyItemChanged(selectedPosition) // Select new
+                    onItemClick(items[position]) // Handle click
                 }
             }
         }
@@ -47,18 +47,28 @@ class SubCategoriesAdapter(
         val item = items[position]
         holder.txtTitle.text = item.subcategory
 
-        // Change background or text color based on selected position
         if (position == selectedPosition) {
-            holder.linear.setBackgroundResource(R.drawable.round_edit_red)
-            holder.txtTitle.setTextColor(Color.BLACK)
+            // Selected style
+            holder.linear.setBackgroundResource(R.drawable.round_cat_select_blue)
+            holder.txtTitle.setTextColor(Color.WHITE)
+
+            // 👉 Animate based on direction
+            if (position > lastSelectedPosition) {
+                holder.linear.startAnimation(
+                    AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slide_in_right)
+                )
+            } else if (position < lastSelectedPosition) {
+                holder.linear.startAnimation(
+                    AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slide_in_left)
+                )
+            }
+
         } else {
-            holder.linear.setBackgroundResource(R.drawable.round_edit_gray_full_edge)
+            // Unselected style
+            holder.linear.setBackgroundResource(R.drawable.round_cat_unselect_blue)
             holder.txtTitle.setTextColor(Color.BLACK)
         }
-
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 }
