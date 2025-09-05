@@ -33,18 +33,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener   {
+class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
 
     val binding: ActivityDashBoardBinding by lazy {
         ActivityDashBoardBinding.inflate(layoutInflater)
     }
 
-    lateinit var navView: NavigationView
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var profilepic: ImageView
-    lateinit var profile_name: TextView
-
-    private lateinit var bottomNavigationView: SmoothBottomBar
     private lateinit var bottomBar: SmoothBottomBar
 
     //fragments
@@ -62,19 +56,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
 
         //login
         Preferences.saveStringValue(applicationContext, Preferences.LOGINCHECK, "Login")
-
-        //side menu
-        drawerLayout = binding.drawerLayout
-        navView = binding.navView
-
-        navView.setNavigationItemSelectedListener(this)
-        val headerView: View = binding.navView.getHeaderView(0)
-        profile_name = headerView.findViewById(R.id.text_profile)
-        profilepic = headerView.findViewById(R.id.imageView_home)
-
-        binding.imgMenu.setOnClickListener {
-            binding.drawerLayout.openDrawer(GravityCompat.START)
-        }
 
 
         bottomMenu()
@@ -155,7 +136,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
             .commit()
     }
 
-
     private fun getProfileApi() {
         val userId = Preferences.loadStringValue(this@DashBoardActivity , Preferences.userId, "")
         Log.e("userId_",userId.toString())
@@ -166,10 +146,10 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
                 if (response.isSuccessful) {
                     val rsp = response.body()
                     if (rsp != null) {
-                        profile_name.text = rsp.data?.name.toString()
-                        if (!rsp.data?.image.equals("")){
-                            Glide.with(profilepic).load(rsp.data?.image).into(profilepic)
-                        }
+                        binding.txtName.text = "Hello, "+ rsp.data?.name.toString()
+//                        if (!rsp.data?.image.equals("")){
+//                            Glide.with(profilepic).load(rsp.data?.image).into(profilepic)
+//                        }
                     }
                 }
             }
@@ -178,42 +158,7 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener, NavigationV
         })
     }
 
-    //side menu
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        item.isChecked = true
-        drawerLayout.closeDrawers()
-
-        val id = item.itemId
-
-        when (id) {
-            R.id.nav_company ->{
-                startActivity(Intent(this@DashBoardActivity, ConmanyInfoActivity::class.java))
-            }
-            
-            R.id.nav_contactUs ->{
-                startActivity(Intent(this@DashBoardActivity, ContactUsActivity::class.java))
-            }
-
-            R.id.nav_terms ->{
-                startActivity(Intent(this@DashBoardActivity, TermsAndConditionsActivity::class.java))
-            }
-
-            R.id.nav_aboutUs ->{
-                startActivity(Intent(this@DashBoardActivity, AboutUsActivity::class.java))
-            }
-
-            R.id.nav_PrivacyPolicy ->{
-                startActivity(Intent(this@DashBoardActivity, PrivacyPolicyActivity::class.java))
-            }
-        }
-        return true
-    }
-
-
     override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-        }
         exitDialog()
     }
 
