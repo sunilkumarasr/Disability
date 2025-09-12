@@ -120,9 +120,7 @@
             android:exported="false" />
         <activity
             android:name=".Activitys.DashBoardActivity"
-            android:exported="false"
-
-            />
+            android:exported="false"/>
         <activity
             android:name=".Logins.ForgotActivity"
             android:exported="false" />
@@ -138,8 +136,7 @@
         <activity
             android:name=".Activitys.SplashActivity"
             android:exported="true"
-            android:launchMode="singleTop"
-            >
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -153,6 +150,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -168,6 +166,7 @@
             android:name="com.onesignal.NotificationAccentColor.DEFAULT"
             android:value="@color/colorPrimary" />
 
+<!--        map-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCMpzC9h1qmCRgC6SYHVzKhn4vFHztXp-A" />

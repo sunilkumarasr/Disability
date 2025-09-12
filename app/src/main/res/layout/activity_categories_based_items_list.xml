@@ -13,129 +13,173 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include
-                layout="@layout/top_layout"/>
-
-            <androidx.core.widget.NestedScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@color/blue">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/back_ic"
+                    app:tint="@color/white"/>
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:layout_marginStart="10dp"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/teachers_semibold"
+                    android:textColor="@color/white"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgMapFilter"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/location"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbTint="@color/thumb_color_selector"
+                    app:trackTint="@color/track_color_selector" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/imgLocationChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:text="your location..."
+                    android:padding="10dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/blue"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_gravity="center"
+                    app:tint="@color/blue"
+                    android:src="@drawable/edit_ic"/>
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSearch"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:id="@+id/imgLocationChange"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/txtLocation"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="15dp"
-                            android:text="your location..."
-                            android:padding="15dp"
-                            android:textSize="16sp"
-                            android:textColor="@color/blue"/>
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_gravity="center"
-                            app:tint="@color/blue"
-                            android:src="@drawable/edit_ic"/>
-                    </LinearLayout>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardSearch"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/li"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="10dp">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:src="@drawable/search_ic"
-                                android:layout_marginStart="10dp"
-                                app:tint="@color/gray"
-                                android:layout_gravity="center_vertical"/>
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editSearch"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"
-                                android:hint="Search...."
-                                android:textSize="18sp"/>
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <com.denzcoskun.imageslider.ImageSlider
-                        android:id="@+id/imageSlider"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="10dp"
-                        app:iss_auto_cycle="true"
-                        app:iss_delay="2000"
-                        app:iss_indicator_align="BOTTOM"
-                        app:iss_period="2000"
-                        app:iss_text_color="@color/black"
-                        app:iss_title_background="@color/trance"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Crecyclerview"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/linearNoData"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/search_ic"
+                        android:layout_marginStart="10dp"
+                        app:tint="@color/gray"
+                        android:layout_gravity="center_vertical"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/editSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/no_data"/>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/teachers_medium"
-                            android:text="Empty!"
-                            android:textColor="#cdcdcd"
-                            android:textSize="18sp" />
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/teachers_regular"
-                            android:text="Add something to make me happy!"
-                            android:textColor="#cdcdcd"
-                            android:textSize="15sp" />
-                    </LinearLayout>
+                        android:background="@null"
+                        android:hint="Search...."
+                        android:textSize="18sp"/>
+
                 </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
+            </androidx.cardview.widget.CardView>
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="5dp"
+                app:iss_auto_cycle="true"
+                app:iss_delay="2000"
+                app:iss_indicator_align="BOTTOM"
+                app:iss_period="2000"
+                app:iss_text_color="@color/black"
+                app:iss_title_background="@color/trance"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Crecyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linearMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <fragment
+                    android:id="@+id/mapFragment"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linearNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/no_data"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/teachers_medium"
+                    android:text="Empty!"
+                    android:textColor="#cdcdcd"
+                    android:textSize="18sp" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/teachers_regular"
+                    android:text="Add something to make me happy!"
+                    android:textColor="#cdcdcd"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </LinearLayout>
 

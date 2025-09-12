@@ -47,7 +47,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
     private val saleFragment = SaleFragment()
     private val profileFragment = ProfileFragment()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -98,8 +97,6 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
 
         }
     }
-
-
 
     //bottom menu
     private fun bottomMenu() {

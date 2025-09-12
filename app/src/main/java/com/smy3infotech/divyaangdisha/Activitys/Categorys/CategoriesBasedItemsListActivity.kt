@@ -3,6 +3,8 @@ package com.smy3infotech.divyaangdisha.Activitys.Categorys
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -12,12 +14,23 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Categorys.SubCategoriesModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.PostBannersModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
@@ -34,7 +47,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoriesBasedItemsListActivity : AppCompatActivity() {
+class CategoriesBasedItemsListActivity : AppCompatActivity(), OnMapReadyCallback  {
 
     val binding: ActivityCategoriesBasedItemsListBinding by lazy {
         ActivityCategoriesBasedItemsListBinding.inflate(layoutInflater)
@@ -51,6 +64,13 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
     var longi: String = ""
     var location: String = ""
     var Km: String = ""
+
+    //map
+    var mapViewStatus: Boolean = false
+    private lateinit var mapFragment: SupportMapFragment
+    private var isMapReady = false
+    private lateinit var googleMap: GoogleMap
+
 
     //call
     companion object {
@@ -75,6 +95,9 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
 
+        mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
         if(!ViewController.noInterNetConnectivity(applicationContext)){
             ViewController.showToast(applicationContext, "Please check your connection ")
         }else{
@@ -93,7 +116,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
             lat = lati.toString()
             longi = longii.toString()
             Km = klm.toString()
-            subcategoriesApi()
+            subcategoriesApi("noraml")
         }
 
         binding.imgLocationChange.setOnClickListener {
@@ -111,6 +134,24 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+
+        binding.switchMap.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                mapViewStatus = true
+                if (categoriesList.isNotEmpty()) {
+                    binding.recyclerview.visibility = View.GONE
+                    binding.linearMap.visibility = View.VISIBLE
+                }
+            } else {
+                mapViewStatus = false
+                if (categoriesList.isNotEmpty()) {
+                    binding.linearMap.visibility = View.GONE
+                    binding.recyclerview.visibility = View.VISIBLE
+                }
+            }
+        }
+
+
     }
 
     private fun getProfileApi() {
@@ -127,7 +168,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
                         lat = rsp.data?.latitude.toString()
                         longi = rsp.data?.longitude.toString()
                         Km = rsp.data?.longitude.toString()
-                        subcategoriesApi()
+                        subcategoriesApi("noraml")
                     }
                 } else {
                     ViewController.showToast(this@CategoriesBasedItemsListActivity, "Error: ${response.code()}")
@@ -178,7 +219,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
         binding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
     }
 
-    private fun subcategoriesApi() {
+    private fun subcategoriesApi(viewType: String) {
         binding.linearNoData.visibility = View.GONE
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.subcategoriesApi(category_id).enqueue(object : retrofit2.Callback<List<SubCategoriesModel>> {
@@ -234,7 +275,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
 
     private fun categoriesBasedItemsApi(subId: String) {
         binding.linearNoData.visibility = View.GONE
-        binding.recyclerview.visibility = View.VISIBLE
+
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.categoriesBasedItemsApi(category_id, subId, lat, longi, Km).enqueue(object : retrofit2.Callback<List<SubCategoriesItemsModel>> {
             override fun onResponse(
@@ -252,16 +293,24 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
                             categoriesList.addAll(categories)
                             if (categoriesList.size > 0) {
                                 categoriesDataSet(categoriesList)
+                                if (mapViewStatus){
+                                    binding.linearMap.visibility = View.VISIBLE
+                                }else{
+                                    binding.recyclerview.visibility = View.VISIBLE
+                                }
                             } else {
                                 binding.recyclerview.visibility = View.GONE
+                                binding.linearMap.visibility = View.GONE
                                 binding.linearNoData.visibility = View.VISIBLE
                             }
                         } else {
                             binding.recyclerview.visibility = View.GONE
+                            binding.linearMap.visibility = View.GONE
                             binding.linearNoData.visibility = View.VISIBLE
                         }
                     } else {
                         binding.recyclerview.visibility = View.GONE
+                        binding.linearMap.visibility = View.GONE
                         binding.linearNoData.visibility = View.VISIBLE
                     }
                 } else {
@@ -272,6 +321,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
             override fun onFailure(call: retrofit2.Call<List<SubCategoriesItemsModel>>, t: Throwable) {
                 Log.e("cat_error", t.message.toString())
                 binding.recyclerview.visibility = View.GONE
+                binding.linearMap.visibility = View.GONE
                 binding.linearNoData.visibility = View.VISIBLE
             }
         })
@@ -296,6 +346,100 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
             }
         }
         binding.recyclerview.adapter = catAdapter
+
+        // map
+        googleMap.clear()
+        val boundsBuilder = LatLngBounds.Builder()
+        var hasValidLocation = false
+
+        val customIcon = getResizedBitmapDescriptor(R.drawable.marker_new_ic, 80, 80)
+
+        var firstValidMarker: Marker? = null
+
+        for (item in categories) {
+            val lat = item.latitude?.toDoubleOrNull()
+            val lng = item.longitude?.toDoubleOrNull()
+
+            if (lat != null && lng != null) {
+                val position = LatLng(lat, lng)
+
+                val markerOptions = MarkerOptions()
+                    .position(position)
+                    .title(item.title)         // 👈 Name (bold in popup)
+                    .snippet(item.address)     // 👈 Address (below name)
+                    .icon(customIcon)
+
+                val marker = googleMap.addMarker(markerOptions)
+
+                if (firstValidMarker == null) {
+                    firstValidMarker = marker
+                }
+
+                boundsBuilder.include(position)
+                hasValidLocation = true
+            }
+        }
+
+        // Fit camera to all markers
+        if (hasValidLocation) {
+            val bounds = boundsBuilder.build()
+            val padding = 150
+
+            mapFragment.view?.post {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
+
+                // Enforce minimum zoom
+                val minZoomLevel = 12f
+                if (googleMap.cameraPosition.zoom < minZoomLevel) {
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(minZoomLevel))
+                }
+
+                // 👇 Show popup on first marker
+                firstValidMarker?.showInfoWindow()
+
+            }
+        }
+
+        // Set custom info window adapter
+        googleMap.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+            override fun getInfoWindow(marker: Marker): View? = null
+
+            override fun getInfoContents(marker: Marker): View {
+                val view = layoutInflater.inflate(R.layout.custom_marker_popup, null)
+                val tvName = view.findViewById<TextView>(R.id.tvName)
+                val tvAddress = view.findViewById<TextView>(R.id.tvAddress)
+
+                tvName.text = marker.title ?: "No Name"
+                tvAddress.text = marker.snippet ?: "No Address"
+
+                return view
+            }
+        })
+
+
+    }
+
+    //map
+    private fun getResizedBitmapDescriptor(
+        @DrawableRes resId: Int,
+        width: Int,
+        height: Int
+    ): BitmapDescriptor {
+        val bitmap = BitmapFactory.decodeResource(resources, resId)
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, width, height, false)
+        return BitmapDescriptorFactory.fromBitmap(resizedBitmap)
+    }
+
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map
+
+        isMapReady = true
+
+        // If data already loaded, draw markers now
+        if (categoriesList.isNotEmpty()) {
+            categoriesDataSet(categoriesList)
+        }
+
     }
 
     //search
@@ -370,7 +514,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity() {
                 Km = Klm
                 binding.txtLocation.text = location
 
-                subcategoriesApi()
+                subcategoriesApi("noraml")
             }
         })
 
