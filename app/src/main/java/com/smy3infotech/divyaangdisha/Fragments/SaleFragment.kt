@@ -23,22 +23,18 @@ import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.FragmentSaleBinding
 
-
 class SaleFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentSaleBinding
 
-
     private lateinit var SaleAdapter: SaleAdapter
     private var saleList = ArrayList<ProductData>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSaleBinding.inflate(inflater, container, false)
-
 
         return binding.root
     }

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,26 +19,15 @@ class SubCategoriesItemsAdapter(
         val txtTitle: TextView = itemView.findViewById(R.id.txtTitle)
         val txtAbout: TextView = itemView.findViewById(R.id.txtAbout)
         val txtLocation: TextView = itemView.findViewById(R.id.txtLocation)
-        val txtMobile: TextView = itemView.findViewById(R.id.txtMobile)
-        val txtEmail: TextView = itemView.findViewById(R.id.txtEmail)
         val imgCertified: ImageView = itemView.findViewById(R.id.imgCertified)
         val imgVertified: ImageView = itemView.findViewById(R.id.imgVertified)
         val imgLogo: ImageView = itemView.findViewById(R.id.imgLogo)
-        val linearCall: LinearLayout = itemView.findViewById(R.id.linearCall)
-        val linearViewMore: LinearLayout = itemView.findViewById(R.id.linearViewMore)
 
         init {
-            linearCall.setOnClickListener {
+            itemView.setOnClickListener {
                 val animations = ViewController.animation()
-                linearCall.startAnimation(animations)
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClick(items[position], "call")
-                }
-            }
-            linearViewMore.setOnClickListener {
-                val animations = ViewController.animation()
-                linearViewMore.startAnimation(animations)
+                it.startAnimation(animations)
+
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClick(items[position], "view")
@@ -57,11 +45,13 @@ class SubCategoriesItemsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.txtTitle.text = item.title
-        holder.txtAbout.text = item.about
-        holder.txtLocation.text = item.location
-        holder.txtMobile.text = item.mobile
-        holder.txtEmail.text = item.mail
-        Glide.with(holder.imgLogo).load(item.image).into(holder.imgLogo)
+        holder.txtAbout.text = item.about+"cghgfgdghdghdghdddgdgjhdgghd hgd ghd gh dgh ddgj"
+        holder.txtLocation.text = item.address
+        Glide.with(holder.imgLogo)
+            .load(item.image)
+            .placeholder(R.drawable.vision_dummy)
+            .error(R.drawable.vision_dummy)
+            .into(holder.imgLogo)
 
         if (item.certified.equals("1")){
             holder.imgCertified.visibility = View.VISIBLE

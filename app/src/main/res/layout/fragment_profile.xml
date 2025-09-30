@@ -20,817 +20,613 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.google.android.material.card.MaterialCardView
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="@color/colorPrimaryLight"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
-                    app:strokeWidth="0dp">
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="15dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/dummy_profile"
+                        app:civ_border_color="@color/lightGray"
+                        app:civ_border_width="3dp" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="15dp">
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/profileImage"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/dummy_profile"
-                            app:civ_border_color="@color/colorPrimary"
-                            app:civ_border_width="3dp" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/txtName"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:fontFamily="@font/teachers_semibold"
+                            android:singleLine="true"
+                            android:text="K sunil"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
-                            <TextView
-                                android:id="@+id/txtName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/teachers_semibold"
-                                android:singleLine="true"
-                                android:text="K sunil"
-                                android:textColor="@color/black"
-                                android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/txtEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/teachers_medium"
+                            android:singleLine="true"
+                            android:text="sunil@gmail.com"
+                            android:textColor="@color/txtdes"
+                            android:textSize="16sp" />
 
-                            <TextView
-                                android:id="@+id/txtEmail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:singleLine="true"
-                                android:text="sunil@gmail.com"
-                                android:textColor="@color/txtdes"
-                                android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/txtMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/teachers_medium"
+                            android:text="+91 94410 85061"
+                            android:textColor="@color/txtdes"
+                            android:textSize="16sp" />
 
-                            <TextView
-                                android:id="@+id/txtMobile"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="+91 94410 85061"
-                                android:textColor="@color/txtdes"
-                                android:textSize="16sp" />
+                    </LinearLayout>
 
-                        </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgEdit"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:src="@drawable/edit_p_menu"
+                        app:tint="@color/colorPrimary"/>
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearProductListings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#faf5ff"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
                             android:layout_gravity="center"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginEnd="2dp"
-                            android:layout_marginBottom="2dp"
-                            app:cardBackgroundColor="@color/white"
-                            app:cardCornerRadius="25dp"
-                            app:cardElevation="1dp">
+                            android:src="@drawable/product_list_menu"
+                            app:tint="#980ffa" />
+                    </androidx.cardview.widget.CardView>
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/imgEdit"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/edit_p_menu" />
-                        </androidx.cardview.widget.CardView>
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/txtHeader1"/>
                     <TextView
-                        android:id="@+id/txtHeader1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="My Sale"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:fontFamily="@font/teachers_medium"
-                        android:text="Services"
-                        android:textColor="@color/gray"
-                        android:textSize="18sp" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/txtHeader1"/>
-                </RelativeLayout>
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
+                    android:id="@+id/linearPostListings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
-                    app:strokeWidth="0dp">
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#e8f6ed"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/post_list_menu"
+                            app:tint="#17a34a" />
+                    </androidx.cardview.widget.CardView>
 
-                        <LinearLayout
-                            android:id="@+id/linearProductListings"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/product_list_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="My Sale"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
-
-                        <LinearLayout
-                            android:id="@+id/linearPostListings"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/post_list_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="My Posts"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
-
-                        <LinearLayout
-                            android:id="@+id/linearJobalerts"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/job_alert_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Job Alerts"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/txtHeader2"/>
                     <TextView
-                        android:id="@+id/txtHeader2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="My Posts"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:fontFamily="@font/teachers_medium"
-                        android:text="Support"
-                        android:textColor="@color/gray"
-                        android:textSize="18sp" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/txtHeader2"/>
-                </RelativeLayout>
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
+                    android:id="@+id/linearJobalerts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
-                    app:strokeWidth="0dp">
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#e9f0fe"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/job_alert_menu"
+                            app:tint="#2562eb" />
+                    </androidx.cardview.widget.CardView>
 
-                        <LinearLayout
-                            android:id="@+id/linearAskQuestions"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ask_question_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Suggestions"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
-
-                        <LinearLayout
-                            android:id="@+id/linearHelpAndSupport"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/help_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Help and Support"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
-
-                        <LinearLayout
-                            android:id="@+id/linearContactUs"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/headphone_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Contact Us"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
-
-                        <LinearLayout
-                            android:id="@+id/linearUsefulLinks"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/useful_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Useful links"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/txtHeader3"/>
                     <TextView
-                        android:id="@+id/txtHeader3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Job Alerts"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:fontFamily="@font/teachers_medium"
-                        android:text="Others"
-                        android:textColor="@color/gray"
-                        android:textSize="18sp" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/txtHeader3"/>
-                </RelativeLayout>
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
+                    android:id="@+id/linearAskQuestions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="25dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
-                    app:strokeWidth="0dp">
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#fbf1e8"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ask_question_menu"
+                            app:tint="#d97706" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Suggestions"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/linearAboutUs"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical"
-                            android:visibility="visible">
+                <LinearLayout
+                    android:id="@+id/linearHelpAndSupport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#f1fdfa"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/help_menu"
+                            app:tint="#009689" />
+                    </androidx.cardview.widget.CardView>
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/about_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Help and Support"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="About Us"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearContactUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#e9f0fe"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/headphone_menu"
+                            app:tint="#2562eb" />
+                    </androidx.cardview.widget.CardView>
 
-                        <LinearLayout
-                            android:id="@+id/linearTermsandConditions"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical"
-                            android:visibility="visible">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Contact Us"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
+                <LinearLayout
+                    android:id="@+id/linearUsefulLinks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/post_list_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#faf5ff"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/useful_menu"
+                            app:tint="#980ffa" />
+                    </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Terms And Conditions"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Useful links"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
+                <LinearLayout
+                    android:id="@+id/linearAboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                        <LinearLayout
-                            android:id="@+id/linearPrivacyPolicy"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical"
-                            android:visibility="visible">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#e7f4f0"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/about_menu"
+                            app:tint="#069668" />
+                    </androidx.cardview.widget.CardView>
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="About Us"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/privacy_policy_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:id="@+id/linearTermsandConditions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Privacy Policy"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#f8fafc"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/post_list_menu"
+                            app:tint="#45556c" />
+                    </androidx.cardview.widget.CardView>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Terms And Conditions"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/linearFAQ"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
+                <LinearLayout
+                    android:id="@+id/linearPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#fff7ed"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/privacy_policy_menu"
+                            app:tint="#f54900" />
+                    </androidx.cardview.widget.CardView>
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/faq_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Privacy Policy"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="FAQ"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearFAQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.8dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@color/lightGray" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#eef3ff"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/faq_menu"
+                            app:tint="#4f3af6" />
+                    </androidx.cardview.widget.CardView>
 
-                        <LinearLayout
-                            android:id="@+id/linearLogout"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="5dp"
-                            android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="FAQ"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_marginStart="5dp"
-                                app:cardBackgroundColor="@color/colorPrimaryLight"
-                                app:cardCornerRadius="25dp">
+                <LinearLayout
+                    android:id="@+id/linearLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/logout_menu"
-                                    app:tint="@color/colorPrimary" />
-                            </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#e8f6ed"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/logout_menu"
+                            app:tint="#17a34a" />
+                    </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:fontFamily="@font/teachers_medium"
-                                android:text="Logout"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/right_arrow_ic"
-                                app:tint="@color/colorPrimary" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="Logout"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
 
             </LinearLayout>
-
 
         </ScrollView>
 

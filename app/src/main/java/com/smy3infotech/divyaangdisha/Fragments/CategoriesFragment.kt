@@ -97,6 +97,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
             startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
                 putExtra("category_id",item.category_id)
                 putExtra("category_Name",item.category)
+                putExtra("sub_id","")
             })
         }
     }

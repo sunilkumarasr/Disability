@@ -30,12 +30,9 @@ import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
 import com.smy3infotech.divyaangdisha.databinding.FragmentHomeBinding
 import kotlin.math.abs
 
-
 class HomeFragment : Fragment() {
 
-
     private lateinit var binding: FragmentHomeBinding
-
 
     //banners
     private lateinit var handler : Handler
@@ -184,18 +181,18 @@ class HomeFragment : Fragment() {
     }
     private fun DataSet(categories: List<CategoriesModel>) {
 
-        val layoutManager = GridLayoutManager(activity, 3)
+        val layoutManager = GridLayoutManager(activity, 1)
         binding.recyclerview.layoutManager = layoutManager
         binding.recyclerview.adapter = HomeCategoriesAdapter(categories) { item ->
             // Handle item click
             //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
-                putExtra("category_id",item.category_id)
-                putExtra("category_Name",item.category)
-            })
+//            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
+//                putExtra("category_id",item.category_id)
+//                putExtra("category_Name",item.category)
+//            })
         }
-    }
 
+    }
 
     private fun jobAlertApi() {
             val apiInterface = RetrofitClient.apiInterface

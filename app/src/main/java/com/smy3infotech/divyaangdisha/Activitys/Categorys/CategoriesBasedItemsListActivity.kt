@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -85,6 +86,7 @@ class CategoriesBasedItemsListActivity : AppCompatActivity(), OnMapReadyCallback
 
         category_id= intent.getStringExtra("category_id").toString()
         category_Name= intent.getStringExtra("category_Name").toString()
+        sub_id= intent.getStringExtra("sub_id").toString()
 
         inits()
 
@@ -254,24 +256,58 @@ class CategoriesBasedItemsListActivity : AppCompatActivity(), OnMapReadyCallback
         })
 
     }
-    private fun subcategoriesdataList(categoriesl: List<SubCategoriesModel>) {
 
-        // Initialize RecyclerView
-        binding.Crecyclerview.layoutManager = LinearLayoutManager(this@CategoriesBasedItemsListActivity, LinearLayoutManager.HORIZONTAL, false)
-        binding.Crecyclerview.adapter = SubCategoriesAdapter(categoriesl) { item ->
-            //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
+    private fun subcategoriesdataList(categoriesl: List<SubCategoriesModel>) {
+        val layoutManager = LinearLayoutManager(this@CategoriesBasedItemsListActivity, LinearLayoutManager.HORIZONTAL, false)
+        binding.Crecyclerview.layoutManager = layoutManager
+
+        val adapter = SubCategoriesAdapter(categoriesl, sub_id) { item ->
             sub_id = item.id
             categoriesBasedItemsApi(item.id)
+            scrollToCenter(binding.Crecyclerview, categoriesl.indexOfFirst { it.id == item.id })
         }
 
-        //auto run for first item
-        if (categoriesl.isNotEmpty()) {
-            val firstSubcategory = categoriesl[0]
-            sub_id = firstSubcategory.id
-            categoriesBasedItemsApi(firstSubcategory.id)// Auto run for the first subcategory
-        }
+        binding.Crecyclerview.adapter = adapter
 
+        // ✅ Auto-select and call API for sub_id or first item
+        val selectedIndex = categoriesl.indexOfFirst { it.id == sub_id }
+            .takeIf { it != -1 } ?: 0
+
+        sub_id = categoriesl[selectedIndex].id
+        categoriesBasedItemsApi(sub_id)
+
+        // ✅ Scroll to center
+        binding.Crecyclerview.post {
+            scrollToCenter(binding.Crecyclerview, selectedIndex)
+        }
     }
+    private fun scrollToCenter(recyclerView: RecyclerView, position: Int) {
+        val layoutManager = recyclerView.layoutManager as? LinearLayoutManager ?: return
+        val view = layoutManager.findViewByPosition(position)
+
+        if (view != null) {
+            val parentCenter = recyclerView.width / 2
+            val childCenter = view.left + view.width / 2
+            val scrollNeeded = childCenter - parentCenter
+            recyclerView.smoothScrollBy(scrollNeeded, 0)
+        } else {
+
+            // View is not laid out yet, scroll with offset
+            recyclerView.scrollToPosition(position)
+            recyclerView.post {
+                val v = layoutManager.findViewByPosition(position)
+                v?.let {
+                    val parentCenter = recyclerView.width / 2
+                    val childCenter = it.left + it.width / 2
+                    val scrollNeeded = childCenter - parentCenter
+                    recyclerView.smoothScrollBy(scrollNeeded, 0)
+                }
+            }
+
+        }
+    }
+
+
 
     private fun categoriesBasedItemsApi(subId: String) {
         binding.linearNoData.visibility = View.GONE

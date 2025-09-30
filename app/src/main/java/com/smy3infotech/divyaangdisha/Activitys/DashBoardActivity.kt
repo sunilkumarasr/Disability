@@ -4,20 +4,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
 import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -62,6 +53,7 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
 
         binding.imgNotification.setOnClickListener(this)
         binding.imgWhatsapp.setOnClickListener(this)
+        binding.imgChat.setOnClickListener(this)
 
         val intent=getIntent().getStringExtra("isNotification")
         if(intent=="1")
@@ -95,6 +87,13 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
                 startActivity(browserIntent)
             }
 
+            R.id.imgChat -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
+
+                startActivity(Intent(this@DashBoardActivity, ChatListActivity::class.java))
+            }
+
         }
     }
 
@@ -114,11 +113,11 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
                     replaceFragment(categoriesFragment)
                     true
                 }
-//                2 -> {
-//                    replaceFragment(saleFragment)
-//                    true
-//                }
                 2 -> {
+                    replaceFragment(saleFragment)
+                    true
+                }
+                3 -> {
                     replaceFragment(profileFragment)
                     true
                 }

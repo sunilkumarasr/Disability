@@ -37,7 +37,7 @@
                         android:text="Divyaangadisha"
                         android:textColor="@color/gray"
                         android:singleLine="true"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
                     <TextView
                         android:id="@+id/txtWish"
                         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
                         android:fontFamily="@font/teachers_medium"
                         android:text="Good Morning"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -54,34 +54,47 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|end"
                     android:orientation="horizontal">
+
                     <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="5dp"
                         android:gravity="center"
                         android:background="@drawable/round_circle_white">
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgNotification"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:src="@drawable/notifications_ic"
                             app:tint="@color/black" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="5dp"
                         android:gravity="center"
                         android:background="@drawable/round_circle_white">
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgWhatsapp"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:src="@drawable/whatsapp_ic"
                             app:tint="@color/black" />
                     </LinearLayout>
 
-
+                    <LinearLayout
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:background="@drawable/round_circle_white">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgChat"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/chat_ic"
+                            app:tint="@color/black" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
@@ -100,29 +113,28 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardBottom"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="35dp"
             app:cardElevation="8dp">
-
             <me.ibrahimsn.lib.SmoothBottomBar
                 android:id="@+id/bottomBar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:backgroundColor="@color/colorPrimary"
-                app:iconSize="20dp"
+                app:iconSize="14dp"
                 app:indicatorColor="@color/colorIndicator"
                 app:itemIconTint="@color/bottom_bg"
                 app:itemTextColor="@color/bottom_bg"
                 app:menu="@menu/menu_bottom"
-                app:textSize="11sp" />
+                app:textSize="8sp" />
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>

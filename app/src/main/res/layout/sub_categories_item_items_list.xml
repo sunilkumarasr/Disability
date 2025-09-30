@@ -7,7 +7,7 @@
     android:layout_marginBottom="5dp"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -18,13 +18,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgLogo"
-                android:layout_width="150dp"
-                android:layout_height="140dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:src="@drawable/dummy_profile"
                 android:scaleType="fitXY"/>
 
@@ -32,17 +31,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/txtTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:layout_marginStart="2dp"
-                    android:text="tetle"
-                    android:textSize="15sp"
-                    android:maxLines="2"
+                    android:text="@string/dummyTitle"
+                    android:textSize="16sp"
+                    android:maxLines="1"
                     android:fontFamily="@font/teachers_medium"/>
 
                 <TextView
@@ -50,197 +48,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_marginStart="2dp"
-                    android:text="Lorem Ipsum dolor sit amit consectetur rises"
-                    android:textSize="12sp"
-                    android:maxLines="1"
+                    android:text="@string/dummyNote"
+                    android:textSize="13sp"
+                    android:maxLines="2"
                     android:fontFamily="@font/teachers_regular"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:visibility="gone"
-                        android:id="@+id/imgCertified"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/cat_lable"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:visibility="gone"
-                        android:id="@+id/imgVertified"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/cat_lable2"/>
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginBottom="2dp"
-                        app:cardElevation="2dp"
-                        app:cardCornerRadius="30dp"
-                        app:cardBackgroundColor="@color/colorStart">
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="17sp"
-                            android:layout_height="17sp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/gps"
-                            app:tint="@color/white"/>
-                    </androidx.cardview.widget.CardView>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="15dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/marker_ic"
+                        app:tint="@color/hintcolor"/>
                     <TextView
                         android:id="@+id/txtLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
                         android:text="Banjara Hills, Hyderabad"
-                        android:singleLine="true"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/teachers_regular"/>
+                        android:fontFamily="@font/teachers_regular"
+                        android:textSize="12sp"
+                        android:textColor="@color/hintcolor"
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:orientation="horizontal">
-                    <androidx.cardview.widget.CardView
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:visibility="gone"
+                        android:id="@+id/imgCertified"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginBottom="2dp"
-                        app:cardElevation="2dp"
-                        app:cardCornerRadius="30dp"
-                        app:cardBackgroundColor="@color/colorStart">
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="17sp"
-                            android:layout_height="17sp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/phone_round"
-                            app:tint="@color/white"/>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/txtMobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="+91 98765 43210"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/teachers_regular"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <androidx.cardview.widget.CardView
+                        android:src="@drawable/cat_lable"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:visibility="gone"
+                        android:id="@+id/imgVertified"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginBottom="2dp"
-                        app:cardElevation="2dp"
-                        app:cardCornerRadius="30dp"
-                        app:cardBackgroundColor="@color/colorStart">
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="17sp"
-                            android:layout_height="17sp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/email_round"
-                            app:tint="@color/white"/>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/txtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="*****@gmail.com"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/teachers_regular"/>
-
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/cat_lable2"/>
                 </LinearLayout>
-
 
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:id="@+id/linearCall"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="10dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="@drawable/round_full_red">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="17sp"
-                    android:layout_height="17sp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/call_ic"
-                    app:tint="@color/white"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="Call Now"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="13sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/teachers_medium"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearViewMore"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center"
-                android:background="@drawable/round_delete_edit_red">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="17sp"
-                    android:layout_height="17sp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/eye_ic"
-                    app:tint="@color/colorPrimary"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="View More"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="13sp"
-                    android:textColor="@color/colorPrimary"
-                    android:fontFamily="@font/teachers_medium"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
     </LinearLayout>
 
 
