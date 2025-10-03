@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ContactUsResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.SocialMediaModel
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -39,7 +40,7 @@ class ContactUsActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Contact Us"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@ContactUsActivity.getString(R.string.ContactUs)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){

@@ -100,7 +100,7 @@ class ProductDetaisActivity : AppCompatActivity() {
         binding.txtTitle.text = productDetails.data?.product?.product ?: ""
         binding.txtBrand.text = productDetails.data?.product?.brand ?: ""
         binding.txtColor.text = productDetails.data?.product?.color ?: ""
-        binding.txtPhone.text = "Phone Number: "+ productDetails.data?.product?.phone
+        binding.txtPhone.text = this@ProductDetaisActivity.getString(R.string.PhoneNumber_)+ productDetails.data?.product?.phone
         binding.txtOfferPrice.text = "₹ "+productDetails.data?.product?.offer_price
         binding.txtDec.text = productDetails.data?.product?.description ?: ""
         binding.txtAddress.text = productDetails.data?.product?.address ?: ""

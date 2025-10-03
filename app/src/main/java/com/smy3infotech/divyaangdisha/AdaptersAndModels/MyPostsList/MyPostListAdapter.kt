@@ -85,7 +85,11 @@ class MyPostListAdapter(
         }
 
         holder.txtTitle.text = item.title
-        Glide.with(holder.imgLogo).load(item.image).error(R.drawable.vision_dummy).into(holder.imgLogo)
+        Glide.with(holder.imgLogo)
+            .load(item.image)
+            .placeholder(R.drawable.vision_dummy)
+            .error(R.drawable.vision_dummy)
+            .into(holder.imgLogo)
 
     }
 

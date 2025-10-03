@@ -123,7 +123,7 @@ class AddPostActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Add Post"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@AddPostActivity.getString(R.string.AddPost)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { exitDialog() }
 
         categoriesApi()

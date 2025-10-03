@@ -50,8 +50,8 @@ class SaleAdapter(
 
         Glide.with(holder.imgLogo)
             .load(RetrofitClient.Image_Path + firstImageUrl)
-            .placeholder(R.drawable.close_ic)
-            .error(R.drawable.close_ic)
+            .placeholder(R.drawable.vision_dummy)
+            .error(R.drawable.vision_dummy)
             .into(holder.imgLogo)
 
         holder.txtTitle.text = item.product.product

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.Categorys.AddPostActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.JobAlerts.JobAlertHomeAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.JobAlerts.JobAlertModel
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -31,7 +32,7 @@ class JobAlertsActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Job Alerts"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@JobAlertsActivity.getString(R.string.JobAlerts)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(this@JobAlertsActivity)){

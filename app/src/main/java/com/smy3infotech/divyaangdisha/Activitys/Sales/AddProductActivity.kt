@@ -105,7 +105,7 @@ class AddProductActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Add Product"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@AddProductActivity.getString(R.string.AddProduct)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { exitDialog() }
 
         binding.addMoreImages.setOnClickListener {

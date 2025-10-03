@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Product Name"
+                        android:hint="@string/ProductName"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Actual Price"
+                        android:hint="@string/ActualPrice"
                         android:inputType="number"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -77,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Offer Price"
+                        android:hint="@string/OfferPrice"
                         android:inputType="number"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Phone Number"
+                        android:hint="@string/PhoneNumber"
                         android:inputType="phone"
                         android:singleLine="true"
                         android:maxLength="10"
@@ -119,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Colour"
+                        android:hint="@string/Colour"
                         android:singleLine="true"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Brand"
+                        android:hint="@string/Brand"
                         android:singleLine="true"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -160,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="18sp"
-                        android:hint="Address"
+                        android:hint="@string/Address"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -181,7 +181,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="15sp"
-                        android:hint="Features"
+                        android:hint="@string/Features"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -202,7 +202,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="15sp"
-                        android:hint="Description"
+                        android:hint="@string/description"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -212,7 +212,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Max 200 characters allowed"
+                    android:text="@string/MaxCharactersAllowed"
                     android:layout_marginTop="3dp"
                     android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/teachers_medium"
@@ -241,7 +241,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Multiple images"
+                            android:text="@string/MultipleImages"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
                             android:textSize="18sp"
@@ -256,11 +256,10 @@
                         android:layout_marginEnd="15dp"
                         android:singleLine="true"
                         android:gravity="end"
-                        android:text="Upload Image.jpg"
+                        android:text="@string/UploadImage"
                         android:fontFamily="@font/teachers_regular"
                         android:textColor="@color/text"
-                        android:textSize="18sp"
-                        android:layout_centerVertical="true"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -330,7 +329,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Submit"
+                        android:text="@string/Submit"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
                         android:textSize="20sp"

@@ -32,6 +32,7 @@ class HomeBannersAdapter(
 
         Glide.with(holder.imageView.context)
             .load(item.image)
+            .placeholder(R.drawable.vision_dummy)
             .error(R.drawable.vision_dummy)
             .into(holder.imageView)
 

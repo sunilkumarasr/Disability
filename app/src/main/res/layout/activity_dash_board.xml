@@ -34,7 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/teachers_regular"
-                        android:text="Divyaangadisha"
+                        android:text="@string/app_name"
                         android:textColor="@color/gray"
                         android:singleLine="true"
                         android:textSize="15sp" />
@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Good Morning"
+                        android:text="@string/GoodMorning"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -59,42 +59,47 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginEnd="5dp"
-                        android:gravity="center"
-                        android:background="@drawable/round_circle_white">
+                        android:gravity="center">
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgNotification"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/notifications_ic"
-                            app:tint="@color/black" />
+                            app:tint="@color/colorPrimary" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginEnd="5dp"
-                        android:gravity="center"
-                        android:background="@drawable/round_circle_white">
+                        android:gravity="center">
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgWhatsapp"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/whatsapp_ic"
-                            app:tint="@color/black" />
+                            app:tint="@color/colorPrimary" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
-                        android:background="@drawable/round_circle_white">
+                        android:layout_height="35dp">
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/round_circle_green"/>
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgChat"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
                             android:src="@drawable/chat_ic"
-                            app:tint="@color/black" />
-                    </LinearLayout>
+                            app:tint="@color/colorPrimary" />
+                    </RelativeLayout>
 
                 </LinearLayout>
             </LinearLayout>
@@ -106,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/relativeTop"
-            android:layout_marginBottom="70dp"
+            android:layout_above="@+id/cardBottom"
             android:background="@color/white" />
 
         <!-- Bottom Smooth Bar -->
@@ -115,12 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp"
             app:cardBackgroundColor="@color/colorPrimary"
-            app:cardCornerRadius="35dp"
             app:cardElevation="8dp">
             <me.ibrahimsn.lib.SmoothBottomBar
                 android:id="@+id/bottomBar"
@@ -129,12 +129,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:backgroundColor="@color/colorPrimary"
-                app:iconSize="14dp"
+                app:iconSize="18dp"
                 app:indicatorColor="@color/colorIndicator"
                 app:itemIconTint="@color/bottom_bg"
                 app:itemTextColor="@color/bottom_bg"
                 app:menu="@menu/menu_bottom"
-                app:textSize="8sp" />
+                app:textSize="10sp" />
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>

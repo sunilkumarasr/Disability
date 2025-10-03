@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Notifications.NotificationAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Notifications.NotificationModel
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -33,7 +34,7 @@ var isNotification=""
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Notifications"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@NotificationActivity.getString(R.string.Notifications)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener {
             if(isNotification.equals("1")){
                 startActivity(Intent(applicationContext,DashBoardActivity::class.java))

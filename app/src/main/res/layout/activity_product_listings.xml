@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No data found"
+            android:text="@string/NoDataFound"
             android:textColor="@color/blue"
             android:textSize="25sp"
             android:fontFamily="@font/teachers_semibold"
@@ -50,8 +50,6 @@
             android:layout_marginStart="20sp"
             android:layout_marginTop="20sp"
             app:cardElevation="8dp"
-            android:outlineAmbientShadowColor="@color/black"
-            android:outlineSpotShadowColor="@color/black"
             android:shadowColor="@color/black">
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="35dp"

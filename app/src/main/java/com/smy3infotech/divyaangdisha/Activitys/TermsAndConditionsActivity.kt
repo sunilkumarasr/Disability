@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.TermsConditionsResponse
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
@@ -32,7 +33,7 @@ class TermsAndConditionsActivity : AppCompatActivity() {
 
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Terms And Conditions"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@TermsAndConditionsActivity.getString(R.string.TermsAndConditions)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
 

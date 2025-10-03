@@ -59,6 +59,7 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
 
         binding.imgEdit.setOnClickListener(this)
         binding.linearJobalerts.setOnClickListener(this)
+        binding.linearLanguage.setOnClickListener(this)
         binding.linearAboutUs.setOnClickListener(this)
         binding.linearContactUs.setOnClickListener(this)
         binding.linearAskQuestions.setOnClickListener(this)
@@ -116,6 +117,12 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
                 val animations = ViewController.animation()
                 v.startAnimation(animations)
                 startActivity(Intent(activity, JobAlertsActivity::class.java))
+            }
+
+            R.id.linearLanguage -> {
+                val animations = ViewController.animation()
+                v.startAnimation(animations)
+
             }
 
             R.id.linearAboutUs -> {

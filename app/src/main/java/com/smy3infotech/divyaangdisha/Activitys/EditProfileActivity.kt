@@ -28,6 +28,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Citys.CitysModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.State.StateModel
@@ -124,7 +125,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Edit Profile"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@EditProfileActivity.getString(R.string.EditProfile)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){

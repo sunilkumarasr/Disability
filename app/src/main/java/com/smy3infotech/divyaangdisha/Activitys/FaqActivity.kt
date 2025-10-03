@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Faq.FaqAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.Faq.FaqModel
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -30,7 +31,7 @@ class FaqActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "FAQ"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text =  this@FaqActivity.getString(R.string.FAQ)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
 

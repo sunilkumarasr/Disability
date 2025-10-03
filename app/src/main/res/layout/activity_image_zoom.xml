@@ -21,7 +21,6 @@
             android:src="@drawable/vision_dummy"
             android:scaleType="fitCenter"/>
 
-
     </LinearLayout>
 
 </layout>

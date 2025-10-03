@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
+import com.smy3infotech.divyaangdisha.Activitys.Sales.AddProductActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AddProductResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.DeleteProductImageModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.EditProductImagesListAdapter
@@ -57,7 +58,7 @@ class EditProductActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Edit Product"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@EditProductActivity.getString(R.string.EditProduct)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){

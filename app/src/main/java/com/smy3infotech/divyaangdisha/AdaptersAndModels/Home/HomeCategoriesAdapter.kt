@@ -33,6 +33,7 @@ class HomeCategoriesAdapter(
         val imgArrow: ImageView = itemView.findViewById(R.id.imgArrow)
         val imgLogo: ImageView = itemView.findViewById(R.id.imgLogo)
         val txtTitle: TextView = itemView.findViewById(R.id.txtTitle)
+        val txtSubCount: TextView = itemView.findViewById(R.id.txtSubCount)
         val recyclerview: RecyclerView = itemView.findViewById(R.id.recyclerview)
 
         init {
@@ -56,10 +57,14 @@ class HomeCategoriesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val item = items[position]
 
-        Glide.with(holder.imgLogo).load(item.category_image).into(holder.imgLogo)
+        Glide.with(holder.imgLogo)
+            .load(item.category_image)
+            .placeholder(R.drawable.vision_dummy)
+            .error(R.drawable.vision_dummy)
+            .into(holder.imgLogo)
+
         holder.txtTitle.text = item.category
 
-        // 🎨 Pastel background color
         val colors = listOf(
             android.graphics.Color.parseColor("#ffe6e6"),
             android.graphics.Color.parseColor("#ebfaeb"),
@@ -75,28 +80,25 @@ class HomeCategoriesAdapter(
         }
         holder.linearImageBg.background = drawable
 
-        // ✅ Expand/collapse logic
         val isExpanded = position == expandedPosition
         holder.recyclerview.visibility = if (isExpanded) View.VISIBLE else View.GONE
-
-        // ✅ Rotate arrow (animated)
         holder.imgArrow.animate().rotation(if (isExpanded) 90f else 0f).setDuration(200).start()
 
-        // ✅ Only fetch subcategories if expanded
         if (isExpanded) {
             subcategoriesApi(item.category_id, item.category, holder)
         }
 
-        // ✅ Handle click
+
+        // ✅ Always call API to get count, not just on expand
+        countsubcategoriesApi(item.category_id, holder)
+
         holder.linearClick.setOnClickListener {
             val animations = ViewController.animation()
             it.startAnimation(animations)
 
             if (isExpanded) {
-                // Collapse
                 expandedPosition = RecyclerView.NO_POSITION
             } else {
-                // Expand new, collapse previous
                 val previousPosition = expandedPosition
                 expandedPosition = position
                 notifyItemChanged(previousPosition)
@@ -107,6 +109,31 @@ class HomeCategoriesAdapter(
     }
 
 
+    private fun countsubcategoriesApi(catId: String, holder: ViewHolder) {
+        val apiInterface = RetrofitClient.apiInterface
+        apiInterface.subcategoriesApi(catId)
+            .enqueue(object : retrofit2.Callback<List<SubCategoriesModel>> {
+                override fun onResponse(
+                    call: retrofit2.Call<List<SubCategoriesModel>>,
+                    response: retrofit2.Response<List<SubCategoriesModel>>
+                ) {
+                    if (response.isSuccessful) {
+                        val categories = response.body()
+                        if (!categories.isNullOrEmpty()) {
+                            holder.txtSubCount.text = categories.size.toString() + " " +holder.itemView.context.getString(R.string.Conditions)
+                        }
+                    }
+                }
+
+                override fun onFailure(
+                    call: retrofit2.Call<List<SubCategoriesModel>>,
+                    t: Throwable
+                ) {
+                    Log.e("subcategories_error", t.message.toString())
+                }
+            })
+    }
+
     private fun subcategoriesApi(catId: String, catName: String, holder: ViewHolder) {
         val apiInterface = RetrofitClient.apiInterface
         apiInterface.subcategoriesApi(catId)
@@ -116,6 +143,7 @@ class HomeCategoriesAdapter(
                     response: retrofit2.Response<List<SubCategoriesModel>>
                 ) {
                     if (response.isSuccessful) {
+
                         val categories = response.body()
                         if (!categories.isNullOrEmpty()) {
                             val layoutManager = GridLayoutManager(holder.itemView.context, 1)
@@ -133,9 +161,12 @@ class HomeCategoriesAdapter(
                                 context.startActivity(intent)
                             }
                         }
+                        else {
+                            // ❌ Do not bind adapter if not expanded
+                            holder.recyclerview.adapter = null
+                        }
                     }
                 }
-
 
                 override fun onFailure(
                     call: retrofit2.Call<List<SubCategoriesModel>>,

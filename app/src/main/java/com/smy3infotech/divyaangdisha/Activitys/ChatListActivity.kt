@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.databinding.ActivityChatBinding
@@ -31,7 +32,7 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Chat"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@ChatListActivity.getString(R.string.ChatList)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener {
             finish()
         }

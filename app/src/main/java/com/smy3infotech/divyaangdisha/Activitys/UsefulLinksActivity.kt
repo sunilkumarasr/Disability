@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.UseFullLinks.UseFullLinksAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.UseFullLinks.UseFullLinksModel
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -33,7 +34,7 @@ class UsefulLinksActivity : AppCompatActivity() {
 
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Useful Links"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@UsefulLinksActivity.getString(R.string.UsefulLinks)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if (!ViewController.noInterNetConnectivity(this@UsefulLinksActivity)) {

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.HelpAndSupport.HelpAndSupportRequest
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.HelpAndSupport.HelpAndSupportResponse
 import com.smy3infotech.divyaangdisha.Config.Preferences
@@ -34,7 +35,7 @@ class HelpAndSupportActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Help And Support"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text =  this@HelpAndSupportActivity.getString(R.string.HelpAndSupport)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         val nameN = Preferences.loadStringValue(this@HelpAndSupportActivity, Preferences.name, "")

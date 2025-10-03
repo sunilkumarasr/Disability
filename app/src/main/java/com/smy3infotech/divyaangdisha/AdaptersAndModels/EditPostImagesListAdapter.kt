@@ -29,7 +29,11 @@ class EditPostImagesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        Glide.with(holder.imgLogo).load(RetrofitClient.Image_Path+item.additionalImage.toString()).into(holder.imgLogo)
+        Glide.with(holder.imgLogo)
+            .load(RetrofitClient.Image_Path+item.additionalImage.toString())
+            .placeholder(R.drawable.vision_dummy)
+            .error(R.drawable.vision_dummy)
+            .into(holder.imgLogo)
 
 //        holder.imgDelete.setOnClickListener {
 //            items.removeAt(position)

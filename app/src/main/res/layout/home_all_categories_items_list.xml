@@ -47,10 +47,11 @@
                 android:textColor="@color/black"
                 android:maxLines="2"/>
             <TextView
-                android:id="@+id/txtsubCount"
+                android:visibility="gone"
+                android:id="@+id/txtSubCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dummyTitle"
+                android:text="@string/dummyConditions"
                 android:fontFamily="@font/teachers_medium"
                 android:textSize="12sp"/>
         </LinearLayout>

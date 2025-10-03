@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.smy3infotech.divyaangdisha.Activitys.Categorys.AddPostActivity
 import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AddPostResponse
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.CatListAdapter
@@ -131,7 +132,7 @@ class EditPostActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Edit Post"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@EditPostActivity.getString(R.string.EditPost)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){

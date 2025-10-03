@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AskListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AskListModel
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AskQuestionsModel
@@ -43,7 +44,7 @@ class AskQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Ask Questions"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@AskQuestionsActivity.getString(R.string.AskQuestions)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
 

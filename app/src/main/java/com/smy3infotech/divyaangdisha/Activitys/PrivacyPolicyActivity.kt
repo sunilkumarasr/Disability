@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.PrivacyPolicyResponse
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
@@ -32,7 +33,7 @@ class PrivacyPolicyActivity : AppCompatActivity() {
 
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Privacy Policy"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@PrivacyPolicyActivity.getString(R.string.PrivacyPolicy)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
 

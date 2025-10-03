@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
 import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
@@ -142,7 +143,7 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
                 if (response.isSuccessful) {
                     val rsp = response.body()
                     if (rsp != null) {
-                        binding.txtName.text = "Hello, "+ rsp.data?.name.toString()
+                        binding.txtName.text = this@DashBoardActivity.getString(R.string.Hello) + rsp.data?.name.toString()
 //                        if (!rsp.data?.image.equals("")){
 //                            Glide.with(profilepic).load(rsp.data?.image).into(profilepic)
 //                        }
@@ -160,15 +161,15 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
 
     private fun exitDialog(){
         val dialogBuilder = AlertDialog.Builder(this@DashBoardActivity)
-        dialogBuilder.setTitle("Exit")
-        dialogBuilder.setMessage("Are you sure want to exit this app?")
-        dialogBuilder.setPositiveButton("OK", { dialog, whichButton ->
+        dialogBuilder.setTitle(this@DashBoardActivity.getString(R.string.Exit))
+        dialogBuilder.setMessage(this@DashBoardActivity.getString(R.string.ExitNote))
+        dialogBuilder.setPositiveButton(this@DashBoardActivity.getString(R.string.OK)) { dialog, whichButton ->
             finishAffinity()
             dialog.dismiss()
-        })
-        dialogBuilder.setNegativeButton("Cancel", { dialog, whichButton ->
+        }
+        dialogBuilder.setNegativeButton(this@DashBoardActivity.getString(R.string.Cancel)) { dialog, whichButton ->
             dialog.dismiss()
-        })
+        }
         val b = dialogBuilder.create()
         b.show()
     }

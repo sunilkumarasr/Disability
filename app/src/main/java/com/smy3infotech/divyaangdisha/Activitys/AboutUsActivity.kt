@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.AboutusResponse
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
@@ -32,7 +33,7 @@ class AboutUsActivity : AppCompatActivity() {
 
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "About us"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@AboutUsActivity.getString(R.string.AboutUs)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(applicationContext)){

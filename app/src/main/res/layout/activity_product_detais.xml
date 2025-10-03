@@ -60,7 +60,7 @@
                             android:id="@+id/txtTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Premium Clay Style Wheelchair"
+                            android:text="@string/dummyTitle"
                             android:textSize="18sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/teachers_medium"/>
@@ -79,7 +79,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Brand:"
+                                    android:text="@string/Brand."
                                     android:textSize="17sp"
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/teachers_medium"/>
@@ -88,7 +88,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="AGeasy"
+                                    android:text="@string/dummyTitle"
                                     android:textSize="16sp"
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/teachers_medium"/>
@@ -102,7 +102,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Colour:"
+                                    android:text="@string/Color."
                                     android:textSize="17sp"
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/teachers_medium"/>
@@ -111,7 +111,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Silver"
+                                    android:text="@string/dummyTitle"
                                     android:textSize="16sp"
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/teachers_medium"/>
@@ -237,7 +237,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Offer Price"
+                        android:text="@string/OfferPrice"
                         android:textSize="17sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/teachers_medium"/>
@@ -247,7 +247,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Price : ₹ 0000"
+                        android:text="₹ 0000"
                         android:textSize="17sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/teachers_medium"/>
@@ -261,7 +261,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Actual Price"
+                        android:text="@string/ActualPrice"
                         android:textSize="16sp"
                         android:textColor="@color/gray"
                         android:fontFamily="@font/teachers_medium"/>
@@ -270,7 +270,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="₹3570"
+                        android:text="₹000"
                         android:textSize="16sp"
                         android:textColor="@color/gray"
                         android:fontFamily="@font/teachers_medium"/>
@@ -296,7 +296,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Description:"
+                            android:text="@string/description"
                             android:textSize="17sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/teachers_medium"/>
@@ -329,7 +329,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Address:"
+                            android:text="@string/Address"
                             android:textSize="17sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/teachers_medium"/>
@@ -344,7 +344,6 @@
                             android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEnquiry"
@@ -362,7 +361,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Enquiry Now"
+                        android:text="@string/EnquiryNow"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
                         android:textSize="20sp"
@@ -371,8 +370,6 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-
 
 
     </LinearLayout>

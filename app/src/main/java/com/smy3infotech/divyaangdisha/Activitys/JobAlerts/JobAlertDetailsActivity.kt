@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Categorys.AddPostActivity
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.databinding.ActivityJobAlertDetailsBinding
@@ -38,7 +39,7 @@ class JobAlertDetailsActivity : AppCompatActivity() {
 
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Job Alerts Details"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@JobAlertDetailsActivity.getString(R.string.JobAlertsDetails)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
 

@@ -64,7 +64,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/teachers_medium"
-                            android:text="Eye Care Vision Hospital"
+                            android:text="@string/dummyTitle"
                             android:textColor="@color/blue"
                             android:textSize="18sp" />
 
@@ -112,7 +112,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:fontFamily="@font/teachers_regular"
-                                android:text="Banjara Hills, Hyderabad"
+                                android:text="@string/Address"
                                 android:textColor="@color/black"
                                 android:textSize="18sp" />
                         </LinearLayout>
@@ -137,7 +137,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:fontFamily="@font/teachers_regular"
-                                android:text="00000000"
+                                android:text="@string/LandLineNumber"
                                 android:textColor="@color/black"
                                 android:textSize="18sp" />
 
@@ -163,7 +163,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:fontFamily="@font/teachers_regular"
-                                android:text=" +91 94********"
+                                android:text="@string/PhoneNumber"
                                 android:textColor="@color/black"
                                 android:textSize="18sp" />
                         </LinearLayout>
@@ -188,7 +188,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:fontFamily="@font/teachers_regular"
-                                android:text="ecvhospital@gmail.com"
+                                android:text="@string/Email"
                                 android:textColor="@color/black"
                                 android:textSize="18sp" />
                         </LinearLayout>
@@ -230,7 +230,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
                                         android:fontFamily="@font/teachers_regular"
-                                        android:text="Call Now"
+                                        android:text="@string/CallNow"
                                         android:textColor="@color/white"
                                         android:textSize="20sp" />
                                 </LinearLayout>
@@ -259,7 +259,7 @@
                                         android:layout_gravity="center"
                                         android:fontFamily="@font/teachers_regular"
                                         android:gravity="center"
-                                        android:text="Enquiry Now"
+                                        android:text="@string/EnquiryNow"
                                         android:textColor="@color/white"
                                         android:textSize="20sp" />
                                 </LinearLayout>
@@ -275,7 +275,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/teachers_medium"
-                    android:text="About Us"
+                    android:text="@string/AboutUs"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
@@ -288,7 +288,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/teachers_regular"
-                    android:text="Praesent mattis, diam vitae ornare condimentum, mi ex faucibus justo, in molestie leo dui efficitur mi. Suspendisse elit nulla, convallis id molestie a, tincidunt at nibh. Nunc pulvinar tellus vel dignissim volutpat. Fusce non pharetra nibh. Donec vitae velit a lacus blandit porttitor eget eu justo. Integer rutrum efficitur mi, id sagittis tortor ultricies ut. Donec nec ex eget lectus euismod ultrices."
+                    android:text="@string/note"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -298,7 +298,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/teachers_medium"
-                    android:text="Our Service"
+                    android:text="@string/OurService"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
@@ -320,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:fontFamily="@font/teachers_medium"
-                    android:text="Gallery"
+                    android:text="@string/Gallery"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
@@ -350,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:fontFamily="@font/teachers_medium"
-                    android:text="Location"
+                    android:text="@string/Location"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
@@ -374,7 +374,6 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"/>
 
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEnquiry1"
                     android:layout_width="170dp"
@@ -393,7 +392,7 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Enquiry Now"
+                        android:text="@string/EnquiryNow"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>

@@ -42,7 +42,7 @@
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
-                        android:text="Select Location"/>
+                        android:text="@string/SelectLocation"/>
                 </LinearLayout>
 
             <LinearLayout
@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Title"
+                        android:hint="@string/Title"
                         android:singleLine="true"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="description"
+                        android:hint="@string/description"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Phone Number"
+                        android:hint="@string/PhoneNumber"
                         android:inputType="phone"
                         android:singleLine="true"
                         android:maxLength="10"
@@ -147,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Land Line Number"
+                        android:hint="@string/LandLineNumber"
                         android:inputType="phone"
                         android:singleLine="true"
                         android:maxLength="15"
@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:fontFamily="@font/teachers_regular"
-                        android:hint="Email"
+                        android:hint="@string/Email"
                         android:singleLine="true"
                         android:textColorHint="@color/hintcolor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -189,7 +189,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="18sp"
-                        android:hint="Address"
+                        android:hint="@string/Address"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -210,7 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="18sp"
-                        android:hint="About Company"
+                        android:hint="@string/AboutCompany"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -231,7 +231,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="18sp"
-                        android:hint="Services List"
+                        android:hint="@string/ServicesList"
                         android:fontFamily="@font/teachers_regular"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -242,10 +242,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Cover Photo"
                     android:fontFamily="@font/teachers_medium"
+                    android:text="@string/CoverPhoto"
                     android:textColor="@color/text"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -268,7 +269,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Choose"
+                            android:text="@string/Choose"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
                             android:textSize="18sp"
@@ -283,7 +284,7 @@
                         android:layout_marginEnd="15dp"
                         android:singleLine="true"
                         android:gravity="end"
-                        android:text="Upload Image.jpg"
+                        android:text="@string/UploadImage"
                         android:fontFamily="@font/teachers_regular"
                         android:textColor="@color/text"
                         android:textSize="18sp"
@@ -295,7 +296,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Gallery Photos"
+                    android:text="@string/GalleryPhotos"
                     android:fontFamily="@font/teachers_medium"
                     android:textColor="@color/text"
                     android:textSize="18sp"/>
@@ -321,7 +322,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Multiple Images"
+                            android:text="@string/MultipleImages"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/text"
                             android:textSize="18sp"
@@ -336,7 +337,7 @@
                         android:layout_marginEnd="15dp"
                         android:singleLine="true"
                         android:gravity="end"
-                        android:text="0 Images"
+                        android:text="@string/oImages"
                         android:fontFamily="@font/teachers_regular"
                         android:textColor="@color/text"
                         android:textSize="18sp"
@@ -399,7 +400,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Submit"
+                        android:text="@string/Submit"
                         android:fontFamily="@font/teachers_medium"
                         android:textColor="@color/white"
                         android:textSize="20sp"

@@ -131,7 +131,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="My Sale"
+                        android:text="@string/MySale"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -175,7 +175,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="My Posts"
+                        android:text="@string/MyPosts"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -219,7 +219,51 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Job Alerts"
+                        android:text="@string/JobAlerts"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/right_arrow_ic"
+                        app:tint="@color/gray"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/home_categories_edge_gray"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardBackgroundColor="#f8fafc"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/languag_change"
+                            app:tint="#45556c" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:text="@string/ChangeLanguage"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -263,7 +307,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Suggestions"
+                        android:text="@string/Suggestions"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -307,7 +351,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Help and Support"
+                        android:text="@string/HelpAndSupport"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -395,7 +439,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Useful links"
+                        android:text="@string/UsefulLinks"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -439,7 +483,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="About Us"
+                        android:text="@string/AboutUs"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -483,7 +527,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Terms And Conditions"
+                        android:text="@string/TermsAndConditions"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -527,7 +571,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Privacy Policy"
+                        android:text="@string/PrivacyPolicy"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -571,7 +615,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="FAQ"
+                        android:text="@string/FAQ"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
@@ -615,7 +659,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Logout"
+                        android:text="@string/Logout"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView

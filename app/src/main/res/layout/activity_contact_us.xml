@@ -34,9 +34,9 @@
                     android:layout_marginEnd="25dp"
                     android:fontFamily="@font/teachers_medium"
                     android:textAlignment="center"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:textColor="@color/text"
-                    android:text="If you have any queries, get in touch with us. We will be happy to help you!"/>
+                    android:text="@string/ContactUsNote"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,10 +133,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/teachers_medium"
-                    android:textSize="23dp"
+                    android:textSize="23sp"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:text="Follow Us"/>
+                    android:text="@string/FollowUs"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

@@ -42,7 +42,7 @@
             android:name=".Activitys.EnquiryPostActivity"
             android:exported="false" />
         <activity
-            android:name=".Activitys.ConmanyInfoActivity"
+            android:name=".Activitys.CompanyInfoActivity"
             android:exported="false" />
         <activity
             android:name=".Activitys.MapLocationActivity"

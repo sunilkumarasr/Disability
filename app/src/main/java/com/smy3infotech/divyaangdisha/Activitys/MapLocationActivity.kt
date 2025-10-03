@@ -26,6 +26,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.Retrofit.RetrofitClient
@@ -54,7 +55,7 @@ class MapLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Location Selection"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text =  this@MapLocationActivity.getString(R.string.LocationSelection)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         //map

@@ -94,11 +94,11 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
         binding.recyclerview.layoutManager = LinearLayoutManager(activity)
         binding.recyclerview.adapter = CategoriesHomeAdapter(categories) { item ->
             //Toast.makeText(activity, "Clicked: ${item.text}", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
-                putExtra("category_id",item.category_id)
-                putExtra("category_Name",item.category)
-                putExtra("sub_id","")
-            })
+//            startActivity(Intent(activity, CategoriesBasedItemsListActivity::class.java).apply {
+//                putExtra("category_id",item.category_id)
+//                putExtra("category_Name",item.category)
+//                putExtra("sub_id","")
+//            })
         }
     }
 

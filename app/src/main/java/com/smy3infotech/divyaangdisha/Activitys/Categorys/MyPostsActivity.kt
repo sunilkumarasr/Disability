@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smy3infotech.divyaangdisha.Activitys.Categorys.EditPostActivity
 import com.smy3infotech.divyaangdisha.Activitys.EnquiryPostActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.MyPostsList.MyPostListAdapter
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.MyPostsList.MyPostsModel
@@ -39,7 +40,7 @@ class MyPostsActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "My Post"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@MyPostsActivity.getString(R.string.MyPosts)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(this@MyPostsActivity)){

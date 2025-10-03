@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.Config.ViewController
 import com.smy3infotech.divyaangdisha.R
 import com.smy3infotech.divyaangdisha.databinding.ActivityUsefulLinksDetailsBinding
@@ -32,7 +33,7 @@ class UsefulLinksDetailsActivity : AppCompatActivity() {
     }
 
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "Useful Links Details"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@UsefulLinksDetailsActivity.getString(R.string.UsefulLinksDetails)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         binding.webview.settings.setJavaScriptEnabled(true)

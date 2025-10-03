@@ -38,9 +38,8 @@ class MyProductsActivity : AppCompatActivity(), View.OnClickListener   {
 
     }
 
-
     private fun inits() {
-        binding.root.findViewById<TextView>(R.id.txtTitle).text = "My Products"
+        binding.root.findViewById<TextView>(R.id.txtTitle).text = this@MyProductsActivity.getString(R.string.MyProducts)
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
         if(!ViewController.noInterNetConnectivity(this@MyProductsActivity)){
