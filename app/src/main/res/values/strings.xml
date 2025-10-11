@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Disability</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="splash_note">Accessible Healthcare at Your Fingertips: Discover Nearby Hospitals and Therapy Centers using Disability App!</string>
     <string name="Get_Started">Get Started</string>
     <string name="note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat dui tristique volutpat semper. Fusce semper sit amet erat ut interdum. Etiam varius ac odio sed facilisis. Sed iaculis nisi ac odio porttitor dictum. Fusce tristique nisl a diam ornare, sit amet sollicitudin tellus hendrerit. Donec dapibus a sem sit amet tempus.
@@ -24,11 +24,11 @@
     <string name="JobAlerts">Job Alerts</string>
     <string name="ChangeLanguage">Change Language</string>
     <string name="Suggestions">Suggestions</string>
-    <string name="HelpAndSupport">Help and Support</string>
+    <string name="HelpAndSupport">Help &amp; Support</string>
     <string name="ContactUs">Contact Us</string>
     <string name="UsefulLinks">Useful links</string>
     <string name="AboutUs">About Us</string>
-    <string name="TermsAndConditions">Terms And Conditions</string>
+    <string name="TermsAndConditions">Terms &amp; Conditions</string>
     <string name="PrivacyPolicy">Privacy Policy</string>
     <string name="FAQ">FAQ</string>
     <string name="Logout">Logout</string>
@@ -57,6 +57,7 @@
     <string name="addImages">add Images</string>
     <string name="NoGalleryImages">No Gallery Images</string>
     <string name="CallNow">Call Now</string>
+    <string name="Chat">Chat</string>
     <string name="EnquiryNow">Enquiry Now</string>
     <string name="OurService">Our Service</string>
     <string name="Gallery">Gallery</string>
@@ -91,7 +92,7 @@
     <string name="OK">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="ExitNote">Are you sure want to exit this app?</string>
-    <string name="Hello">Hello, </string>
+    <string name="Hello">Hello,  </string>
     <string name="EditProfile">Edit Profile</string>
     <string name="Name">Name</string>
     <string name="ChangeLocation">Change Location</string>
@@ -104,6 +105,7 @@
     <string name="or">or</string>
     <string name="Notifications">Notifications</string>
     <string name="UsefulLinksDetails">Useful Links Details</string>
+
 
 
 </resources>

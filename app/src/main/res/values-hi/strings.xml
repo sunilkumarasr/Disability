@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Disability</string>
+
+    <string name="splash_note">सुलभ स्वास्थ्य सेवा आपकी उंगलियों पर: डिसेबिलिटी ऐप का उपयोग करके नजदीकी अस्पतालों और थेरेपी केंद्रों को खोजें!</string>
+    <string name="Get_Started">शुरू करें</string>
+    <string name="note">यहां Lorem ipsum डमी टेक्स्ट है, जिसे आप अपनी जरूरत के अनुसार बदल सकते हैं। यह केवल प्लेसहोल्डर टेक्स्ट है जो असली कंटेंट के लिए जगह बनाता है।</string>
+    <string name="note_short">यहां संक्षिप्त नोट है।</string>
+
+    <string name="hello_blank_fragment">हेलो ब्लैंक फ्रैगमेंट</string>
+    <string name="notificatin_channel">Disability_channel</string>
+
+    <string name="dummyTitle">शीर्षक</string>
+    <string name="dummyNote">Lorem Ipsum dolor sit amit consectetur rises</string>
+    <string name="dummyConditions">0 स्थितियाँ</string>
+    <string name="Conditions">स्थितियाँ</string>
+    <string name="Search.">खोजें....</string>
+    <string name="NoDataFound">कोई डेटा नहीं मिला</string>
+
+    <string name="MySale">मेरी बिक्री</string>
+    <string name="MyPosts">मेरे पोस्ट</string>
+    <string name="JobAlerts">नौकरी अलर्ट</string>
+    <string name="ChangeLanguage">भाषा बदलें</string>
+    <string name="Suggestions">सुझाव</string>
+    <string name="HelpAndSupport">सहायता और समर्थन</string>
+    <string name="ContactUs">संपर्क करें</string>
+    <string name="UsefulLinks">उपयोगी लिंक</string>
+    <string name="AboutUs">हमारे बारे में</string>
+    <string name="TermsAndConditions">नियम और शर्तें</string>
+    <string name="PrivacyPolicy">गोपनीयता नीति</string>
+    <string name="FAQ">सामान्य प्रश्न</string>
+    <string name="Logout">लॉग आउट</string>
+
+    <string name="AddPost">पोस्ट जोड़ें</string>
+    <string name="EditPost">पोस्ट संपादित करें</string>
+    <string name="SelectLocation">स्थान चुनें</string>
+    <string name="Title">शीर्षक</string>
+    <string name="description">विवरण</string>
+    <string name="PhoneNumber">फोन नंबर</string>
+    <string name="LandLineNumber">लैंडलाइन नंबर</string>
+    <string name="Email">ईमेल</string>
+    <string name="Address">पता</string>
+    <string name="AboutCompany">कंपनी के बारे में</string>
+    <string name="ServicesList">सेवाओं की सूची</string>
+    <string name="CoverPhoto">कवर फोटो</string>
+    <string name="Choose">चुनें</string>
+    <string name="UploadImage">छवि अपलोड करें.jpg</string>
+    <string name="GalleryPhotos">गैलरी फ़ोटो</string>
+    <string name="MultipleImages">कई चित्र</string>
+    <string name="oImages">0 चित्र</string>
+    <string name="Submit">जमा करें</string>
+    <string name="yourLocation.">आपका स्थान...</string>
+    <string name="Empty">खाली!</string>
+    <string name="AddSomethingToMakeMeHappy">मुझे खुश करने के लिए कुछ जोड़ें!</string>
+    <string name="addImages">चित्र जोड़ें</string>
+    <string name="NoGalleryImages">कोई गैलरी चित्र नहीं</string>
+    <string name="CallNow">अब कॉल करें</string>
+    <string name="Chat">चैट</string>
+    <string name="EnquiryNow">अब पूछताछ करें</string>
+    <string name="OurService">हमारी सेवा</string>
+    <string name="Gallery">गैलरी</string>
+    <string name="Location">स्थान</string>
+    <string name="JobAlertsDetails">नौकरी अलर्ट विवरण</string>
+    <string name="PostDate">पोस्ट तिथि</string>
+    <string name="LastDate">अंतिम तिथि</string>
+    <string name="ProductName">उत्पाद का नाम</string>
+    <string name="ActualPrice">वास्तविक कीमत</string>
+    <string name="OfferPrice">ऑफ़र कीमत</string>
+    <string name="Colour">रंग</string>
+    <string name="Brand">ब्रांड</string>
+    <string name="Features">विशेषताएँ</string>
+    <string name="MaxCharactersAllowed">अधिकतम 200 वर्ण अनुमति है</string>
+    <string name="AddProduct">उत्पाद जोड़ें</string>
+    <string name="EditProduct">उत्पाद संपादित करें</string>
+    <string name="MyProducts">मेरे उत्पाद</string>
+    <string name="Brand.">ब्रांड:</string>
+    <string name="Color.">रंग:</string>
+    <string name="PhoneNumber_">फोन नंबर:</string>
+    <string name="AskQuestions">प्रश्न पूछें</string>
+    <string name="ChatList">चैट सूची</string>
+    <string name="CompanyInfo">कंपनी की जानकारी</string>
+    <string name="FollowUs">हमें फॉलो करें</string>
+    <string name="ContactUsNote">यदि आपके कोई प्रश्न हैं, तो हमसे संपर्क करें। हमें आपकी मदद करके खुशी होगी!</string>
+    <string name="GoodMorning">सुप्रभात</string>
+    <string name="Home">होम</string>
+    <string name="Service">सेवा</string>
+    <string name="Sale">बिक्री</string>
+    <string name="Menu">मेनू</string>
+    <string name="Exit">बाहर जाएं</string>
+    <string name="OK">ठीक है</string>
+    <string name="Cancel">रद्द करें</string>
+    <string name="ExitNote">क्या आप वाकई इस ऐप से बाहर जाना चाहते हैं?</string>
+    <string name="Hello">नमस्ते,  </string>
+    <string name="EditProfile">प्रोफ़ाइल संपादित करें</string>
+    <string name="Name">नाम</string>
+    <string name="ChangeLocation">स्थान बदलें</string>
+    <string name="Radius">त्रिज्या</string>
+    <string name="ChooseFile">फ़ाइल चुनें</string>
+    <string name="UpdateProfile">प्रोफ़ाइल अपडेट करें</string>
+    <string name="WriteAMessage">संदेश लिखें</string>
+    <string name="LocationSelection">स्थान चयन</string>
+    <string name="PickYourLocation">अपना स्थान चुनें</string>
+    <string name="or">या</string>
+    <string name="Notifications">सूचनाएं</string>
+    <string name="UsefulLinksDetails">उपयोगी लिंक विवरण</string>
+
+
+</resources>

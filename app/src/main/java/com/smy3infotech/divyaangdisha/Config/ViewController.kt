@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.ContextWrapper
+import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -19,6 +21,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.internal.ContextUtils
+import java.util.Locale
 
 object ViewController {
 
@@ -119,5 +122,15 @@ object ViewController {
 //             addAnimation(fadeOut)
         }
     }
+
+    fun Context.wrap(newLocale: Locale): ContextWrapper {
+        val config = Configuration(resources.configuration)
+        config.setLocale(newLocale)
+        config.setLayoutDirection(newLocale)
+
+        val newContext = createConfigurationContext(config)
+        return ContextWrapper(newContext)
+    }
+
 
 }

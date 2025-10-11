@@ -395,7 +395,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/teachers_medium"
-                        android:text="Contact Us"
+                        android:text="@string/ContactUs"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView

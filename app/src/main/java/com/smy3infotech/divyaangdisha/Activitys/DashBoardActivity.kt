@@ -1,6 +1,9 @@
 package com.smy3infotech.divyaangdisha.Activitys
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +16,7 @@ import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
 import com.smy3infotech.divyaangdisha.Config.Preferences
 import com.smy3infotech.divyaangdisha.Config.ViewController
+import com.smy3infotech.divyaangdisha.Config.ViewController.wrap
 import com.smy3infotech.divyaangdisha.Fragments.CategoriesFragment
 import com.smy3infotech.divyaangdisha.Fragments.HomeFragment
 import com.smy3infotech.divyaangdisha.Fragments.ProfileFragment
@@ -24,6 +28,7 @@ import me.ibrahimsn.lib.SmoothBottomBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale
 
 class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
 
@@ -38,6 +43,17 @@ class DashBoardActivity : AppCompatActivity(), View.OnClickListener  {
     private val categoriesFragment = CategoriesFragment()
     private val saleFragment = SaleFragment()
     private val profileFragment = ProfileFragment()
+
+
+    //language change
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = newBase.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val language = prefs.getString("app_lang", "en") ?: "en"
+        val locale = Locale(language)
+        val context = ContextWrapper(newBase).wrap(locale)
+        super.attachBaseContext(context)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

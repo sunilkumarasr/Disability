@@ -1,15 +1,20 @@
 package com.smy3infotech.divyaangdisha.Fragments
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smy3infotech.divyaangdisha.Activitys.AboutUsActivity
 import com.smy3infotech.divyaangdisha.Activitys.AskQuestionsActivity
 import com.smy3infotech.divyaangdisha.Activitys.ContactUsActivity
@@ -18,8 +23,10 @@ import com.smy3infotech.divyaangdisha.Activitys.FaqActivity
 import com.smy3infotech.divyaangdisha.Activitys.HelpAndSupportActivity
 import com.smy3infotech.divyaangdisha.Activitys.JobAlerts.JobAlertsActivity
 import com.smy3infotech.divyaangdisha.Activitys.Categorys.MyPostsActivity
+import com.smy3infotech.divyaangdisha.Activitys.DashBoardActivity
 import com.smy3infotech.divyaangdisha.Activitys.PrivacyPolicyActivity
 import com.smy3infotech.divyaangdisha.Activitys.Sales.MyProductsActivity
+import com.smy3infotech.divyaangdisha.Activitys.SplashActivity
 import com.smy3infotech.divyaangdisha.Activitys.TermsAndConditionsActivity
 import com.smy3infotech.divyaangdisha.Activitys.UsefulLinksActivity
 import com.smy3infotech.divyaangdisha.AdaptersAndModels.ProfileResponse
@@ -32,6 +39,7 @@ import com.smy3infotech.divyaangdisha.databinding.FragmentProfileBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale
 
 class ProfileFragment : Fragment(), View.OnClickListener  {
 
@@ -122,7 +130,7 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
             R.id.linearLanguage -> {
                 val animations = ViewController.animation()
                 v.startAnimation(animations)
-
+                LanguageBottomDialog()
             }
 
             R.id.linearAboutUs -> {
@@ -194,6 +202,53 @@ class ProfileFragment : Fragment(), View.OnClickListener  {
         }
     }
 
+    private fun LanguageBottomDialog() {
+        val bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.AppBottomSheetDialogTheme)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_language, null)
+        bottomSheetDialog.setContentView(view)
+
+        val linearTelugu = view.findViewById<LinearLayout>(R.id.linearTelugu)
+        val linearHindi = view.findViewById<LinearLayout>(R.id.linearHindi)
+        val linearEnglish = view.findViewById<LinearLayout>(R.id.linearEnglish)
+        linearTelugu.setOnClickListener {
+            val animations = ViewController.animation()
+            view.startAnimation(animations)
+            saveLocalePreference("te")
+            restartActivity()
+            bottomSheetDialog.dismiss()
+        }
+        linearHindi.setOnClickListener {
+            val animations = ViewController.animation()
+            view.startAnimation(animations)
+            saveLocalePreference("hi")
+            restartActivity()
+            bottomSheetDialog.dismiss()
+        }
+        linearEnglish.setOnClickListener {
+            val animations = ViewController.animation()
+            view.startAnimation(animations)
+            saveLocalePreference("en")
+            restartActivity()
+            bottomSheetDialog.dismiss()
+        }
+        bottomSheetDialog.show()
+
+    }
+
+
+    private fun saveLocalePreference(languageCode: String) {
+        val prefs = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        prefs.edit().putString("app_lang", languageCode).apply()
+    }
+
+    private fun restartActivity() {
+        activity?.let {
+            val intent = Intent(it, DashBoardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            it.startActivity(intent)
+            it.finish()
+        }
+    }
 
     private fun logOut() {
         val builder = AlertDialog.Builder(requireActivity())

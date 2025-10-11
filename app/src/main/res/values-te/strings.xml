@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Disability</string>
+
+    <string name="splash_note">మీ వేలు వద్ద అందుబాటులో ఆరోగ్య సేవలు: డిసేబిలిటీ యాప్ ఉపయోగించి సమీపంలోని ఆసుపత్రులు మరియు థెరపీ సెంటర్లను కనుగొనండి!</string>
+    <string name="Get_Started">ప్రారంభించండి</string>
+    <string name="note">ఇక్కడ ఆప్ గురించి సాధారణ సమాచారం ఉంది. మీరు యాప్ ఫీచర్లు, ఉపయోగ విధానం మరియు ఇతర వివరాలను ఇక్కడ పొందవచ్చు.</string>
+    <string name="note_short">యాప్ ఉద్దేశాన్ని సంక్షిప్తంగా వివరించేది.</string>
+
+    <string name="hello_blank_fragment">హలో ఖాళీ ఫ్రాగ్మెంట్</string>
+    <string name="notificatin_channel">డిసేబిలిటీ_చానల్</string>
+
+    <string name="dummyTitle">శీర్షిక</string>
+    <string name="dummyNote">లోరెం ఇప్సమ్ డోలర్ సాంప్రదాయ ఉదాహరణ</string>
+    <string name="dummyConditions">0 పరిస్థితులు</string>
+    <string name="Conditions">పరిస్థితులు</string>
+    <string name="Search.">శోధించండి....</string>
+    <string name="NoDataFound">డేటా కనుగొనబడలేదు</string>
+
+    <string name="MySale">నా విక్రయాలు</string>
+    <string name="MyPosts">నా పోస్ట్లు</string>
+    <string name="JobAlerts">ఉద్యోగ అలర్ట్‌లు</string>
+    <string name="ChangeLanguage">భాష మార్చండి</string>
+    <string name="Suggestions">సూచనలు</string>
+    <string name="HelpAndSupport">సహాయం &amp; మద్దతు</string>
+    <string name="ContactUs">మమ్మల్ని సంప్రదించండి</string>
+    <string name="UsefulLinks">ఉపయోగకరమైన లింకులు</string>
+    <string name="AboutUs">మా గురించి</string>
+    <string name="TermsAndConditions">నియమాలు &amp; షరతులు</string>
+    <string name="PrivacyPolicy">గోప్యతా విధానం</string>
+    <string name="FAQ">అक्सर అడిగే ప్రశ్నలు</string>
+    <string name="Logout">లాగ్ అవుట్</string>
+
+    <string name="AddPost">పోస్ట్ జోడించండి</string>
+    <string name="EditPost">పోస్ట్ సవరించండి</string>
+    <string name="SelectLocation">స్థానం ఎంచుకోండి</string>
+    <string name="Title">శీర్షిక</string>
+    <string name="description">వివరణ</string>
+    <string name="PhoneNumber">ఫోన్ నెంబర్</string>
+    <string name="LandLineNumber">ల్యాండ్‌లైన్ నెంబర్</string>
+    <string name="Email">ఈమెయిల్</string>
+    <string name="Address">చిరునామా</string>
+    <string name="AboutCompany">కంపెనీ గురించి</string>
+    <string name="ServicesList">సేవల జాబితా</string>
+    <string name="CoverPhoto">కవర్ ఫోటో</string>
+    <string name="Choose">ఎంచుకోండి</string>
+    <string name="UploadImage">చిత్రం అప్‌లోడ్ చేయండి.jpg</string>
+    <string name="GalleryPhotos">గ్యాలరీ ఫోటోలు</string>
+    <string name="MultipleImages">బహుళ చిత్రాలు</string>
+    <string name="oImages">0 చిత్రాలు</string>
+    <string name="Submit">సమర్పించండి</string>
+    <string name="yourLocation.">మీ స్థానం...</string>
+    <string name="Empty">ఖాళీ!</string>
+    <string name="AddSomethingToMakeMeHappy">నన్ను సంతోషపర్చేందుకు ఏదైనా జోడించండి!</string>
+    <string name="addImages">చిత్రాలు జోడించండి</string>
+    <string name="NoGalleryImages">గ్యాలరీలో చిత్రాలు లేవు</string>
+    <string name="CallNow">ఇప్పుడే కాల్ చేయండి</string>
+    <string name="Chat">చాట్</string>
+    <string name="EnquiryNow">ఇప్పుడే విచారణ చేయండి</string>
+    <string name="OurService">మన సేవ</string>
+    <string name="Gallery">గ్యాలరీ</string>
+    <string name="Location">స్థానం</string>
+    <string name="JobAlertsDetails">ఉద్యోగ అలర్ట్ వివరాలు</string>
+    <string name="PostDate">పోస్ట్ తేదీ</string>
+    <string name="LastDate">చివరి తేదీ</string>
+    <string name="ProductName">ఉత్పత్తి పేరు</string>
+    <string name="ActualPrice">అసలు ధర</string>
+    <string name="OfferPrice">ఆఫర్ ధర</string>
+    <string name="Colour">రంగు</string>
+    <string name="Brand">బ్రాండ్</string>
+    <string name="Features">విశేషతలు</string>
+    <string name="MaxCharactersAllowed">గరిష్టం 200 అక్షరాలు అనుమతించబడతాయి</string>
+    <string name="AddProduct">ఉత్పత్తి జోడించండి</string>
+    <string name="EditProduct">ఉత్పత్తి సవరించండి</string>
+    <string name="MyProducts">నా ఉత్పత్తులు</string>
+    <string name="Brand.">బ్రాండ్:</string>
+    <string name="Color.">రంగు:</string>
+    <string name="PhoneNumber_">ఫోన్ నెంబర్:</string>
+    <string name="AskQuestions">ప్రశ్నలు అడగండి</string>
+    <string name="ChatList">చాట్ జాబితా</string>
+    <string name="CompanyInfo">కంపెనీ సమాచారం</string>
+    <string name="FollowUs">మమ్మల్ని అనుసరించండి</string>
+    <string name="ContactUsNote">మీకు ఏవైనా ప్రశ్నలు ఉంటే, మాతో సంప్రదించండి. మీకు సహాయం చేయడానికి మేము సంతోషిస్తాము!</string>
+    <string name="GoodMorning">శుభోదయం</string>
+    <string name="Home">హోమ్</string>
+    <string name="Service">సేవ</string>
+    <string name="Sale">అమ్మకాలు</string>
+    <string name="Menu">మెనూ</string>
+    <string name="Exit">నిష్క్రమించండి</string>
+    <string name="OK">సరే</string>
+    <string name="Cancel">రద్దు చేయండి</string>
+    <string name="ExitNote">మీరు నిజంగా ఈ యాప్ నుంచి బయటకు వెళ్లాలనుకుంటున్నారా?</string>
+    <string name="Hello">హలో,  </string>
+    <string name="EditProfile">ప్రొఫైల్ సవరించండి</string>
+    <string name="Name">పేరు</string>
+    <string name="ChangeLocation">స్థానం మార్చండి</string>
+    <string name="Radius">త్రిజ్య</string>
+    <string name="ChooseFile">ఫైల్ ఎంచుకోండి</string>
+    <string name="UpdateProfile">ప్రొఫైల్ అప్డేట్ చేయండి</string>
+    <string name="WriteAMessage">సందేశం రాయండి</string>
+    <string name="LocationSelection">స్థానం ఎంపిక</string>
+    <string name="PickYourLocation">మీ స్థానం ఎంచుకోండి</string>
+    <string name="or">లేదా</string>
+    <string name="Notifications">నోటిఫికేషన్లు</string>
+    <string name="UsefulLinksDetails">ఉపయోగకరమైన లింక్ వివరాలు</string>
+
+</resources>
